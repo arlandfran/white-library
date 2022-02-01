@@ -1,8 +1,13 @@
 # White Library
 
-A fictional e-commerce store that specialises in limited edition books and/or collectibles. 
+An e-commerce store that specialises in limited edition books and/or collectibles. 
 
 **Deployed Link**: TBD
+
+**Project Goals:**
+
+- Provide a platform for customers to purchase mainly limited edition books from various authors/series and also purchase collectibles
+- Demonstrate web development competencies by building an e-commerce store using Django and PostgreSQL
 
 ## UX
 
