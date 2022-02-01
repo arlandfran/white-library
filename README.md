@@ -4,7 +4,9 @@ A fictional e-commerce store that specialises in limited edition books and/or co
 
 **Deployed Link**: TBD
 
-## User Stories
+## UX
+
+### User Stories
 
 | As a/an | I want to | So that I can |
 | --- | --- | --- |
@@ -33,8 +35,14 @@ A fictional e-commerce store that specialises in limited edition books and/or co
 | Admin | Delete product(s) | Remove products from the store |
 
 
-## Design
+### Design
 
 **Wireframes:** [View wireframes here](https://www.figma.com/file/bqkbaMzTWfMel4mjFswWrX/white-library?node-id=0%3A1)
 
 **Typeface**: [Inter](https://rsms.me/inter/)
+
+### Features
+
+- Account registration/authentication
+- Payment system
+- Responsive design
