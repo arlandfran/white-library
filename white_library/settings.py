@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'tailwind',
     'theme',
+    'django_browser_reload',
     'home'
 ]
 
