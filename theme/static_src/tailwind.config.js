@@ -5,6 +5,8 @@
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
 
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     /**
@@ -42,7 +44,9 @@ module.exports = {
     // '../../**/*.py'
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ["Inter", ...defaultTheme.fontFamily.sans],
+    },
   },
   plugins: [
     /**
