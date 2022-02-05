@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'django_bootstrap_icons',
-    'home'
+    'home',
+    'products'
 ]
 
 TAILWIND_APP_NAME = 'theme'
