@@ -16,20 +16,27 @@
     {% tailwind_preload_css %}
     {% tailwind_css %}
   </head>
-  <body>
+  <body class="flex flex-col min-h-screen">
     {% if messages %}
-    <div></div>
     {% endif %}
 
-    {% include "includes/navbar.html" %}
-    {% include "includes/sidebar.html" %}
+    <nav>
+      {% include "includes/navbar.html" %}
+      {% include "includes/sidebar.html" %}
+    </nav>
 
     {% block page_header %}
     {% endblock %}
 
-    {% block content %}
-    {% endblock %}
-
+    <main class="grow">
+      {% block content %}
+      {% endblock %}
+    </main>
+    
+    <footer>
+      {% include 'includes/footer.html' %}
+    </footer>
+    
     {% block postloadjs %}
     <script src="{% static 'js/index.js' %}"></script>
     {% endblock %}
