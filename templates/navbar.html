@@ -4,13 +4,13 @@
   class="flex justify-between h-16 border-b border-black items-center px-2 lg:px-4 md:gap-8"
 >
   <a class="uppercase px-4 py-2" href="/">White Library</a>
-  <div class="hidden sm:block border-[1px] border-black grow max-w-xl">
-    <form action="GET" class="flex items-center justify-end">
+  <div class="hidden md:block border-[1px] border-black grow max-w-xl">
+    <form method="GET" action="" class="flex items-center justify-end">
       <input
         type="text"
         name="query"
-        placeholder="search"
-        class="uppercase border-none grow focus:ring-black focus:ring-2"
+        placeholder="Search"
+        class="border-none grow focus:ring-black focus:ring-2"
       />
       <button
         type="submit"
@@ -20,12 +20,30 @@
       </button>
     </form>
   </div>
-  <div class="sm:px-4 py-2 flex md:gap-4">
-    <a class="sm:hidden p-2" href="#">{% bs_icon "search" size="1.5em" %}</a>
-    <a class="hidden sm:block p-2" href="#">
-      {% bs_icon "person-circle" size="1.5em" %}
-    </a>
+  <div class="sm:px-4 py-2 flex gap-2">
+    {% if request.user.is_authenticated %}
+      {% if request.user.is_superuser %}
+      <a class="p-2" href="#">{% bs_icon "box-seam" size="1.5em" %}</a>
+      {% endif %}
     <a class="p-2" href="#">{% bs_icon "bookmark" size="1.5em" %}</a>
     <a href="#" class="p-2">{% bs_icon "bag" size="1.5em" %}</a>
+    <a class="p-2 hidden md:block" href="#">
+      {% bs_icon "person-circle" size="1.5em" %}
+    </a>
+    {% else %}
+    <a
+      class="border-black border-[1px] p-2 uppercase bg-black text-white focus-visible:bg-white focus-visible:text-black"
+      href="#"
+      >sign up</a
+    >
+    <a
+      class="border-black border-[1px] p-2 uppercase hidden xs:block"
+      href="{% url 'account_login' %}"
+      >log in</a
+    >
+    {% endif %}
+    <button class="p-2 border-black border-[1px] md:hidden" onclick="openSidebar()">
+      {% bs_icon "list" size="1.5em" %}
+    </button>
   </div>
 </div>
