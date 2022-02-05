@@ -1,31 +1,31 @@
 {% load bootstrap_icons %}
 
 <div
-  class="flex justify-between h-16 border-b border-black items-center lg:px-4"
+  class="flex justify-between h-16 border-b border-black items-center px-2 lg:px-4 md:gap-8"
 >
-  <a class="uppercase p-4" href="/">White Library</a>
+  <a class="uppercase px-4 py-2" href="/">White Library</a>
   <div class="hidden sm:block border-[1px] border-black grow max-w-xl">
     <form action="GET" class="flex items-center justify-end">
       <input
         type="text"
         name="query"
         placeholder="search"
-        class="uppercase border-none grow"
+        class="uppercase border-none grow focus:ring-black focus:ring-2"
       />
       <button
         type="submit"
-        class="p-2 hover:bg-blue-600 hover:fill-white transition duration-150 ease-in-out"
+        class="p-2 hover:bg-black hover:fill-white transition duration-150 ease-in-out focus:bg-black focus:fill-white"
       >
         {% bs_icon "search" size="1.5em" extra_classes="fill-inherit"%}
       </button>
     </form>
   </div>
-  <div class="p-4 flex gap-4">
-    <a class="sm:hidden" href="#">{% bs_icon "search" size="1.5em" %}</a>
-    <a class="hidden sm:block" href="#">
+  <div class="sm:px-4 py-2 flex md:gap-4">
+    <a class="sm:hidden p-2" href="#">{% bs_icon "search" size="1.5em" %}</a>
+    <a class="hidden sm:block p-2" href="#">
       {% bs_icon "person-circle" size="1.5em" %}
     </a>
-    <a href="#">{% bs_icon "bookmark" size="1.5em" %}</a>
-    <a href="#">{% bs_icon "bag" size="1.5em" %}</a>
+    <a class="p-2" href="#">{% bs_icon "bookmark" size="1.5em" %}</a>
+    <a href="#" class="p-2">{% bs_icon "bag" size="1.5em" %}</a>
   </div>
 </div>
