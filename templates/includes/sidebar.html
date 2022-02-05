@@ -1,0 +1,69 @@
+{% load bootstrap_icons %}
+
+<div
+  class="h-full top-0 right-0 fixed z-10 overflow-x-hidden transition-all duration-300 w-0 bg-white flex flex-col border-l-[1px] border-black"
+  id="sidebar"
+>
+  <div >
+    <button class="p-4" onclick="closeSidebar()">
+      {% bs_icon "x-lg" size="1.5em" %}
+    </button>
+  </div>
+
+  <div class="p-4 font-bold border-b-[1px] border-black">
+    <p class="mt-4">Looking for something?</p>
+  </div>
+
+  <div class="p-2 border-black border-b-[1px]">
+    <form method="GET" action="" class="flex items-center justify-end">
+      <input
+        type="text"
+        name="query"
+        placeholder="Search"
+        class="border-none grow focus:ring-0"
+      />
+      <button
+        type="submit"
+        class="p-2"
+      >
+        {% bs_icon "search" size="1.5em" extra_classes="fill-inherit"%}
+      </button>
+    </form>
+  </div>
+
+  {% if request.user.is_authenticated %} 
+    {% if request.user.is_superuser %}
+    <div class="border-b-[1px] border-black p-4 align-baseline flex items-center">
+      <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">manage products</a><span class="bg-black text-white p-2 text-xs ml-2">Admin</span>
+    </div>
+    {% endif %}
+  <div class="border-b-[1px] border-black p-4">
+    <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">my account</a>
+  </div>
+  <div class="border-b-[1px] border-black p-4">
+    <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">saved</a>
+  </div>
+  <div class="border-b-[1px] border-black p-4">
+    <a href="{% url 'account_logout' %}" class="text-lg uppercase p-2 font-bold hover:underline">log out</a>
+  </div>
+  {% else %}
+  <div class="border-b-[1px] border-black p-4 font-bold">
+    <a href="{% url 'account_login' %}" class="text-lg uppercase hover:underline p-2">log in</a>
+  </div>
+  <div class="border-b-[1px] border-black p-4 font-bold">
+    <a href="{% url 'account_login' %}" class="text-lg uppercase hover:underline p-2">sign up</a>
+  </div>
+  {% endif %}
+  <div class="p-4 font-bold border-b-[1px] border-black">
+    <p class="mt-8">Browse the library</p>
+  </div>
+  <div class="border-b-[1px] border-black p-4">
+    <a href="#" class="text-lg uppercase p-2">all products</a>
+  </div>
+  <div class="border-b-[1px] border-black p-4">
+    <a href="#" class="text-lg uppercase p-2">books</a>
+  </div>
+  <div class="border-b-[1px] border-black p-4">
+    <a href="#" class="text-lg uppercase p-2">collectibles</a>
+  </div>
+</div>
