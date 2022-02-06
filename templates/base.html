@@ -25,9 +25,9 @@
       {% include "includes/sidebar.html" %}
     </nav>
 
-    <h1 class="text-2xl p-4 uppercase text-center border-b border-black">
-      {% block page_header %}{% endblock %}
-    </h1>
+    
+    {% block page_header %}{% endblock %}
+
 
     <main class="grow">
       {% block content %}
