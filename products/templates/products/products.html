@@ -6,5 +6,9 @@
 {% endblock %}
 
 {% block content %}
-  {{ products }}
+  <div class="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1px]">
+    {% for product in products %}
+      {% include "includes/product.html" with product=product %}
+    {% endfor %}
+  </div>
 {% endblock %}
