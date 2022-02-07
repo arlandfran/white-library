@@ -4,10 +4,10 @@
   <div class="flex justify-between h-16  items-center px-2 lg:px-4 md:gap-8">
     <a class="uppercase px-4 py-2 font-bold" href="/">White Library</a>
     <div class="hidden md:block border-[1px] border-black grow max-w-xl">
-      <form method="GET" action="" class="flex items-center justify-end">
+      <form method="GET" action="{% url 'products' %}" class="flex items-center justify-end">
         <input
           type="text"
-          name="query"
+          name="q"
           placeholder="Search"
           class="border-none grow focus:ring-black focus:ring-2"
         />

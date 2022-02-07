@@ -15,10 +15,10 @@
   </div>
 
   <div class="p-2 border-black border-b">
-    <form method="GET" action="" class="flex items-center justify-end">
+    <form method="GET" action="{% url 'products' %}" class="flex items-center justify-end">
       <input
         type="text"
-        name="query"
+        name="q"
         placeholder="Search"
         class="border-none grow focus:ring-0"
       />
