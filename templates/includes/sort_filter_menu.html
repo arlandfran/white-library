@@ -10,8 +10,8 @@
     </select>
   </div>
   <div class="bg-white p-2">
-    <select id="sort_selector" class="border-none focus:ring-0 cursor-pointer">
-      <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+    <select id="sort_selector" class="border-none focus:ring-0 cursor-pointer" onchange="sortProducts()">
+      <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By</option>
       <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
       <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
       <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
