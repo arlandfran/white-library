@@ -873,6 +873,10 @@ select {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -883,6 +887,10 @@ select {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -909,6 +917,10 @@ select {
   justify-content: space-between;
 }
 
+.justify-items-end {
+  justify-items: end;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -923,6 +935,15 @@ select {
 
 .gap-\[1px\] {
   gap: 1px;
+}
+
+.gap-y-\[1px\] {
+  row-gap: 1px;
+}
+
+.gap-x-\[1px\] {
+  -moz-column-gap: 1px;
+       column-gap: 1px;
 }
 
 .divide-y-2 > :not([hidden]) ~ :not([hidden]) {
@@ -946,6 +967,10 @@ select {
 .divide-black > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-divide-opacity));
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .overflow-x-hidden {
@@ -1020,6 +1045,10 @@ select {
   padding: 2rem;
 }
 
+.p-24 {
+  padding: 6rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1046,6 +1075,10 @@ select {
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .align-baseline {
@@ -1108,16 +1141,35 @@ select {
           text-decoration-line: underline;
 }
 
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .outline {
   outline-style: solid;
+}
+
+.outline-hidden {
+  outline-style: hidden;
 }
 
 .outline-1 {
   outline-width: 1px;
 }
 
+.outline-0 {
+  outline-width: 0px;
+}
+
 .outline-black {
   outline-color: #000;
+}
+
+.ring-0 {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
 .filter {

@@ -1,6 +1,10 @@
 <div class="justify-center py-2 gap-4 hidden md:flex border-t border-black">
   <a class="p-2 uppercase" href="{% url 'products' %}">all products</a>
-  <a class="p-2 uppercase" href="{% url 'products' %}?category=books">books</a>
+  <a
+    class="p-2 uppercase"
+    href="{% url 'products' %}?category=hardback,boxed_set"
+    >books</a
+  >
   <a class="p-2 uppercase" href="{% url 'products' %}?category=collectibles"
     >collectibles</a
   >
