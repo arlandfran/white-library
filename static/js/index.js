@@ -44,3 +44,21 @@ function sortProducts() {
     window.location.replace(currentUrl);
   }
 }
+
+// show button if user scrolls down 20px from the top
+window.onscroll = function () {
+  scrollHandler();
+};
+
+function scrollHandler() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrollToTop").style.display = "block";
+  } else {
+    document.getElementById("scrollToTop").style.display = "none";
+  }
+}
+
+function scrollToTop() {
+  document.body.scrollTop = 0; // Safari
+  document.documentElement.scrollTop = 0;
+}
