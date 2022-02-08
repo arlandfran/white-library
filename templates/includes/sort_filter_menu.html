@@ -1,19 +1,21 @@
 {% load bootstrap_icons %}
 
-<div class="grid grid-cols-2 h-full bg-black gap-[1px] items-center border-b border-black">
-  <div class="bg-white p-2">
-    <select id="category_selector" class="border-none focus:ring-0 cursor-pointer" onchange="selectCategory()">
+<div class="grid grid-cols-1 xs:grid-cols-2 h-full bg-black gap-[1px] items-center border-b border-black">
+  <div class="bg-white p-2 flex flex-col sm:flex-row h-full sm:items-center sm:justify-between">
+    <div class="font-bold text-xs uppercase pl-3 sm:text-base">category</div>
+    <select id="category_selector" class="border-none focus:ring-0 cursor-pointer w-full xs:w-fit" onchange="selectCategory()">
       <option value="reset" {% if request.get_full_path == "/products/" %}selected{% endif %}>All Products</option>
       {% for category in all_categories %}
       <option value="{{ category.name }}" {% if category.name in request.get_full_path %}selected{% endif %}>{{ category.friendly_name }}</option>
       {% endfor %}
     </select>
   </div>
-  <div class="bg-white p-2">
-    <select id="sort_selector" class="border-none focus:ring-0 cursor-pointer" onchange="sortProducts()">
-      <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By</option>
-      <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-      <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+  <div class="bg-white p-2 flex flex-col sm:flex-row h-full sm:items-center sm:justify-between">
+    <div class="font-bold text-xs uppercase pl-3 sm:text-base">sort by</div>
+    <select id="sort_selector" class="border-none focus:ring-0 cursor-pointer w-full xs:w-fit" onchange="sortProducts()">
+      <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Relevance</option>
+      <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (Low to High)</option>
+      <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (High to Low)</option>
       <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
       <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
     </select>
