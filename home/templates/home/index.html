@@ -2,5 +2,16 @@
 {% load static %}
 
 {% block content %}
-<h1>Hello World! </h1>
+<div class="h-[87vh] flex flex-col justify-center items-start xs:items-center">
+  <h1 class="font-bold text-lg p-4">A curated collection of limited edition books.</h1>
+  <a class="border-black border uppercase p-2 m-4" href="{% url 'products' %}">shop now</a>
+</div>
+<a href="{% url 'products' %}" class="p-4 text-center">
+  <h2 class="uppercase font-bold underline">latest arrivals</h2>
+</a>
+<div class="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1px]">
+  {% for product in products %}
+    {% include "includes/product.html" with product=product %}
+  {% endfor %}
+</div>
 {% endblock %}

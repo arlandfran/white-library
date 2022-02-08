@@ -739,6 +739,10 @@ select {
   z-index: 50;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -823,6 +827,34 @@ select {
 
 .h-6 {
   height: 1.5rem;
+}
+
+.h-\[80vh0\] {
+  height: 80vh0;
+}
+
+.h-\[90vh\] {
+  height: 90vh;
+}
+
+.h-\[70vh\] {
+  height: 70vh;
+}
+
+.h-\[85vh\] {
+  height: 85vh;
+}
+
+.h-\[88vh\] {
+  height: 88vh;
+}
+
+.h-\[86vh\] {
+  height: 86vh;
+}
+
+.h-\[87vh\] {
+  height: 87vh;
 }
 
 .min-h-screen {
@@ -919,6 +951,10 @@ select {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-end {
@@ -1131,6 +1167,10 @@ select {
   padding-left: 0.75rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1328,6 +1368,18 @@ select {
 
   .xs\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .xs\:items-center {
+    align-items: center;
+  }
+
+  .xs\:justify-center {
+    justify-content: center;
+  }
+
+  .xs\:text-center {
+    text-align: center;
   }
 }
 
