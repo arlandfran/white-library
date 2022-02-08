@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% block content %}
+  {% if bag_items %}
+  {% else %}
+  <div class="flex justify-center items-center flex-col h-[80vh]">
+    {% bs_icon "bag" size="4rem" %}
+    <p class="font-bold p-4">The bag is empty</p>
+    <a href="{% url 'products' %}" class="uppercase p-4 w-fit flex items-center">
+      {% bs_icon "arrow-left-short" size="1.5em" extra_classes="inline" %} back to products 
+    </a>
+  </div>
+  {% endif %}
+{% endblock %}
