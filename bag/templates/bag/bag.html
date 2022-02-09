@@ -2,8 +2,29 @@
 {% load bootstrap_icons %}
 {% load static %}
 
+{% if bag_items %}
+  {% block page_header %}
+    {% include 'includes/page_header.html' with title="bag" %}
+  {% endblock %}
+{% endif %}
+
 {% block content %}
   {% if bag_items %}
+  <div class="flex flex-col">
+    <div class="grid grid-cols-2 p-4">
+      {% for item in bag_items %}
+      <div class="w-32 p-2">
+        {% include 'bag/product_image.html' %}
+      </div>
+      <div class="py-2">
+        <p>{{ item.product.name }}</p>
+        <p class="text-sm">Qty: {{ item.quantity }}</p>
+        <p class="text-sm">£{{ item.product.price }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div id="summary"></div>
+  </div>
   {% else %}
   <div class="flex justify-center items-center flex-col h-[80vh]">
     {% bs_icon "bag" size="4rem" %}

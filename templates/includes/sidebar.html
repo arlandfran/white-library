@@ -44,7 +44,7 @@
     <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">saved</a>
   </div>
   <div class="border-b border-black p-4">
-    <a href="{% url 'view_bag' %}" class="text-lg uppercase p-2 font-bold hover:underline">bag</a>
+    <a href="{% url 'view_bag' %}" class="text-lg uppercase p-2 font-bold hover:underline">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
   </div>
   <div class="border-b border-black p-4">
     <a href="{% url 'account_logout' %}" class="text-lg uppercase p-2 font-bold hover:underline">log out</a>

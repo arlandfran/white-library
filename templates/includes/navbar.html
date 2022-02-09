@@ -28,7 +28,7 @@
         account
       </a>
       <a class="p-2 uppercase" href="#">saved</a>
-      <a href="{% url 'view_bag' %}" class="p-2 uppercase">bag</a>
+      <a href="{% url 'view_bag' %}" class="p-2 uppercase {% if bag_items %}font-bold{% endif %}">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
       {% else %}
       <a
         class="border-black border-[1px] p-2 uppercase bg-black text-white focus-visible:bg-white focus-visible:text-black"
