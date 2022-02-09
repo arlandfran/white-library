@@ -31,7 +31,7 @@
 {% endblock %}
 
 {% block postloadjs %}
-  <script type="text/javascript">
+  <script>
     async function removeItemFromBag() {
       const csrfToken = "{{ csrf_token }}";
       const itemId = document.getElementById("remove-item").dataset.itemId;
