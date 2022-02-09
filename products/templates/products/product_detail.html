@@ -6,15 +6,16 @@
 {% endblock %}
 
 {% block content %}
-  <div class="flex flex-col lg:flex-row">
-      <div class="flex justify-center items-center lg:h-[80vh]">
+  <div class="flex flex-col items-center">
+      <div class="flex justify-center items-center max-w-lg p-8">
         {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% else %}
         <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
         {% endif %}
     </div>
-    <div class="border-t lg:border-l border-black lg:border-t-0">
+
+    <div class="border-t border-black max-w-lg">
       <div class="p-8">
         <div class="font-bold text-xl mb-2">{{ product.author }}</div>
         <div class="font-bold text-xl mb-2">{{ product.release_date }}</div>
