@@ -22,14 +22,13 @@
     {% if messages %}
     {% endif %}
 
-    <nav>
-      {% include "includes/navbar.html" %}
-      {% include "includes/sidebar.html" %}
+    <nav class="border-b border-black">
+      {% include "includes/primary_navbar.html" %}
+      {% include 'includes/secondary_navbar.html' %}
+      {% include 'includes/sidebar.html' %}
     </nav>
 
-    
     {% block page_header %}{% endblock %}
-
 
     <main class="grow">
       {% block content %}
