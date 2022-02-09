@@ -31,6 +31,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
   <script>
     async function removeItemFromBag() {
       const csrfToken = "{{ csrf_token }}";

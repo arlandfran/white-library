@@ -24,6 +24,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
 <script>
   // show button if user scrolls down 20px from the top
   window.onscroll = function () {
