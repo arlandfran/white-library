@@ -10,20 +10,20 @@
 
 {% block content %}
   {% if bag_items %}
-  <div class="flex flex-col">
+  <div class="flex flex-col md:flex-row md:justify-between lg:px-16">
     <div class="grid grid-cols-2 p-4">
       {% for item in bag_items %}
-      <div class="w-32 p-2">
+      <div class="min-w-[8rem] max-w-[16rem] p-2">
         {% include 'bag/product_image.html' %}
       </div>
-      <div class="py-2">
-        <p>{{ item.product.name }}</p>
-        <p class="text-sm">Qty: {{ item.quantity }}</p>
-        <p class="text-sm">£{{ item.product.price }}</p>
+      <div class="py-2 flex flex-col justify-center">
+        {% include 'bag/product_info.html' %}
       </div>
       {% endfor %}
     </div>
-    <div id="summary"></div>
+    <div class="flex flex-col p-8 border-t border-black md:border-none">
+      {% include 'bag/checkout.html' %}
+    </div>
   </div>
   {% else %}
   <div class="flex justify-center items-center flex-col h-[80vh]">
