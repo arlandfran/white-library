@@ -789,6 +789,10 @@ select {
   margin-bottom: 0.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1247,6 +1251,10 @@ select {
 
 .p-16 {
   padding: 4rem;
+}
+
+.p-\[4px\] {
+  padding: 4px;
 }
 
 .px-2 {
