@@ -1235,6 +1235,16 @@ select {
   padding-right: 4rem;
 }
 
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -1485,6 +1495,11 @@ select {
     justify-content: center;
   }
 
+  .xs\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   .xs\:text-center {
     text-align: center;
   }
@@ -1522,6 +1537,11 @@ select {
   .sm\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .sm\:pl-2 {
@@ -1605,6 +1625,11 @@ select {
   .md\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
