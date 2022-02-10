@@ -22,25 +22,32 @@
     <div class="flex gap-2 py-2 text-sm md:px-4">
       {% if request.user.is_authenticated %}
         {% if request.user.is_superuser %}
-        <a class="hidden p-2 uppercase xs:block" href="#">admin</a>
+          <a class="hidden p-2 uppercase xs:block" href="#">admin</a>
         {% endif %}
-      <a class="hidden p-2 uppercase md:block" href="#">
-        account
-      </a>
-      <a class="p-2 uppercase" href="#">saved</a>
-      <button href="{% url 'view_bag' %}" class="p-2 uppercase {% if bag_items %}font-bold{% endif %}" onclick="toggleBag()">
-        bag {% if bag_items %}({{ bag_items|length }}){% endif %}
-      </button>
-      {% if bag_items %}
-        {% include "includes/bag_preview.html" %}
-      {% endif %}
+        <a class="hidden p-2 uppercase md:block" href="#">account</a>
+        <a class="p-2 uppercase" href="#">saved</a>
+        {% if bag_items %}
+          <button 
+            href="{% url 'view_bag' %}"
+            class="p-2 uppercase {% if bag_items %}font-bold{% endif %}"
+            onclick="toggleBag()"
+          >
+            bag ({{ bag_items|length }})
+          </button>
+          {% include "includes/bag_preview.html" %}
+        {% else %}
+          <a href="{% url 'view_bag' %}" class="p-2 uppercase">bag</a>
+        {% endif %}
       {% else %}
       <a
-        class="border-black border-[1px] p-2 uppercase bg-black text-white focus-visible:bg-white focus-visible:text-black"
         href="#"
+        class="border-black border-[1px] p-2 uppercase bg-black text-white focus-visible:bg-white focus-visible:text-black"
         >sign up</a
       >
-      <a class="border-black border-[1px] p-2 uppercase hidden xs:block" href="{% url 'account_login' %}?next={{ request.path }}">
+      <a 
+        href="{% url 'account_login' %}?next={{ request.path }}"
+        class="border-black border-[1px] p-2 uppercase hidden xs:block"
+      >
         log in
       </a>
       {% endif %}
