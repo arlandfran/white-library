@@ -107,6 +107,16 @@
           headers: {"X-CSRFToken": csrfToken}
         }).then(() => location.reload());
       }
+
+      const clearBag = async () => {
+        const csrfToken = "{{ csrf_token }}";
+        const url = `/bag/clear`;
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {"X-CSRFToken": csrfToken}
+        }).then(() => location.reload());
+      }
     </script>
     {% endblock %}
   </body>

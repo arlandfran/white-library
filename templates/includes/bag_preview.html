@@ -24,6 +24,9 @@
       </div>
     {% endfor %}
   </div>
+  <div class="flex justify-end pr-4">
+    <button class="uppercase text-sm" onclick="clearBag()">clear all</button>
+  </div>
   <div class="grid grid-cols-2 gap-4 p-4">
     <a href="{% url 'view_bag' %}" class="p-4 text-center uppercase border border-black">
       view bag
