@@ -15,10 +15,12 @@ def add_to_bag(request, item_id):
   redirect_url = request.POST.get('redirect_url')
   bag = request.session.get('bag', {})
 
-  if item_id not in list(bag.keys()):
+  if item_id in list(bag.keys()):
+    messages.error(request, f'{product.name} is already in your bag')
+  else:
+    messages.success(request, f'{product.name} has been added to your bag')
     bag[item_id] = 1
 
-  messages.success(request, f'{product.name} has been added to your bag')
   request.session['bag'] = bag
   
   return redirect(redirect_url)
