@@ -47,11 +47,11 @@
     <a href="{% url 'view_bag' %}" class="p-2 text-lg font-bold uppercase hover:underline">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="{% url 'account_logout' %}" class="p-2 text-lg font-bold uppercase hover:underline">log out</a>
+    <a href="{% url 'account_logout' %}?next={{ request.path }}" class="p-2 text-lg font-bold uppercase hover:underline">log out</a>
   </div>
   {% else %}
   <div class="p-4 font-bold border-b border-black">
-    <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline">log in</a>
+    <a href="{% url 'account_login' %}?next={{ request.path }}" class="p-2 text-lg uppercase hover:underline">log in</a>
   </div>
   <div class="p-4 font-bold border-b border-black">
     <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline">sign up</a>
