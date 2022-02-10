@@ -1,11 +1,18 @@
+{% load bootstrap_icons %}
+
 <div
   id="show-bag"
   class="absolute bottom-0 z-10 flex-col hidden max-w-md transition-all duration-300 ease-in-out scale-y-0 origin-top bg-white outline outline-1 outline-black opacity-0 top-16 right-0 xs:right-2 h-fit md:right-4"
 >
-  <div class="p-2 text-xl border-b border-black text-center uppercase">
+  <div class="p-2 text-xl border-b border-black flex justify-between uppercase items-center">
+    <div class="pl-4">
     {{ bag_items|length }}
     {% if bag_items|length > 1 %} items {% else %} item {% endif %}
     in your bag
+    </div>
+    <button onclick="closeBag()">
+    {% bs_icon "x" size="1.5em" extra_classes="inline"%}
+    </button>
   </div>
   <div class="grid grid-cols-[auto_1fr] items-center p-4 gap-2">
     {% for item in bag_items %}

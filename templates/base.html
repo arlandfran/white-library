@@ -71,13 +71,13 @@
         }
 
         if (bag.contains("hidden")) {
-          showBag()
+          openBag()
         } else {
-          hideBag()
+          closeBag()
         }
       }
 
-      const showBag = () => {
+      const openBag = () => {
         bag = document.querySelector("#show-bag").classList
 
         bag.replace("hidden", "flex")
@@ -87,7 +87,7 @@
           }, 0)
       }
 
-      const hideBag = () => {
+      const closeBag = () => {
         bag = document.querySelector("#show-bag").classList
 
         bag.replace("opacity-100", "opacity-0")
