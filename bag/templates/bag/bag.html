@@ -35,7 +35,7 @@
   <script>
     async function removeItemFromBag() {
       const csrfToken = "{{ csrf_token }}";
-      const itemId = document.getElementById("remove-item").dataset.itemId;
+      const itemId = document.querySelector("#remove-item").dataset.itemId;
       const url = `/bag/remove/${itemId}/`;
 
       const response = await fetch(url, {

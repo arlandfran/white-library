@@ -33,9 +33,9 @@
 
   function scrollHandler() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.getElementById("scrollToTop").style.display = "block";
+      document.querySelector("#scrollToTop").style.display = "block";
     } else {
-      document.getElementById("scrollToTop").style.display = "none";
+      document.querySelector("#scrollToTop").style.display = "none";
     }
   }
 
@@ -45,7 +45,7 @@
   }
 
   function selectCategory() {
-    const select = document.getElementById("category_selector");
+    const select = document.querySelector("#category_selector");
     const currentUrl = new URL(window.location);
 
     const category = select.value;
@@ -60,7 +60,7 @@
   }
 
   function sortProducts() {
-    const select = document.getElementById("sort_selector");
+    const select = document.querySelector("#sort_selector");
     const currentUrl = new URL(window.location);
 
     const val = select.value;
