@@ -29,19 +29,3 @@
     {% include 'bag/empty_bag.html' %}
   {% endif %}
 {% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
-  <script>
-    async function removeItemFromBag() {
-      const csrfToken = "{{ csrf_token }}";
-      const itemId = document.querySelector("#remove-item").dataset.itemId;
-      const url = `/bag/remove/${itemId}/`;
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {"X-CSRFToken": csrfToken}
-      }).then(() => location.reload());
-    }
-  </script>
-{% endblock %}

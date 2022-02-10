@@ -96,6 +96,17 @@
             bag.replace("flex", "hidden")
           }, 100)
       }
+
+      const removeItemFromBag = async () => {
+        const csrfToken = "{{ csrf_token }}";
+        const itemId = document.querySelector("#remove-item").dataset.itemId;
+        const url = `/bag/remove/${itemId}/`;
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {"X-CSRFToken": csrfToken}
+        }).then(() => location.reload());
+      }
     </script>
     {% endblock %}
   </body>
