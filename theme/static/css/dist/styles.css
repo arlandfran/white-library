@@ -715,8 +715,12 @@ select {
   bottom: 1rem;
 }
 
-.z-10 {
-  z-index: 10;
+.z-50 {
+  z-index: 50;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .m-4 {
@@ -1109,7 +1113,7 @@ select {
   flex-direction: column;
   align-items: flex-end;
   max-width: 100%;
-  z-index: 999;
+  z-index: 10;
   overflow: hidden;
 }
 
@@ -1172,7 +1176,6 @@ select {
 .js-snackbar {
   display: inline-flex;
   box-sizing: border-box;
-  color: #eee;
   font-size: 16px;
   background-color: white;
   vertical-align: bottom;
@@ -1231,18 +1234,6 @@ select {
 .js-snackbar__status.js-snackbar--info {
   --tw-bg-opacity: 1;
   background-color: rgb(2 132 199 / var(--tw-bg-opacity));
-}
-
-.js-snackbar__icon {
-  display: block;
-  border: 2px solid white;
-  font-weight: bold;
-  border-radius: 20px;
-  height: 20px;
-  width: 20px;
-  text-align: center;
-  margin: 0 5px;
-  font-family: monospace;
 }
 
 .js-snackbar__action {
