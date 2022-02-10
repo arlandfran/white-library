@@ -7,7 +7,7 @@
 
 {% block content %}
   <div class="flex flex-col items-center">
-    <div class="flex justify-center items-center p-8 max-w-lg">
+    <div class="flex items-center justify-center max-w-lg p-8">
         {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% else %}
@@ -16,11 +16,22 @@
     </div>
 
     <div class="max-w-lg">
+      {% if user.is_authenticated %}
       <form action="{% url 'add_to_bag' product.id %}" method="POST" class="outline-black outline outline-1">
         {% csrf_token %}
-        <input type="submit" value="add to bag" data-item-id="{{ product.id }}" class="p-4 w-full font-bold uppercase cursor-pointer">
+        <input 
+          type="submit" 
+          value="add to bag"
+          data-item-id="{{ product.id }}" 
+          class="w-full p-4 font-bold uppercase cursor-pointer disabled:cursor-default" 
+        >
         <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
       </form>
+      {% else %}
+      <a href="{% url 'account_login' %}?next={{ request.path }}" class="block p-4 font-bold text-center uppercase outline outline-1 outline-black">
+        sign in to purchase
+      </a>
+      {% endif %}
       <div class="px-8 py-8 sm:px-0">
         <div class="mb-2 text-xl font-bold">{{ product.release_date }}</div>
         <div class="mb-2 text-xl font-bold">{{ product.author }}</div>
