@@ -14,7 +14,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'lib/js-snackbar.css' %}">
 
     {% tailwind_preload_css %}
     {% tailwind_css %}
@@ -61,6 +60,41 @@
 
       function closeSidebar() {
         document.querySelector("#sidebar").style.width = "0%";
+      }
+
+      const toggleBag = () => {
+        bag = document.querySelector("#show-bag").classList
+        message = document.querySelector(".js-snackbar__close")
+
+        if (message) {
+          message.click() // closes message
+        }
+
+        if (bag.contains("hidden")) {
+          showBag()
+        } else {
+          hideBag()
+        }
+      }
+
+      const showBag = () => {
+        bag = document.querySelector("#show-bag").classList
+
+        bag.replace("hidden", "flex")
+          window.setTimeout(function() {
+            bag.replace("scale-y-0", "scale-y-100")
+            bag.replace("opacity-0", "opacity-100")
+          }, 0)
+      }
+
+      const hideBag = () => {
+        bag = document.querySelector("#show-bag").classList
+
+        bag.replace("opacity-100", "opacity-0")
+          bag.replace("scale-y-100", "scale-y-0")
+          window.setTimeout(function() {
+            bag.replace("flex", "hidden")
+          }, 100)
       }
     </script>
     {% endblock %}
