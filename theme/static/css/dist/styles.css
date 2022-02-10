@@ -1018,6 +1018,10 @@ select {
   gap: 1px;
 }
 
+.self-center {
+  align-self: center;
+}
+
 .overflow-x-hidden {
   overflow-x: hidden;
 }
