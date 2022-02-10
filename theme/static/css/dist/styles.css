@@ -707,12 +707,12 @@ select {
   right: 0px;
 }
 
-.bottom-4 {
-  bottom: 1rem;
-}
-
 .right-4 {
   right: 1rem;
+}
+
+.bottom-4 {
+  bottom: 1rem;
 }
 
 .z-10 {
@@ -987,14 +987,14 @@ select {
   padding-bottom: 1rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pb-4 {
@@ -1097,6 +1097,181 @@ select {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* https://github.com/mickelsonmichael/js-snackbar */
+
+.js-snackbar-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 100%;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.js-snackbar-container--top-left {
+  bottom: unset;
+  right: unset;
+  top: 0;
+  left: 0;
+}
+
+.js-snackbar-container--top-center {
+  top: 0;
+  bottom: unset;
+  left: 50%;
+  right: unset;
+  transform: translateX(-50%);
+}
+
+.js-snackbar-container--top-right {
+  bottom: unset;
+  right: 0.5rem;
+  left: 0.5rem;
+  top: 3.5rem;
+}
+
+.js-snackbar-container--bottom-left {
+  bottom: 0;
+  right: unset;
+  left: 0;
+  top: unset;
+}
+
+.js-snackbar-container--bottom-center {
+  bottom: 0;
+  right: unset;
+  left: 50%;
+  top: unset;
+  transform: translateX(-50%);
+}
+
+.js-snackbar-container--fixed {
+  position: fixed;
+}
+
+.js-snackbar-container * {
+  box-sizing: border-box;
+}
+
+.js-snackbar__wrapper {
+  overflow: hidden;
+  height: auto;
+  margin: 0;
+  display: flex;
+  min-width: auto;
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 0.3s;
+}
+
+.js-snackbar {
+  display: inline-flex;
+  box-sizing: border-box;
+  color: #eee;
+  font-size: 16px;
+  background-color: white;
+  vertical-align: bottom;
+  flex-grow: 1;
+  border: 1px solid black;
+}
+
+.js-snackbar__close,
+.js-snackbar__status,
+.js-snackbar__message-wrapper {
+  position: relative;
+}
+
+.js-snackbar__message-wrapper {
+  flex: 1;
+  padding: 12px;
+  height: 100%;
+}
+
+.js-snackbar__message {
+  display: inline-block;
+  color: black;
+}
+
+.js-snackbar__status {
+  display: none;
+  min-width: 15px;
+  margin-right: 5px;
+  background-color: transparent;
+}
+
+.js-snackbar__status.js-snackbar--success,
+.js-snackbar__status.js-snackbar--warning,
+.js-snackbar__status.js-snackbar--danger,
+.js-snackbar__status.js-snackbar--info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.js-snackbar__status.js-snackbar--success {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
+}
+
+.js-snackbar__status.js-snackbar--warning {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 119 6 / var(--tw-bg-opacity));
+}
+
+.js-snackbar__status.js-snackbar--danger {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
+.js-snackbar__status.js-snackbar--info {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 132 199 / var(--tw-bg-opacity));
+}
+
+.js-snackbar__icon {
+  display: block;
+  border: 2px solid white;
+  font-weight: bold;
+  border-radius: 20px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  margin: 0 5px;
+  font-family: monospace;
+}
+
+.js-snackbar__action {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #838cff;
+  cursor: pointer;
+}
+
+.js-snackbar__action:hover {
+  background-color: #333;
+}
+
+.js-snackbar__close {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: black;
+}
+
+.js-snackbar__close:hover {
+  background-color: #444;
+  color: white;
 }
 
 .hover\:underline:hover {
