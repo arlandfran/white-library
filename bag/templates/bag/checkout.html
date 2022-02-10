@@ -1,12 +1,12 @@
 {% load bootstrap_icons %}
 
 <p class="text-lg"><strong class="uppercase">total:</strong> £{{ total }}</p>
-<p class="text-lg pb-4">
+<p class="pb-4 text-lg">
   <strong class="uppercase">shipping:</strong> To be calculated on checkout
 </p>
 <a
   href="{% url 'checkout' %"
-  class="uppercase border border-black p-4 font-bold flex items-center justify-center gap-2"
+  class="flex gap-2 justify-center items-center p-4 font-bold uppercase border border-black"
 >
   secure checkout {% bs_icon "shield-lock" size="1.5em" extra_classes="inline" %}
 </a>

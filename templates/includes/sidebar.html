@@ -14,8 +14,8 @@
     <p class="mt-4">Looking for something?</p>
   </div>
 
-  <div class="p-2 border-black border-b">
-    <form method="GET" action="{% url 'products' %}" class="flex items-center justify-end">
+  <div class="p-2 border-b border-black">
+    <form method="GET" action="{% url 'products' %}" class="flex justify-end items-center">
       <input
         type="text"
         name="q"
@@ -33,40 +33,40 @@
 
   {% if request.user.is_authenticated %} 
     {% if request.user.is_superuser %}
-    <div class="border-b border-black p-4 align-baseline flex items-center">
-      <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">manage products</a><span class="bg-black text-white p-2 text-xs ml-2">Admin</span>
+    <div class="flex items-center p-4 align-baseline border-b border-black">
+      <a href="#" class="p-2 text-lg font-bold uppercase hover:underline">manage products</a><span class="p-2 ml-2 text-xs text-white bg-black">Admin</span>
     </div>
     {% endif %}
-  <div class="border-b border-black p-4">
-    <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">my account</a>
+  <div class="p-4 border-b border-black">
+    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline">my account</a>
   </div>
-  <div class="border-b border-black p-4">
-    <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">saved</a>
+  <div class="p-4 border-b border-black">
+    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline">saved</a>
   </div>
-  <div class="border-b border-black p-4">
-    <a href="{% url 'view_bag' %}" class="text-lg uppercase p-2 font-bold hover:underline">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'view_bag' %}" class="p-2 text-lg font-bold uppercase hover:underline">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
   </div>
-  <div class="border-b border-black p-4">
-    <a href="{% url 'account_logout' %}" class="text-lg uppercase p-2 font-bold hover:underline">log out</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'account_logout' %}" class="p-2 text-lg font-bold uppercase hover:underline">log out</a>
   </div>
   {% else %}
-  <div class="border-b border-black p-4 font-bold">
-    <a href="{% url 'account_login' %}" class="text-lg uppercase hover:underline p-2">log in</a>
+  <div class="p-4 font-bold border-b border-black">
+    <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline">log in</a>
   </div>
-  <div class="border-b border-black p-4 font-bold">
-    <a href="{% url 'account_login' %}" class="text-lg uppercase hover:underline p-2">sign up</a>
+  <div class="p-4 font-bold border-b border-black">
+    <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline">sign up</a>
   </div>
   {% endif %}
   <div class="p-4 font-bold border-b border-black">
     <p class="mt-8">Browse the library</p>
   </div>
-  <div class="border-b border-black p-4">
-    <a href="{% url 'products' %}" class="text-lg uppercase p-2">all products</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'products' %}" class="p-2 text-lg uppercase">all products</a>
   </div>
-  <div class="border-b border-black p-4">
-    <a href="#" class="text-lg uppercase p-2">books</a>
+  <div class="p-4 border-b border-black">
+    <a href="#" class="p-2 text-lg uppercase">books</a>
   </div>
-  <div class="border-b border-black p-4">
-    <a href="#" class="text-lg uppercase p-2">collectibles</a>
+  <div class="p-4 border-b border-black">
+    <a href="#" class="p-2 text-lg uppercase">collectibles</a>
   </div>
 </div>
