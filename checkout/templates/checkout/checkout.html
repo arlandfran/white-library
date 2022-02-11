@@ -18,19 +18,19 @@
       {% csrf_token %}
       <fieldset class="flex flex-col gap-2 mb-4">
         <legend class="mb-2 text-xl font-bold">Details</legend>
-        {{ order_form.full_name | add_class:"focus:ring-black focus:border-black" }}
-        {{ order_form.email | add_class:"focus:ring-black focus:border-black" }}
-        {{ order_form.phone_number | add_class:"focus:ring-black focus:border-black" }}
+        {{ order_form.full_name }}
+        {{ order_form.email }}
+        {{ order_form.phone_number }}
       </fieldset>
       <fieldset class="flex flex-col gap-2 mb-4">
         <legend class="mb-2 text-xl font-bold">Shipping</legend>
-          {{ order_form.street_address1 | add_class:"focus:ring-black focus:border-black" }}
-          {{ order_form.street_address2 | add_class:"focus:ring-black focus:border-black" }}
+          {{ order_form.street_address1 }}
+          {{ order_form.street_address2 }}
           <div class="grid grid-cols-1 gap-2 xs:grid-cols-6">
-            {{ order_form.town_or_city | add_class:"focus:ring-black xs:col-span-4 focus:border-black" }}
-            {{ order_form.postcode | add_class:"focus:ring-black xs:col-span-2 focus:border-black" }}
-            {{ order_form.country | add_class:"focus:ring-black xs:col-span-3 focus:border-black" }}
-            {{ order_form.county | add_class:"focus:ring-black xs:col-span-3 focus:border-black" }}
+            {{ order_form.town_or_city | add_class:"xs:col-span-4" }}
+            {{ order_form.postcode | add_class:"xs:col-span-2" }}
+            {{ order_form.country | add_class:"xs:col-span-3" }}
+            {{ order_form.county | add_class:"xs:col-span-3" }}
           </div>
           <div class="flex items-center gap-2">
             <label for="id-save-info">Save shipping information</label>
