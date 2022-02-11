@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% block page_header %}
+  {% include "includes/page_header.html" with title="checkout" %}
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-col md:flex-row md:justify-between lg:px-16">
+  <div class="p-4">
+    <a href="{% url 'view_bag' %}" class="flex items-center mb-4">
+      {% bs_icon "arrow-left-short" size="1.5em" extra_classes="inline" %}
+      Back to bag
+    </a>
+    <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+      {% csrf_token %}
+      <fieldset class="flex flex-col gap-2 mb-4">
+        <legend class="mb-2 text-xl font-bold">Details</legend>
+        {{ order_form.full_name | add_class:"focus:ring-black focus:border-black" }}
+        {{ order_form.email | add_class:"focus:ring-black focus:border-black" }}
+        {{ order_form.phone_number | add_class:"focus:ring-black focus:border-black" }}
+      </fieldset>
+      <fieldset class="flex flex-col gap-2 mb-4">
+        <legend class="mb-2 text-xl font-bold">Shipping</legend>
+          {{ order_form.street_address1 | add_class:"focus:ring-black focus:border-black" }}
+          {{ order_form.street_address2 | add_class:"focus:ring-black focus:border-black" }}
+          <div class="flex gap-4">
+            {{ order_form.town_or_city | add_class:"focus:ring-black focus:border-black" }}
+            {{ order_form.county | add_class:"focus:ring-black focus:border-black" }}
+          </div>
+          <div class="flex gap-4">
+            {{ order_form.postcode | add_class:"focus:ring-black focus:border-black" }}
+            {{ order_form.country | add_class:"focus:ring-black focus:border-black" }}
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="id-save-info">Save shipping information</label>
+            <input 
+              type="checkbox" 
+              id="id-save-info" 
+              name="save-info"
+              class="text-black focus:ring-black"
+              checked
+            >
+          </div>
+      </fieldset>
+      <fieldset class="mb-4">
+        <legend class="mb-2 text-xl font-bold">Payment</legend>
+        <div id="card-element"></div>
+        <div id="card-errors" role="alert"></div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="flex flex-col p-8 border-t border-black md:border-none">
+    {% include 'checkout/order_summary.html' %}
+    <button id="submit-payment-form" class="uppercase border border-black p-4 font-bold">place order</button>
+  </div>
+</div>
+{% endblock %}

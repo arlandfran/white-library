@@ -44,13 +44,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'tailwind',
-    'theme',
     'django_browser_reload',
     'django_bootstrap_icons',
+    'widget_tweaks',
+    'theme',
     'home',
     'products',
     'bag',
-    'checkout'
+    'checkout',
 ]
 
 TAILWIND_APP_NAME = 'theme'
