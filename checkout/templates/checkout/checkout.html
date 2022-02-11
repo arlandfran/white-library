@@ -10,11 +10,11 @@
 {% block content %}
 <div class="flex flex-col md:flex-row md:justify-between lg:px-16">
   <div class="p-4">
-    <a href="{% url 'view_bag' %}" class="flex items-center mb-4">
+    <a href="{% url 'view_bag' %}" class="flex items-center p-2 mb-2 w-fit">
       {% bs_icon "arrow-left-short" size="1.5em" extra_classes="inline" %}
       Back to bag
     </a>
-    <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+    <form action="{% url 'checkout' %}" method="POST" id="payment-form" data-secret="{{ client_secret }}" data-public-key="{{ stripe_public_key }}">
       {% csrf_token %}
       <fieldset class="flex flex-col gap-2 mb-4">
         <legend class="mb-2 text-xl font-bold">Details</legend>
@@ -45,14 +45,19 @@
       </fieldset>
       <fieldset class="mb-4">
         <legend class="mb-2 text-xl font-bold">Payment</legend>
-        <div id="card-element"></div>
-        <div id="card-errors" role="alert"></div>
+        <div id="payment-element"></div>
+        <div id="payment-errors" role="alert"></div>
       </fieldset>
     </form>
   </div>
   <div class="flex flex-col p-8 border-t border-black md:border-none">
     {% include 'checkout/order_summary.html' %}
-    <button id="submit-payment-form" class="uppercase border border-black p-4 font-bold">place order</button>
+    <button id="submit-payment-form" class="p-4 font-bold uppercase border border-black">place order</button>
   </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+  <script src="{% static 'checkout/js/checkout.js' %}"></script>
 {% endblock %}
