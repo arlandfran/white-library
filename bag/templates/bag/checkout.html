@@ -1,8 +1,8 @@
 {% load bootstrap_icons %}
 
-<p class="text-lg"><strong class="uppercase">total:</strong> £{{ total }}</p>
-<p class="pb-4 text-lg">
-  <strong class="uppercase">shipping:</strong> To be calculated on checkout
+<p class="text-lg"><strong class="uppercase">subtotal:</strong> £{{ total }}</p>
+<p class="pb-4">
+  Shipping calculated at checkout
 </p>
 <a
   href="{% url 'checkout' %"
