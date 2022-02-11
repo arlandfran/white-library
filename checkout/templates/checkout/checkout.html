@@ -26,13 +26,11 @@
         <legend class="mb-2 text-xl font-bold">Shipping</legend>
           {{ order_form.street_address1 | add_class:"focus:ring-black focus:border-black" }}
           {{ order_form.street_address2 | add_class:"focus:ring-black focus:border-black" }}
-          <div class="flex gap-4">
-            {{ order_form.town_or_city | add_class:"focus:ring-black focus:border-black" }}
-            {{ order_form.county | add_class:"focus:ring-black focus:border-black" }}
-          </div>
-          <div class="flex gap-4">
-            {{ order_form.postcode | add_class:"focus:ring-black focus:border-black" }}
-            {{ order_form.country | add_class:"focus:ring-black focus:border-black" }}
+          <div class="grid grid-cols-1 gap-2 xs:grid-cols-6">
+            {{ order_form.town_or_city | add_class:"focus:ring-black xs:col-span-4 focus:border-black" }}
+            {{ order_form.postcode | add_class:"focus:ring-black xs:col-span-2 focus:border-black" }}
+            {{ order_form.country | add_class:"focus:ring-black xs:col-span-3 focus:border-black" }}
+            {{ order_form.county | add_class:"focus:ring-black xs:col-span-3 focus:border-black" }}
           </div>
           <div class="flex items-center gap-2">
             <label for="id-save-info">Save shipping information</label>
