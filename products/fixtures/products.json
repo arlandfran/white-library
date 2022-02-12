@@ -1,0 +1,54 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "The Solar War",
+      "description": "After seven years of bitter war, the end has come at last for the conflict known infamously as the Horus Heresy. Terra now lies within the Warmaster’s sights, the Throneworld and the seat of his father’s rule. Horus’ desire is nothing less than the death of the Emperor of Mankind and the utter subjugation of the Imperium. Explore the final stages of The Horus Heresy in this fantastic series, a must have for all fans! New York Times Bestselling Series After seven years of bitter war, the end has come at last for the conflict known infamously as the Horus Heresy. Terra now lies within the Warmaster’s sights, the Throneworld and the seat of his father’s rule. Horus’ desire is nothing less than the death of the Emperor of Mankind and the utter subjugation of the Imperium. He has become the ascendant vessel of Chaos, and amassed a terrible army with which to enact his will and vengeance. But the way to the Throne will be hard as the primarch Rogal Dorn, the Praetorian and protector of Terra, marshals the defences. First and foremost, Horus must challenge the might of the Sol System itself and the many fleets and bulwarks arrayed there. To gain even a foothold on Terran soil, he must first contend the Solar War. Thus the first stage of the greatest conflict in the history of all mankind begins.",
+      "price": 300,
+      "author": "John French",
+      "release_date": "March 2019",
+      "image": "the_solar_war.jpg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "name": "The Lost and the Damned",
+      "description": "With the solar defences overcome through the devastating strength of the Traitor armada and the power of the warp, Horus launches his assault on the Throneworld in earnest. After withstanding a ferocious barrage of ordnance, an immense ground war commences outside the Palace with every inch gained paid for in the lives of billions.\nOn the thirteenth day of Secundus, the bombardment of Terra began... With the solar defences overcome through the devastating strength of the Traitor armada and the power of the warp, Horus launches his assault on the Throneworld in earnest. After withstanding a ferocious barrage of ordnance, an immense ground war commences outside the Palace with every inch gained paid for in the lives of billions. The front lines are beyond horrific and the very air is reduced to poison and blood. Bodies are thrown into the meatgrinder but the outer redoubts cannot possibly hold for long, even with the loyal primarchs to reinforce them. For Horus has his own generals to call upon... Between the plague weapons of Mortarion and the fury of Angron, the defenders face a losing battle.",
+      "price": 300,
+      "author": "Guy Haley",
+      "release_date": "July 2019",
+      "image": "the_lost_and_the_damned.jpg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "name": "The First Wall",
+      "description": "The war for the fate of mankind blazes on. Though the outer defences have fallen, the walls of the Palace itself remain inviolate as Rogal Dorn, the Praetorian of Terra himself, uses every known stratagem and ploy to keep Horus's vast armies at bay. In Perturabo, the Traitor siegebreaker, Dorn faces an adversary worthy of his skill. A terrible, grinding attrition ensues. The crucial battle for the Lion's Gate spaceport is at the heart of this conflict. With it in their possession, the Traitors can land their most devastating weapons on Terran soil. Dorn knows it must not fall. But with enemies attacking from within as well as without and the stirrings of the neverborn drawn to the slaughter, can the Imperial defenders possibly prevail?",
+      "price": "300",
+      "author": "Gav Thorpe",
+      "release_date": "November 2019",
+      "image": "the_first_wall.jpg"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "category": 1,
+      "name": "Saturnine",
+      "description": "The Traitor Host of Horus Lupercal tightens its iron grip on the Palace of Terra, and one by one the walls and bastions begin to crumple and collapse. Rogal Dorn, Praetorian of Terra, redoubles his efforts to keep the relentless enemy at bay, but his forces are vastly outnumbered and hopelessly outgunned. Dorn simply cannot defend everything. Any chance of survival now requires sacrifice, but what battles dare he lose so that others can be won? Is there one tactical stroke, one crucial combat, that could turn the tide forever and win the war outright?",
+      "price": "500",
+      "author": "Dan Abnett",
+      "release_date": "March 2020",
+      "image": "saturnine.jpg"
+    }
+  }
+]
