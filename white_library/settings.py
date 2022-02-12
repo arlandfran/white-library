@@ -58,7 +58,7 @@ TAILWIND_APP_NAME = 'theme'
 
 # required by django-tailwind
 INTERNAL_IPS = [
-    "127.0.0.1" 
+    "127.0.0.1"
 ]
 
 MIDDLEWARE = [
@@ -85,7 +85,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
