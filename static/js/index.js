@@ -1,7 +1,7 @@
 const hamburger = document.querySelector("#hamburger");
 const sidebar = document.querySelector("#sidebar");
 const closeBtn = document.querySelector("#close-btn");
-const elements = document.querySelectorAll(".sidebar-focusable");
+const sidebarElements = document.querySelectorAll(".sidebar-focusable");
 const bag = document.querySelector("#bag");
 const bagPreview = document.querySelector("#bag-preview");
 const closeBagPreviewBtn = document.querySelector("#close-bag-preview");
@@ -20,7 +20,7 @@ const openSidebar = () => {
     } else {
       sidebar.style.width = "400px";
     }
-    elements.forEach((element) => {
+    sidebarElements.forEach((element) => {
       element.setAttribute("tabindex", "0");
     });
   }
@@ -28,7 +28,7 @@ const openSidebar = () => {
 
 const closeSidebar = () => {
   sidebar.style.width = "0%";
-  elements.forEach((element) => {
+  sidebarElements.forEach((element) => {
     element.setAttribute("tabindex", "-1");
   });
 };
