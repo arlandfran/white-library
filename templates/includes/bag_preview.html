@@ -1,7 +1,7 @@
 {% load bootstrap_icons %}
 
 <div
-  id="show-bag"
+  id="bag-preview"
   class="hidden absolute right-0 bottom-0 top-16 z-10 flex-col max-w-md bg-white opacity-0 transition-all duration-300 ease-in-out origin-top scale-y-0 outline-black outline outline-1 xs:right-2 h-fit md:right-4"
 >
   <div class="flex justify-between items-center p-2 border-b border-black">
@@ -12,7 +12,7 @@
     </strong>
     in your bag
     </div>
-    <button onclick="closeBag()">
+    <button id="close-bag-preview">
     {% bs_icon "x" size="1.5em" extra_classes="inline"%}
     </button>
   </div>
@@ -27,7 +27,7 @@
     {% endfor %}
   </div>
   <div class="flex justify-end pr-4">
-    <button class="text-sm uppercase" onclick="clearBag()">clear all</button>
+    <button class="text-sm uppercase" id="clear-bag">clear all</button>
   </div>
   <div class="grid grid-cols-2 gap-4 p-4">
     <a href="{% url 'view_bag' %}" class="p-4 text-center uppercase border border-black">

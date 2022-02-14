@@ -2,10 +2,9 @@
 <p class="text-sm">Quantity: {{ item.quantity }}</p>
 <p class="text-sm">£{{ item.product.price }}</p>
 <button
-  class="uppercase border border-black text-sm p-[4px] mt-2"
+  class="uppercase border border-black text-sm p-[4px] mt-2 remove-item-btn"
   id="remove-item"
   data-item-id="{{ item.item_id }}"
-  onclick="removeItemFromBag()"
 >
   remove from bag
 </button>

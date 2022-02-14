@@ -1,11 +1,11 @@
 {% load bootstrap_icons %}
 
 <div
-  class="h-full top-0 right-0 fixed z-20 overflow-x-hidden transition-all duration-300 w-0 bg-white flex flex-col border-l-[1px] border-black md:hidden "
+  class="h-full top-0 right-0 fixed z-20 overflow-x-hidden transition-all duration-300 w-0 bg-white flex flex-col border-l-[1px] border-black md:hidden"
   id="sidebar"
 >
-  <div >
-    <button class="p-4" onclick="closeSidebar()">
+  <div>
+    <button class="p-4 sidebar-focusable" id="close-btn" tabindex="-1">
       {% bs_icon "x-lg" size="1.5em" %}
     </button>
   </div>
@@ -20,11 +20,13 @@
         type="text"
         name="q"
         placeholder="Search"
-        class="border-none grow focus:ring-0"
+        class="border-none grow focus:ring-0 sidebar-focusable"
+        tabindex="-1"
       />
       <button
         type="submit"
-        class="p-2"
+        class="p-2 sidebar-focusable"
+        tabindex="-1"
       >
         {% bs_icon "search" size="1.5em" extra_classes="fill-inherit"%}
       </button>
@@ -34,39 +36,39 @@
   {% if request.user.is_authenticated %} 
     {% if request.user.is_superuser %}
     <div class="flex items-center p-4 align-baseline border-b border-black">
-      <a href="#" class="p-2 text-lg font-bold uppercase hover:underline">manage products</a><span class="p-2 ml-2 text-xs text-white bg-black">Admin</span>
+      <a href="#" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">manage products</a><span class="p-2 ml-2 text-xs text-white bg-black">Admin</span>
     </div>
     {% endif %}
   <div class="p-4 border-b border-black">
-    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline">my account</a>
+    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">my account</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline">saved</a>
+    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">saved</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="{% url 'view_bag' %}" class="p-2 text-lg font-bold uppercase hover:underline">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
+    <a href="{% url 'view_bag' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="{% url 'account_logout' %}?next={{ request.path }}" class="p-2 text-lg font-bold uppercase hover:underline">log out</a>
+    <a href="{% url 'account_logout' %}?next={{ request.path }}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable">log out</a>
   </div>
   {% else %}
   <div class="p-4 font-bold border-b border-black">
-    <a href="{% url 'account_login' %}?next={{ request.path }}" class="p-2 text-lg uppercase hover:underline">log in</a>
+    <a href="{% url 'account_login' %}?next={{ request.path }}" class="p-2 text-lg uppercase hover:underline sidebar-focusable" tabindex="-1">log in</a>
   </div>
   <div class="p-4 font-bold border-b border-black">
-    <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline">sign up</a>
+    <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline sidebar-focusable" tabindex="-1">sign up</a>
   </div>
   {% endif %}
   <div class="p-4 font-bold border-b border-black">
     <p class="mt-8">Browse the library</p>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="{% url 'products' %}" class="p-2 text-lg uppercase">all products</a>
+    <a href="{% url 'products' %}" class="p-2 text-lg uppercase sidebar-focusable" tabindex="-1">all products</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="#" class="p-2 text-lg uppercase">books</a>
+    <a href="#" class="p-2 text-lg uppercase sidebar-focusable" tabindex="-1">books</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="#" class="p-2 text-lg uppercase">collectibles</a>
+    <a href="#" class="p-2 text-lg uppercase sidebar-focusable" tabindex="-1">collectibles</a>
   </div>
 </div>

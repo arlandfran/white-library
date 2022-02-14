@@ -30,7 +30,7 @@
           <button 
             href="{% url 'view_bag' %}"
             class="p-2 uppercase {% if bag_items %}font-bold{% endif %}"
-            onclick="toggleBag()"
+            id="bag"
           >
             bag ({{ bag_items|length }})
           </button>
@@ -51,7 +51,7 @@
         log in
       </a>
       {% endif %}
-      <button class="p-2 border-black border-[1px] md:hidden" onclick="openSidebar()">
+      <button class="p-2 border-black border-[1px] md:hidden" id="hamburger">
         {% bs_icon "list" size="1.5em" %}
       </button>
     </div>
