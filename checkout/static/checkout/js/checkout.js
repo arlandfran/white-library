@@ -1,3 +1,5 @@
+// Stripe class imported in base.html
+// eslint-disable-next-line no-undef
 const stripe = Stripe(
   document.querySelector("#payment-form").dataset.publicKey
 );
