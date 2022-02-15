@@ -41,18 +41,18 @@
     {% block postloadjs %}
     <script src="{% static 'js/js-snackbar.min.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
-    <script>
-      {% if messages %}
-        {% for message in messages %}
+    {% if messages %}
+      {% for message in messages %}
+        <script>
           SnackBar({
             message: "{{ message }}",
             position: "tr",
             timeout: 5000,
             status: "{{ message.tags }}",
           })
-        {% endfor %}
-      {% endif %}
-    </script>
+        </script>
+      {% endfor %}
+    {% endif %}
     {% endblock %}
   </body>
 </html>
