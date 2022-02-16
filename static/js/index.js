@@ -84,7 +84,12 @@ hamburger.addEventListener("click", openSidebar);
 closeBtn.addEventListener("click", closeSidebar);
 if (bag) bag.addEventListener("click", toggleBagPreview);
 if (closeBagPreviewBtn)
-  closeBagPreviewBtn.addEventListener("click", closeBagPreview);
+  closeBagPreviewBtn.addEventListener("click", function () {
+    if (bagPreview) {
+      const classList = bagPreview.classList;
+      closeBagPreview(classList);
+    }
+  });
 if (removeItemBtn) {
   removeItemBtn.forEach((button) => {
     button.addEventListener("click", function () {
