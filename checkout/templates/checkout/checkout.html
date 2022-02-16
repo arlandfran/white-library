@@ -18,19 +18,25 @@
       {% csrf_token %}
       <fieldset class="flex flex-col gap-2 mb-4">
         <legend class="mb-2 text-xl font-bold">Details</legend>
-        {{ order_form.full_name }}
-        {{ order_form.email }}
-        {{ order_form.phone_number }}
+        {% with classes="border-black focus:border-black focus:ring-black" %}
+          {{ order_form.full_name|add_class:classes }}
+          {{ order_form.email|add_class:classes }}
+          {{ order_form.phone_number|add_class:classes }}
+        {% endwith %}
       </fieldset>
       <fieldset class="flex flex-col gap-2 mb-4">
         <legend class="mb-2 text-xl font-bold">Shipping</legend>
-          {{ order_form.street_address1 }}
-          {{ order_form.street_address2 }}
+          {% with classes="border-black focus:border-black focus:ring-black" %}
+            {{ order_form.street_address1|add_class:classes }}
+            {{ order_form.street_address2|add_class:classes }}
+          {% endwith %}
           <div class="grid grid-cols-1 gap-2 xs:grid-cols-6">
-            {{ order_form.town_or_city | add_class:"xs:col-span-4" }}
-            {{ order_form.postcode | add_class:"xs:col-span-2" }}
-            {{ order_form.country | add_class:"xs:col-span-3" }}
-            {{ order_form.county | add_class:"xs:col-span-3" }}
+            {% with classes="border-black focus:border-black focus:ring-black" %}
+              {{ order_form.town_or_city|add_class:classes|add_class:"xs:col-span-4" }}
+              {{ order_form.postcode|add_class:classes|add_class:"xs:col-span-2" }}
+              {{ order_form.country|add_class:classes|add_class:"xs:col-span-3" }}
+              {{ order_form.county|add_class:classes|add_class:"xs:col-span-3" }}
+            {% endwith %}
           </div>
           <div class="flex items-center gap-2">
             <label for="id-save-info">Save shipping information</label>
@@ -38,7 +44,7 @@
               type="checkbox" 
               id="id-save-info" 
               name="save-info"
-              class="text-black focus:ring-black"
+              class="text-black"
               checked
             >
           </div>

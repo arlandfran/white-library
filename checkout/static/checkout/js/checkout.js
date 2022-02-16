@@ -18,7 +18,7 @@ const options = {
         fontSize: "1rem",
       },
       ".Input": {
-        border: "1px solid #6b7280",
+        border: "1px solid black",
       },
       ".Input:focus": {
         boxShadow:

@@ -35,5 +35,5 @@ class OrderForm(forms.ModelForm):
             else:
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'focus:ring-black focus:border-black'
+            self.fields[field].widget.attrs['class'] = 'p-4'
             self.fields[field].label = False
