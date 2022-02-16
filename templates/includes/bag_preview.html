@@ -2,9 +2,9 @@
 
 <div
   id="bag-preview"
-  class="hidden absolute right-0 bottom-0 top-16 z-10 flex-col max-w-md bg-white opacity-0 transition-all duration-300 ease-in-out origin-top scale-y-0 outline-black outline outline-1 xs:right-2 h-fit md:right-4"
+  class="absolute bottom-0 right-0 z-10 flex-col hidden max-w-md transition-all duration-300 ease-in-out origin-top scale-y-0 bg-white opacity-0 top-16 outline-black outline outline-1 xs:right-2 h-fit md:right-4"
 >
-  <div class="flex justify-between items-center p-2 border-b border-black">
+  <div class="flex items-center justify-between p-2 border-b border-black">
     <div class="pl-4">
     <strong>
     {{ bag_items|length }}
@@ -21,13 +21,16 @@
       <div class="w-28">
         {% include "bag/product_image.html" %}
       </div>
-      <div class="flex flex-col justify-center py-2 px-4">
+      <div class="flex flex-col justify-center px-4 py-2">
         {% include 'bag/product_info.html' %}
       </div>
     {% endfor %}
   </div>
-  <div class="flex justify-end pr-4">
-    <button class="text-sm uppercase" id="clear-bag">clear all</button>
+  <div class="flex justify-end px-4 py-2">
+    <button class="text-sm" id="clear-bag">Clear all</button>
+  </div>
+  <div class="px-4 py-2 text-lg font-medium text-right uppercase border-t border-b border-black">
+    subtotal: £{{ total }}
   </div>
   <div class="grid grid-cols-2 gap-4 p-4">
     <a href="{% url 'view_bag' %}" class="p-4 text-center uppercase border border-black">
