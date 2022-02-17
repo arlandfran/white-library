@@ -29,21 +29,23 @@ const options = {
 };
 
 const elements = stripe.elements(options);
-
 const paymentElement = elements.create("payment");
 paymentElement.mount("#payment-element");
 
-paymentElement.addEventListener("change", function (e) {
-  const errorDiv = document.querySelector("#payment-errors");
-  if (e.error) {
-    const html = `
-      <span role="alert">
-        {% bs_icon "exclamation-circle" size="1.5em" extra_classes="fill-red-500" %}
-      </span>
-      <span>${e.error.message}</span>
-    `;
-    errorDiv.innerHTML(html);
+const paymentForm = document.querySelector("#payment-form");
+
+paymentForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const { error } = await stripe.confirmPayment({
+    elements,
+    redirect: "if_required",
+  });
+
+  if (error) {
+    const messageContainer = document.querySelector("#payment-errors");
+    messageContainer.textContent = `Error: ${error.message}`;
   } else {
-    errorDiv.textContent = "";
+    paymentForm.submit();
   }
 });
