@@ -57,7 +57,9 @@
   </div>
   <div class="flex flex-col p-8 border-t border-black md:border-none">
     {% include 'checkout/order_summary.html' %}
-    <button id="submit-payment-form" class="p-4 mb-4 font-bold uppercase border border-black" form="payment-form">place order</button>
+    <button id="submit-payment-form" class="mb-4 font-bold uppercase border border-black disabled:cursor-not-allowed" form="payment-form">
+      <div class="p-5">place order</div>
+    </button>
     <div id="payment-errors" class="p-2 font-bold text-red-500" role="alert"></div>
   </div>
 </div>

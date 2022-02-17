@@ -33,19 +33,34 @@ const paymentElement = elements.create("payment");
 paymentElement.mount("#payment-element");
 
 const paymentForm = document.querySelector("#payment-form");
+const submitBtn = document.querySelector("#submit-payment-form");
+const messageContainer = document.querySelector("#payment-errors");
 
 paymentForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-
-  const { error } = await stripe.confirmPayment({
-    elements,
-    redirect: "if_required",
-  });
-
-  if (error) {
-    const messageContainer = document.querySelector("#payment-errors");
-    messageContainer.textContent = `Error: ${error.message}`;
-  } else {
-    paymentForm.submit();
-  }
+  paymentElement.update({ disabled: true });
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `
+      <div class="flex justify-center items-center p-4">
+        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    `;
+  messageContainer.textContent = "";
+  await stripe
+    .confirmPayment({
+      elements,
+      redirect: "if_required",
+    })
+    .then(function (result) {
+      if (result.error) {
+        paymentElement.update({ disabled: false });
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "<div class='p-5'>place order</div>";
+        messageContainer.textContent = `Error: ${result.error.message}`;
+      } else {
+        paymentForm.submit();
+      }
+    });
 });
