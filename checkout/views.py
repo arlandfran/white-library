@@ -88,7 +88,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Your order was successfully placed!')
 
-    if 'bag' in request.session['bag']:
+    if 'bag' in request.session:
         del request.session['bag']
 
     template = 'checkout/checkout_success.html'
