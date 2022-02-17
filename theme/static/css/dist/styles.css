@@ -848,6 +848,10 @@ select {
   min-width: 8rem;
 }
 
+.min-w-\[7rem\] {
+  min-width: 7rem;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
@@ -860,8 +864,16 @@ select {
   max-width: 16rem;
 }
 
+.max-w-\[12rem\] {
+  max-width: 12rem;
+}
+
 .max-w-lg {
   max-width: 32rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .grow {
@@ -945,6 +957,18 @@ select {
   overflow-x: hidden;
 }
 
+.whitespace-normal {
+  white-space: normal;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
 .border {
   border-width: 1px;
 }
@@ -972,11 +996,6 @@ select {
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
-.border-red-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
 .bg-white {
@@ -1061,6 +1080,14 @@ select {
   padding-left: 0.75rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1136,11 +1163,6 @@ select {
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1256,6 +1278,12 @@ select {
   transition-property: all;
   transition-timing-function: ease;
   transition-duration: 0.3s;
+}
+
+@media screen and (min-width: 640px) {
+  .js-snackbar__wrapper {
+    max-width: 50%;
+  }
 }
 
 .js-snackbar {
@@ -1426,8 +1454,20 @@ select {
 }
 
 @media (min-width: 640px) {
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-\[auto_1fr_1fr\] {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .sm\:grid-cols-\[auto_auto_1fr\] {
+    grid-template-columns: auto auto 1fr;
   }
 
   .sm\:flex-row {
@@ -1440,6 +1480,10 @@ select {
 
   .sm\:justify-between {
     justify-content: space-between;
+  }
+
+  .sm\:gap-4 {
+    gap: 1rem;
   }
 
   .sm\:px-0 {
