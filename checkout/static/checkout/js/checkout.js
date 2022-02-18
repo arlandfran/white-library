@@ -103,7 +103,9 @@ paymentForm.addEventListener("submit", async (event) => {
             submitBtn.innerHTML = "<div class='p-5'>place order</div>";
             messageContainer.textContent = `Error: ${result.error.message}`;
           } else {
-            paymentForm.submit();
+            if (result.paymentIntent.status === "succeeded") {
+              paymentForm.submit();
+            }
           }
         });
     })
