@@ -18,6 +18,7 @@ const options = {
         fontSize: "1rem",
       },
       ".Input": {
+        padding: "0.75rem 0.5rem",
         border: "1px solid black",
       },
       ".Input:focus": {

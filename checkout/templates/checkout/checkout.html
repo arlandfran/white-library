@@ -34,8 +34,8 @@
             {% with classes="border-black focus:border-black focus:ring-black" %}
               {{ order_form.town_or_city|add_class:classes|add_class:"xs:col-span-4" }}
               {{ order_form.postcode|add_class:classes|add_class:"xs:col-span-2" }}
-              {{ order_form.country|add_class:classes|add_class:"xs:col-span-3" }}
               {{ order_form.county|add_class:classes|add_class:"xs:col-span-3" }}
+              {{ order_form.country|add_class:classes|add_class:"xs:col-span-3" }}
             {% endwith %}
           </div>
           <div class="flex items-center gap-2">

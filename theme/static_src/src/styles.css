@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+select,
+select option {
+  color: black;
+}
+
+select:invalid,
+select option[value=""] {
+  @apply text-gray-500;
+}
+
 /* https://github.com/mickelsonmichael/js-snackbar */
 .js-snackbar-container {
   position: absolute;
