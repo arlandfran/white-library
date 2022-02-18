@@ -48,19 +48,66 @@ paymentForm.addEventListener("submit", async (event) => {
       </div>
     `;
   messageContainer.textContent = "";
-  await stripe
-    .confirmPayment({
-      elements,
-      redirect: "if_required",
+
+  const saveInfo = document.querySelector("#id-save-info").checked;
+
+  await fetch("/checkout/cache_checkout_data/", {
+    method: "POST",
+    // csrfToken defined in index.js
+    // eslint-disable-next-line no-undef
+    headers: { "X-CSRFToken": csrfToken },
+    contentType: "application/json",
+    body: JSON.stringify({
+      client_secret: document.querySelector("#payment-form").dataset.secret,
+      save_info: saveInfo,
+    }),
+  })
+    .then(async () => {
+      await stripe
+        .confirmPayment({
+          elements,
+          redirect: "if_required",
+          confirmParams: {
+            payment_method_data: {
+              billing_details: {
+                address: {
+                  line1: paymentForm.street_address1.value.trim(),
+                  line2: paymentForm.street_address2.value.trim(),
+                  city: paymentForm.town_or_city.value.trim(),
+                  country: paymentForm.country.value.trim(),
+                  state: paymentForm.county.value.trim(),
+                },
+                email: paymentForm.email.value.trim(),
+                name: paymentForm.full_name.value.trim(),
+                phone: paymentForm.phone_number.value.trim(),
+              },
+            },
+            shipping: {
+              address: {
+                line1: paymentForm.street_address1.value.trim(),
+                line2: paymentForm.street_address2.value.trim(),
+                city: paymentForm.town_or_city.value.trim(),
+                country: paymentForm.country.value.trim(),
+                postal_code: paymentForm.postcode.value.trim(),
+                state: paymentForm.county.value.trim(),
+              },
+              name: paymentForm.full_name.value.trim(),
+              phone: paymentForm.phone_number.value.trim(),
+            },
+          },
+        })
+        .then(function (result) {
+          if (result.error) {
+            paymentElement.update({ disabled: false });
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "<div class='p-5'>place order</div>";
+            messageContainer.textContent = `Error: ${result.error.message}`;
+          } else {
+            paymentForm.submit();
+          }
+        });
     })
-    .then(function (result) {
-      if (result.error) {
-        paymentElement.update({ disabled: false });
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "<div class='p-5'>place order</div>";
-        messageContainer.textContent = `Error: ${result.error.message}`;
-      } else {
-        paymentForm.submit();
-      }
+    .catch(() => {
+      location.reload();
     });
 });
