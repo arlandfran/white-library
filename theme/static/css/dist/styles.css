@@ -4304,6 +4304,10 @@ textarea.form-control.is-invalid {
   overflow-x: hidden;
 }
 
+.break-words {
+  overflow-wrap: break-word;
+}
+
 .break-all {
   word-break: break-all;
 }
@@ -4796,6 +4800,10 @@ textarea.form-control.is-invalid {
 
   .xs\:items-center {
     align-items: center;
+  }
+
+  .xs\:pl-4 {
+    padding-left: 1rem;
   }
 }
 
