@@ -74,14 +74,19 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            messages.error(
-                'There was an error with your form. Please double check your details')
+            messages.error(request,
+                           'There was an error with your form. Please double check your details')
     else:
         bag = request.session.get('bag', {})
 
         if not bag:
-            messages.error(request, 'There are no items in your bag currently')
-            return redirect(reverse('products'))
+            if request.user.is_authenticated:
+                messages.error(
+                    request, 'There are no items in your bag currently')
+                return redirect(reverse('products'))
+            else:
+                messages.error(request, 'Please log in to proceed to checkout')
+                return redirect(reverse('products'))
 
         current_bag = bag_contents(request)
         total = current_bag['total']
