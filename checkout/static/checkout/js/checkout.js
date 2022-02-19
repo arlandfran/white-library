@@ -43,7 +43,7 @@ paymentForm.addEventListener("submit", async (event) => {
   submitBtn.disabled = true;
   submitBtn.innerHTML = `
       <div class="flex justify-center items-center p-4">
-        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+        <div class="inline-block w-8 h-8 rounded-full border-4 animate-spin spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
