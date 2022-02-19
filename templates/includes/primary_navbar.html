@@ -24,7 +24,7 @@
         {% if request.user.is_superuser %}
           <a class="hidden p-2 uppercase xs:block" href="#">admin</a>
         {% endif %}
-        <a class="hidden p-2 uppercase md:block" href="#">account</a>
+        <a class="hidden p-2 uppercase md:block" href="{% url 'profile' %}">account</a>
         <a class="p-2 uppercase" href="#">saved</a>
         {% if bag_items %}
           <button 
@@ -40,7 +40,7 @@
         {% endif %}
       {% else %}
       <a
-        href="#"
+        href="{% url 'account_signup' %}"
         class="border-black border-[1px] p-2 uppercase bg-black text-white focus-visible:bg-white focus-visible:text-black"
         >sign up</a
       >
