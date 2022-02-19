@@ -1,13 +1,16 @@
 {% extends "account/base.html" %}
+{% load widget_tweaks %}
 
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block extra_title %}| {% trans "Sign In" %} {% endblock %}
 
-{% block content %}
+{% block page_header %}
+  {% include 'includes/page_header.html' with title="log in" %}
+{% endblock %}
 
-<h1>{% trans "Sign In" %}</h1>
+{% block inner_content %}
 
 {% get_providers as socialaccount_providers %}
 
@@ -29,18 +32,25 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+<p>{% blocktrans %}Don't have an account yet?
+<a href="{{ signup_url }}" class="font-bold underline">Sign up here.</a>{% endblocktrans %}</p>
 {% endif %}
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
+<form method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  <div class="grid gap-2 mb-4">
+    {% with classes="border-black focus:border-black focus:ring-black" %}
+      {{ form.login|add_class:classes }}
+      {{ form.password|add_class:classes }}
+    {% endwith %}
+  </div>
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+  <div class="grid justify-center gap-2">
+    <button class="p-2 uppercase border border-black" type="submit">{% trans "Log in" %}</button>
+    <a class="underline" href="{% url 'account_reset_password' %}">{% trans "Forgot your password?" %}</a>
+  </div>
 </form>
 
 {% endblock %}
