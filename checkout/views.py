@@ -6,6 +6,7 @@ import stripe
 import json
 from bag.contexts import bag_contents
 from products.models import Product
+from profiles.models import UserProfile
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
@@ -118,7 +119,13 @@ def checkout_success(request, order_number):
 
     save_info = request.session.get('save-info')
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Your order was successfully placed!')
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        order.user_profile = profile
+        order.save()
+
+    messages.success(request, 'Your order was successfully placed!')
 
     if 'bag' in request.session:
         del request.session['bag']

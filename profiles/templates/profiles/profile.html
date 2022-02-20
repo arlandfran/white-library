@@ -3,5 +3,11 @@
 {% load static %}
 
 {% block content %}
-    Hello {{ profile }}
+    <div class="grid justify-center">
+        <div class="w-32 h-32 border border-black m-4"></div>
+        <div class="text-center my-2 text-xl">
+            Hi, <span class="font-bold">{{ user.username }}</span>
+        </div>
+    </div>
+    
 {% endblock %}
