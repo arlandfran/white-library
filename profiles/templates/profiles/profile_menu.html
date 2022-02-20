@@ -1,0 +1,32 @@
+{% load bootstrap_icons %}
+
+<div class="grid gap-[1px] border-t border-black">
+    <a href="{% url 'order_history' %}" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "box-seam" size="1.5em" extra_classes="inline" %}
+        order history
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "bookmark" size="1.5em" extra_classes="inline" %}
+        saved items
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "card-text" size="1.5em" extra_classes="inline" %}
+        my details
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "lock" size="1.5em" extra_classes="inline" %}
+        change password
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "house-door" size="1.5em" extra_classes="inline" %}
+        address book
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "credit-card" size="1.5em" extra_classes="inline" %}
+        payment methods
+    </a>
+    <a href="#" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "box-arrow-left" size="1.5em" extra_classes="inline" %}
+        sign out
+    </a>
+</div>
