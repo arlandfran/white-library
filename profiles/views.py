@@ -7,13 +7,18 @@ from .forms import UserProfileForm
 def profile(request):
     """Return the user profile template"""
 
+    template = 'profiles/profile.html'
+
+    return render(request, template)
+
+def order_history(request):
+    """Return the user' order history"""
+
     user_profile = get_object_or_404(UserProfile, user=request.user)
-    form = UserProfileForm(instance=user_profile)
     orders = user_profile.orders.all()
 
-    template = 'profiles/profile.html'
+    template = 'profiles/order_history.html'
     context = {
-        'form': form,
         'orders': orders,
     }
 

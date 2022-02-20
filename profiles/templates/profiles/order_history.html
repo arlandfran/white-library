@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% block content %}
+    <div class="p-4 bg-white border-b border-black">
+        <a href="{% url 'profile' %}" class="flex items-center p-2 w-fit">
+            {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
+            Back to profile
+        </a>
+    </div>
+
+    <div class="grid md:hidden">
+        {% include 'profiles/orders.html' with orders=orders %}
+    </div>
+    
+    <div class="hidden my-4 bg-white md:flex grow">
+        {% include 'profiles/profile_menu.html' %}
+        <div class="items-center justify-center hidden gap-2 border border-r-0 border-black md:flex grow">
+            <p>Hi <span class="font-bold">{{ user.username }}</span>!</p>
+            <p>What would you like to do today?</p>
+        </div>
+    </div>
+{% endblock %}
