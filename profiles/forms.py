@@ -1,5 +1,21 @@
 from django import forms
+from django.contrib.auth.models import User
 from .models import UserProfile
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields:
+            if field == 'username':
+                self.fields[field].help_text = None
+            if self.fields[field].required:
+                self.fields[field].label = f'{field.capitalize()}*'
 
 
 class UserProfileForm(forms.ModelForm):
@@ -25,7 +41,7 @@ class UserProfileForm(forms.ModelForm):
             'county': 'County',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True
+        self.fields['phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if field != 'country':
                 if self.fields[field].required:

@@ -728,6 +728,27 @@ select {
   --bs-body-bg: #fff;
 }
 
+.btn-check[disabled] + .btn {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.btn-check:disabled + .btn {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.input-group .btn {
+  position: relative;
+  z-index: 2;
+}
+
+.input-group .btn:focus {
+  z-index: 3;
+}
+
 .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -836,7 +857,41 @@ textarea.form-control.is-invalid {
   z-index: 3;
 }
 
+.btn-check:focus + .btn {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-check:checked + .btn {
+  box-shadow: none;
+}
+
+.btn-check:active + .btn {
+  box-shadow: none;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
 .btn.active {
+  box-shadow: none;
+}
+
+.btn-check:checked + .btn:focus {
+  box-shadow: none;
+}
+
+.btn-check:active + .btn:focus {
+  box-shadow: none;
+}
+
+.btn:active:focus {
   box-shadow: none;
 }
 
@@ -4023,8 +4078,16 @@ textarea.form-control.is-invalid {
   z-index: 20;
 }
 
+.float-right {
+  float: right;
+}
+
 .m-4 {
   margin: 1rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
 }
 
 .mx-auto {
@@ -4054,6 +4117,10 @@ textarea.form-control.is-invalid {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .block {
@@ -4098,14 +4165,6 @@ textarea.form-control.is-invalid {
   height: 100%;
 }
 
-.h-\[75vh\] {
-  height: 75vh;
-}
-
-.h-\[80vh\] {
-  height: 80vh;
-}
-
 .h-\[87vh\] {
   height: 87vh;
 }
@@ -4116,10 +4175,6 @@ textarea.form-control.is-invalid {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-0 {
-  min-height: 0px;
 }
 
 .w-28 {
@@ -4225,10 +4280,6 @@ textarea.form-control.is-invalid {
   flex-direction: column;
 }
 
-.content-center {
-  align-content: center;
-}
-
 .items-start {
   align-items: flex-start;
 }
@@ -4273,14 +4324,6 @@ textarea.form-control.is-invalid {
   gap: 2rem;
 }
 
-.self-start {
-  align-self: flex-start;
-}
-
-.overflow-auto {
-  overflow: auto;
-}
-
 .overflow-x-hidden {
   overflow-x: hidden;
 }
@@ -4313,14 +4356,6 @@ textarea.form-control.is-invalid {
   border-left-width: 1px;
 }
 
-.border-r-0 {
-  border-right-width: 0px;
-}
-
-.border-r {
-  border-right-width: 1px;
-}
-
 .border-l {
   border-left-width: 1px;
 }
@@ -4332,11 +4367,6 @@ textarea.form-control.is-invalid {
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
-.border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
 }
 
 .bg-white {
@@ -4798,8 +4828,16 @@ select:invalid, select option[value=""] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .xs\:flex-row {
+    flex-direction: row;
+  }
+
   .xs\:items-center {
     align-items: center;
+  }
+
+  .xs\:gap-8 {
+    gap: 2rem;
   }
 
   .xs\:pl-4 {
@@ -4882,12 +4920,24 @@ select:invalid, select option[value=""] {
     flex-direction: row;
   }
 
+  .md\:flex-col {
+    flex-direction: column;
+  }
+
+  .md\:items-center {
+    align-items: center;
+  }
+
   .md\:justify-between {
     justify-content: space-between;
   }
 
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .md\:gap-4 {
+    gap: 1rem;
   }
 
   .md\:border-none {
