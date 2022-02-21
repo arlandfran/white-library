@@ -9,20 +9,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="grid md:hidden">
-    <div class="border-b border-black">
-        <a href="{% url 'profile' %}" class="flex items-center p-2 w-fit">
-            {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
-            Back to profile
-        </a>
-    </div>
-    {% include 'profiles/orders.html' with orders=orders %}
-</div>
-
-<div class="hidden bg-white md:flex grow">
-    {% include 'profiles/profile_menu.html' %}
-    <div class="flex-col border border-r-0 border-black md:flex grow">
+<div class="flex flex-col grow">
+    <div class="flex flex-col md:hidden">
+        <div class="border-b border-black">
+            <a href="{% url 'profile' %}" class="flex items-center p-4 w-fit">
+                {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
+                Back to profile
+            </a>
+        </div>
         {% include 'profiles/orders.html' with orders=orders %}
+    </div>
+    <div class="md:grid hidden md:grid-cols-[auto_1fr] grow">
+        <div class="h-fit md:w-fit">
+            {% include 'profiles/profile_menu.html' %}
+        </div>
+        <div class="border-l border-black flex-col">
+            {% include 'profiles/orders.html' with orders=orders %}
+        </div>
     </div>
 </div>
 {% endblock %}

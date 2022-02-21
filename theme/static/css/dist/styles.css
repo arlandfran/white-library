@@ -4848,6 +4848,10 @@ select:invalid, select option[value=""] {
     display: flex;
   }
 
+  .md\:grid {
+    display: grid;
+  }
+
   .md\:hidden {
     display: none;
   }
