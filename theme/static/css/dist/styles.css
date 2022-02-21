@@ -4095,6 +4095,11 @@ textarea.form-control.is-invalid {
   margin-right: auto;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -4254,6 +4259,11 @@ textarea.form-control.is-invalid {
 
 .resize {
   resize: both;
+}
+
+.break-before-auto {
+  -moz-column-break-before: auto;
+       break-before: auto;
 }
 
 .grid-cols-\[auto_1fr\] {

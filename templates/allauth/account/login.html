@@ -38,33 +38,43 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 <form method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  <div class="grid gap-2 mb-4">
-    {% with classes="border-black focus:border-black focus:ring-black" %}
-      {{ form.login|add_class:classes }}
-      {{ form.password|add_class:classes }}
-    {% endwith %}
-
-    {% if form.errors %}
-      {% for field in form %}
-          {% for error in field.errors %}
-              <div class="text-red-500">
-                  <strong>{{ error|escape }}</strong>
-              </div>
-          {% endfor %}
-      {% endfor %}
-      {% for error in form.non_field_errors %}
-          <div class="text-red-500">
-              <strong>{{ error|escape }}</strong>
+  <div class="grid gap-2 w-fit mx-auto">
+    {% for field in form %}
+      {% with classes="border-black focus:border-black focus:ring-black" %}
+        {% if forloop.last %}
+          <div class="flex items-center gap-2">
+            {{ field.label_tag }}
+            {{ field|add_class:classes }}
           </div>
-      {% endfor %}
-    {% endif %}
+        {% else %}
+          <div class="flex flex-col">
+            {{ field.label_tag }}
+            {{ field|add_class:classes }}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% if form.errors %}
+        {% for error in field.errors %}
+          <div class="text-red-500">
+            <strong class="break-all">{{ error|escape }}</strong>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
   </div>
+
+  {% for error in form.non_field_errors %}
+    <div class="text-red-500">
+      <strong class="break-all">{{ error|escape }}</strong>
+    </div>
+  {% endfor %}
 
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
 
-  <div class="grid justify-center gap-2">
+  <div class="grid justify-center gap-2 mt-2">
     <button class="p-2 uppercase border border-black" type="submit">{% trans "Log in" %}</button>
     <a class="underline" href="{% url 'account_reset_password' %}">{% trans "Forgot your password?" %}</a>
   </div>
