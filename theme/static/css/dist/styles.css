@@ -4313,6 +4313,10 @@ textarea.form-control.is-invalid {
   border-right-width: 1px;
 }
 
+.border-l {
+  border-left-width: 1px;
+}
+
 .border-none {
   border-style: none;
 }
@@ -4848,8 +4852,18 @@ select:invalid, select option[value=""] {
     display: none;
   }
 
+  .md\:w-fit {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-\[auto_1fr\] {
+    grid-template-columns: auto 1fr;
   }
 
   .md\:flex-row {
