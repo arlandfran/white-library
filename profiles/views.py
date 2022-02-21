@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import UserProfile
 from .forms import UserProfileForm
 
 from checkout.models import Order
+
 
 @login_required
 def profile(request):
@@ -13,6 +15,7 @@ def profile(request):
     template = 'profiles/profile.html'
 
     return render(request, template)
+
 
 def order_history(request):
     """Return the user' order history"""
@@ -27,6 +30,7 @@ def order_history(request):
 
     return render(request, template, context)
 
+
 def order_summary(request, order_number):
     """Return order summary of given order number"""
 
@@ -36,6 +40,21 @@ def order_summary(request, order_number):
     context = {
         'order': order,
         'from_profile': True,
+    }
+
+    return render(request, template, context)
+
+
+def details(request):
+    """Return user profile details"""
+
+    user = get_object_or_404(User, username=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+
+    template = 'profiles/details.html'
+    context = {
+        'user': user,
+        'profile': user_profile,
     }
 
     return render(request, template, context)

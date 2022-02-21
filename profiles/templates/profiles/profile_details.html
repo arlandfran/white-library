@@ -1,0 +1,32 @@
+<div class="flex flex-col">
+    <div class="p-4 border-b border-black">
+        <h2 class="text-lg font-bold">Personal information</h2>
+        
+        <div class="flex gap-4">
+            <div>Username:</div>
+            <div>{{ user.username }}</div>
+        </div>
+        <div class="flex gap-8">
+            <div class="flex gap-4">
+                <div>First name:</div>
+                {% if user.first_name == "" %}
+                <div>-</div>
+                {% else %}
+                <div>{{ user.username }}</div>
+                {% endif %}
+            </div>
+            <div class="flex gap-4">
+                <div>Last name:</div>
+                {% if user.last_name == "" %}
+                <div>-</div>
+                {% else %}
+                <div>{{ user.username }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <div>Email:</div>
+            <div>{{ user.email }}</div>
+        </div>
+    </div>
+</div>

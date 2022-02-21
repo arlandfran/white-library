@@ -4269,6 +4269,10 @@ textarea.form-control.is-invalid {
   gap: 1px;
 }
 
+.gap-8 {
+  gap: 2rem;
+}
+
 .self-start {
   align-self: flex-start;
 }
