@@ -196,3 +196,11 @@ class UserProfile(models.Model):
 - [ESLint](https://eslint.org/) - Code linter for Javascript.
 
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) - VSCode extension for linting Markdown.
+
+## Testing
+
+Testing is documented in a [separate file here](testing.md).
+
+## Deployment
+
+Deployment is documented in a [separate file here](deployment.md).
