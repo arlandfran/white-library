@@ -8,6 +8,15 @@
 
 {% block content %}
 <div class="flex flex-col gap-2 p-4 mx-auto lg:px-16 w-fit">
+  {% if from_profile %}
+    <div class="border-b border-black">
+      <a href="{% url 'order_history' %}" class="flex items-center p-2 w-fit">
+          {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
+          Back to order history
+      </a>
+    </div>
+  {% endif %}
+
   <p>
     Here is a summary of your order.
   </p>
