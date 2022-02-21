@@ -148,3 +148,51 @@ class UserProfile(models.Model):
     country = CountryField(
         blank_label="Country", null=False, blank=False)
 ```
+
+## Technologies Used
+
+**Languages:** HTML, CSS, JavaScript, Python
+
+**Front-end:**
+
+- [Tailwind CSS](https://tailwindcss.com) - Utility CSS Framework
+
+- [Tailwind Elements](https://tailwind-elements.com/) - Tailwind plugin that recreates Bootstrap components with Tailwind CSS
+
+**Back-end:**
+
+- [Django](https://www.djangoproject.com/) - High level Python web framework
+
+**Packages:**
+
+- [django-allauth](https://www.intenct.nl/projects/django-allauth/) - Reusable Django app for local and social authentication.
+
+- [django-tailwind](https://github.com/timonweb/django-tailwind) - Integrates Tailwind CSS into Django projects.
+
+- [django-bootstrap-icons](https://github.com/christianwgd/django-bootstrap-icons): - Embed Bootstrap SVG icons in Django templates.
+
+- [django-countries](https://github.com/SmileyChris/django-countries/): - Django app that provides country choices for use with forms and a country field for models.
+
+- [django-widget-tweaks](https://github.com/jazzband/django-widget-tweaks): - Customize HTML Form Fields using template filters.
+
+**Tooling:**
+
+- [Figma](https://www.figma.com/) - High-fidelity Wireframing
+
+- [Visual Studio Code](https://code.visualstudio.com/) - Code Editor
+
+- [Git](https://git-scm.com/) - Version Control System
+
+- [Github](https://github.com/) - Code Hosting Platform
+
+- [Heroku](https://www.heroku.com/) - Platform-as-a-Service Cloud Provider
+
+- [Pylint](https://pylint.org/) - Code linter for Python.
+
+- [django-pylint](https://github.com/PyCQA/pylint-django) - Pylint plugin for improving code analysis when analysing code using Django.
+
+- [autopep8](https://github.com/hhatto/autopep8) - Code formatter for Python.
+
+- [ESLint](https://eslint.org/) - Code linter for Javascript.
+
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) - VSCode extension for linting Markdown.
