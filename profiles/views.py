@@ -79,13 +79,26 @@ def address_book(request):
     """Return user's saved addresses"""
 
     user_profile = get_object_or_404(UserProfile, user=request.user)
-    addresses = user_profile.addresses.all()
+
+    if request.method == "POST":
+        default_id = request.POST['default'][0]
+        # delete = request.POST['delete']
+
+        address = user_profile.addresses.get(id=default_id)
+        address.default = True
+        address.save()
+        messages.success(request, 'Addresses updated successfully')
+        return redirect(reverse('address_book'))
+
+    addresses = user_profile.addresses.filter(default=False)
     default_address = user_profile.addresses.get(default=True)
+    total = len(addresses) + 1  # addresses not false + default address
 
     template = 'profiles/address_book.html'
     context = {
         'addresses': addresses,
         'default_address': default_address,
+        'total': total,
     }
 
     return render(request, template, context)

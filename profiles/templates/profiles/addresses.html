@@ -1,28 +1,33 @@
-<p class="p-4 border-b border-black">
-  <strong>
-    {{ addresses|length }} 
-    {% if addresses|length > 1 %} 
-      addresses 
-    {% else %}
-      address 
-    {% endif %}
-  </strong>
-  saved
-</p>
+<div class="flex p-4 items-center border-b border-black justify-between">
+  <p class="">
+    <strong>
+      {{ total }}
+      {% if total > 1 %}
+        addresses
+      {% else %}
+        address
+      {% endif %}
+    </strong>
+    saved
+  </p>
 
-<div class="flex flex-col gap-2 p-4">
-    <h2 class="font-bold">Default Address</h2>
-    <div>Phone Number: {{ default_address.phone_number }}</div>
-    <div>Street Address: {{ default_address.street_address1 }}</div>
-    {% if default_address.street_address2 %}
-        <div>Street Address 2: {{ default_address.street_address2 }}</div>
-    {% endif %}
-    <div>Town/City: {{ default_address.town_or_city }}</div>
-    {% if default_address.county %}
-        <div>County: {{ default_address.county }}</div>
-    {% endif %}
-    {% if default_address.postcode %}
-        <div>Postcode: {{ default_address.postcode }}</div>
-    {% endif %}
-    <div>Country: {{ default_address.country }}</div>
+  <button type="submit" class="font-bold uppercase hover:underline" form="update-address-book">update</button>
 </div>
+
+<form action="{% url 'address_book' %}" method="POST" id="update-address-book">
+  {% csrf_token %}
+  <div class="p-4">
+    <h2 class="mb-2 font-bold text-lg">Default Address:</h2>
+    {% include 'profiles/address.html' with address=default_address %}  
+  </div>
+  
+  <div class="p-4">
+    <h2 class="mb-2 font-bold text-lg">Other Addresses</h2>
+    <div class="flex gap-4">
+      {% for address in addresses %}
+        {% include 'profiles/address.html' with address=address %}
+      {% endfor %}
+    </div>
+  </div>
+</form>
+
