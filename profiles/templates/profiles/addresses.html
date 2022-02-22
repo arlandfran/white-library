@@ -42,9 +42,11 @@
     {% if total == 0 %}
       <div>None</div>
     {% else %}
-    <div class="flex gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {% for address in addresses %}
-        {% include 'profiles/address.html' with address=address %}
+        <div class="p-4 border border-black flex grow">
+          {% include 'profiles/address.html' with address=address %}
+        </div>
       {% endfor %}
     </div>
     {% endif %}
