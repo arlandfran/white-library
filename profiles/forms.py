@@ -23,8 +23,8 @@ class AddressForm(forms.ModelForm):
         model = Address
         fields = ('phone_number',
                   'street_address1', 'street_address2',
-                  'town_or_city', 'postcode', 'country',
-                  'county',)
+                  'town_or_city', 'county', 'postcode',
+                  'country',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -37,8 +37,8 @@ class AddressForm(forms.ModelForm):
             'street_address1': 'Street Address 1',
             'street_address2': 'Street Address 2',
             'town_or_city': 'Town or City',
-            'postcode': 'Postal Code',
             'county': 'County',
+            'postcode': 'Postal Code',
         }
 
         self.fields['phone_number'].widget.attrs['autofocus'] = True

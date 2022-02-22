@@ -113,7 +113,22 @@ def address_book(request):
 def add_address(request):
     """Return add address form and template"""
 
-    form = AddressForm()
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+
+    if request.method == "POST":
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.profile = user_profile
+            instance.save()
+            messages.success(request, 'Address added successfully')
+            return redirect(reverse('address_book'))
+        else:
+            messages.error(request,
+                           ('Update failed. Please ensure '
+                            'the form is valid.'))
+    else:
+        form = AddressForm()
 
     template = 'profiles/add_address.html'
     context = {
