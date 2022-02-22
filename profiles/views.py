@@ -1,3 +1,4 @@
+from email.policy import default
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -5,7 +6,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 from .models import UserProfile
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, AddressForm
 
 from checkout.models import Order
 
@@ -69,6 +70,22 @@ def details(request):
     context = {
         'user': user,
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def address_book(request):
+    """Return user's saved addresses"""
+
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    addresses = user_profile.addresses.all()
+    default_address = user_profile.addresses.get(default=True)
+
+    template = 'profiles/address_book.html'
+    context = {
+        'addresses': addresses,
+        'default_address': default_address,
     }
 
     return render(request, template, context)

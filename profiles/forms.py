@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import Address
 
 
 class UserForm(forms.ModelForm):
@@ -18,9 +18,9 @@ class UserForm(forms.ModelForm):
                 self.fields[field].label = f'{field.capitalize()}*'
 
 
-class UserProfileForm(forms.ModelForm):
+class AddressForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
+        model = Address
         fields = ('phone_number',
                   'street_address1', 'street_address2',
                   'town_or_city', 'postcode', 'country',

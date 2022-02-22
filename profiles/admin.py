@@ -1,14 +1,15 @@
 from django.contrib import admin
 
-from .models import UserProfile
+from .models import Address
 
 
-class ProfileAdmin(admin.ModelAdmin):
+class AddressAdmin(admin.ModelAdmin):
 
-    fields = ('user', 'phone_number', 'street_address1',
-              'street_address2', 'town_or_city', 'county', 'postcode', 'country')
+    fields = ('profile', 'default', 'phone_number', 'street_address1',
+              'street_address2', 'town_or_city', 'county', 'postcode', 'country',)
 
-    list_display = ('user',)
+    list_display = ('profile', 'default', 'phone_number', 'street_address1',
+                    'street_address2', 'town_or_city', 'county', 'postcode', 'country',)
 
 
-admin.site.register(UserProfile, ProfileAdmin)
+admin.site.register(Address, AddressAdmin)

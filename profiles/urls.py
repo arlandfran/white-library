@@ -7,4 +7,5 @@ urlpatterns = [
     path('order_history/<order_number>',
          views.order_summary, name='order_summary'),
     path('details/', views.details, name="details"),
+    path('address_book/', views.address_book, name="address_book"),
 ]
