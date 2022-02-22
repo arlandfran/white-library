@@ -1,3 +1,4 @@
+from django.utils.datastructures import MultiValueDictKeyError
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -80,12 +81,19 @@ def address_book(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":
-        default_id = request.POST['default'][0]
-
-        address = user_profile.addresses.get(id=default_id)
-        address.default = True
-        address.save()
-        messages.success(request, 'Addresses updated successfully')
+        try:
+            default_id = request.POST['default'][0]
+            delete_ids = request.POST['delete']
+            address = user_profile.addresses.get(id=default_id)
+            address.default = True
+            for address_id in delete_ids:
+                user_profile.addresses.get(id=address_id).delete()
+        except MultiValueDictKeyError:
+            address = user_profile.addresses.get(id=default_id)
+            address.default = True
+        finally:
+            address.save()
+            messages.success(request, 'Addresses updated successfully')
         return redirect(reverse('address_book'))
 
     addresses = user_profile.addresses.all()
