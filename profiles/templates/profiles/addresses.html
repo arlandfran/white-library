@@ -1,5 +1,8 @@
 <div class="flex p-4 items-center border-b border-black justify-between">
-  <p class="">
+  {% if total == 0 %}
+    <p>No addresses saved</p>
+  {% else %}
+  <p>
     <strong>
       {{ total }}
       {% if total > 1 %}
@@ -12,22 +15,33 @@
   </p>
 
   <button type="submit" class="font-bold uppercase hover:underline" form="update-address-book">update</button>
+  {% endif %}
 </div>
+
 
 <form action="{% url 'address_book' %}" method="POST" id="update-address-book">
   {% csrf_token %}
   <div class="p-4">
     <h2 class="mb-2 font-bold text-lg">Default Address:</h2>
-    {% include 'profiles/address.html' with address=default_address %}  
+    {% if total == 0 %}
+      <div>None</div>
+    {% else %}
+      {% include 'profiles/address.html' with address=default_address %}
+    {% endif %}
   </div>
   
   <div class="p-4">
-    <h2 class="mb-2 font-bold text-lg">Other Addresses</h2>
+    <h2 class="mb-2 font-bold text-lg">Saved Addresses:</h2>
+    {% if total == 0 %}
+      <div>None</div>
+    {% else %}
     <div class="flex gap-4">
       {% for address in addresses %}
         {% include 'profiles/address.html' with address=address %}
       {% endfor %}
     </div>
+    {% endif %}
   </div>
 </form>
+
 

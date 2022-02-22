@@ -90,9 +90,15 @@ def address_book(request):
         messages.success(request, 'Addresses updated successfully')
         return redirect(reverse('address_book'))
 
-    addresses = user_profile.addresses.filter(default=False)
-    default_address = user_profile.addresses.get(default=True)
-    total = len(addresses) + 1  # addresses not false + default address
+    addresses = user_profile.addresses.all()
+
+    if len(addresses) == 0:
+        default_address = None
+        total = 0
+    else:
+        default_address = user_profile.addresses.get(default=True)
+        addresses = user_profile.addresses.filter(default=False)
+        total = len(addresses) + 1  # addresses not default + default address
 
     template = 'profiles/address_book.html'
     context = {
