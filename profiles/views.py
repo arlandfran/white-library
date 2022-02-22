@@ -108,3 +108,16 @@ def address_book(request):
     }
 
     return render(request, template, context)
+
+
+def add_address(request):
+    """Return add address form and template"""
+
+    form = AddressForm()
+
+    template = 'profiles/add_address.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

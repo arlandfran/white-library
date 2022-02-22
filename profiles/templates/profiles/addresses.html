@@ -1,4 +1,4 @@
-<div class="flex p-4 items-center border-b border-black justify-between">
+<div class="flex items-center justify-between p-4 border-b border-black">
   {% if total == 0 %}
     <p>No addresses saved</p>
   {% else %}
@@ -16,13 +16,16 @@
 
   <button type="submit" class="font-bold uppercase hover:underline" form="update-address-book">update</button>
   {% endif %}
+  <a href="{% url 'add_address' %}" class="font-bold uppercase hover:underline">
+    + addresses
+  </a>
 </div>
 
 
 <form action="{% url 'address_book' %}" method="POST" id="update-address-book">
   {% csrf_token %}
   <div class="p-4">
-    <h2 class="mb-2 font-bold text-lg">Default Address:</h2>
+    <h2 class="mb-2 text-lg font-bold">Default Address:</h2>
     {% if total == 0 %}
       <div>None</div>
     {% else %}
@@ -31,7 +34,7 @@
   </div>
   
   <div class="p-4">
-    <h2 class="mb-2 font-bold text-lg">Saved Addresses:</h2>
+    <h2 class="mb-2 text-lg font-bold">Saved Addresses:</h2>
     {% if total == 0 %}
       <div>None</div>
     {% else %}
