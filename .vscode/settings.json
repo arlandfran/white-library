@@ -8,8 +8,7 @@
   "python.linting.pylintArgs": [
     "--load-plugins",
     "pylint_django",
-    "--errors-only",
-    "--load-plugins pylint_django",
-    "--django-settings-module=white_library.settings"
+    "--django-settings-module=white_library.settings",
+    "--disable=C0115,C0116" // disable missing-class-docstring, missing-function-docstring"
   ]
 }
