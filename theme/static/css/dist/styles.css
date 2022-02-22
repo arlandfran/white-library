@@ -4334,6 +4334,10 @@ textarea.form-control.is-invalid {
   gap: 2rem;
 }
 
+.self-end {
+  align-self: flex-end;
+}
+
 .overflow-x-hidden {
   overflow-x: hidden;
 }
