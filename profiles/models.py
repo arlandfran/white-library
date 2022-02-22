@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -8,13 +8,14 @@ from django_countries.fields import CountryField
 
 class UserProfile(models.Model):
     """User Profile model for addresses and order history"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
+        # pylint: disable=no-member
         return self.user.username
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=get_user_model())
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """Create or update user profile"""
     if created:
@@ -41,8 +42,8 @@ class Address(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override save method so that if address.default = True, 
-        set all other addresses related to profile to False 
+        Override save method so that if address.default = True,
+        set all other addresses related to profile to False
         """
         if self.default:
             self.profile.addresses.all().exclude(

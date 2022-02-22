@@ -1,14 +1,13 @@
-from email.policy import default
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.urls import reverse
 
+from checkout.models import Order
+
 from .models import UserProfile
 from .forms import UserForm, AddressForm
-
-from checkout.models import Order
 
 
 @login_required
@@ -51,7 +50,7 @@ def order_summary(request, order_number):
 def details(request):
     """Return user profile details"""
 
-    user = get_object_or_404(User, username=request.user)
+    user = get_object_or_404(get_user_model(), username=request.user)
 
     if request.method == 'POST':
         form = UserForm(request.POST, instance=user)
@@ -82,7 +81,6 @@ def address_book(request):
 
     if request.method == "POST":
         default_id = request.POST['default'][0]
-        # delete = request.POST['delete']
 
         address = user_profile.addresses.get(id=default_id)
         address.default = True
