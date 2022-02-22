@@ -21,9 +21,6 @@
     </div>
     <div class="flex items-center gap-2 py-2 text-sm md:px-4">
       {% if request.user.is_authenticated %}
-        {% if request.user.is_superuser %}
-          <a class="hidden p-2 uppercase xs:block" href="#">admin</a>
-        {% endif %}
         <a class="hidden p-2 uppercase md:block" href="{% url 'profile' %}">profile</a>
         <a class="p-2 uppercase" href="#">saved</a>
         {% if bag_items %}
