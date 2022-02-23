@@ -44,7 +44,7 @@
     <a href="{% url 'profile' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">my profile</a>
   </div>
   <div class="p-4 border-b border-black">
-    <a href="#" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">saved</a>
+    <a href="{% url 'saved' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">saved</a>
   </div>
   <div class="p-4 border-b border-black">
     <a href="{% url 'view_bag' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
