@@ -1,4 +1,3 @@
-from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -76,28 +75,38 @@ def details(request):
     return render(request, template, context)
 
 
+def delete_addresses(user_profile: UserProfile, delete_ids: list):
+    for address_id in delete_ids:
+        try:
+            user_profile.addresses.get(id=address_id).delete()
+        except ObjectDoesNotExist:
+            print(f'address {address_id} does not exist, delete failed')
+
+
+def set_default_address(user_profile: UserProfile, address_id: int):
+    try:
+        address = user_profile.addresses.get(id=address_id)
+        address.default = True
+        address.save()
+    except ObjectDoesNotExist:
+        print(f'address {address_id} does not exist, set as default failed')
+
+
 def address_book(request):
     """Return user's saved addresses"""
 
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":
-        try:
-            default_id = request.POST['default'][0]
-            delete_ids = request.POST['delete']
-            address = user_profile.addresses.get(id=default_id)
-            address.default = True
-            address.save()
-            for address_id in delete_ids:
-                user_profile.addresses.get(id=address_id).delete()
-            messages.success(request, 'Addresses updated successfully')
-        except MultiValueDictKeyError:
-            default_id = request.POST['default'][0]
-            address = user_profile.addresses.get(id=default_id)
-            address.default = True
-            address.save()
-            messages.success(request, 'Addresses updated successfully')
-        return redirect(reverse('address_book'))
+        if 'default' in request.POST:
+            address_id = request.POST['default']
+            set_default_address(user_profile, address_id)
+            redirect(reverse('address_book'))
+        if 'delete' in request.POST:
+            delete_ids = request.POST.getlist('delete')
+            delete_addresses(user_profile, delete_ids)
+            messages.success(request, f'{len(delete_ids)} item(s) deleted')
+            redirect(reverse('address_book'))
 
     addresses = user_profile.addresses.all()
 
