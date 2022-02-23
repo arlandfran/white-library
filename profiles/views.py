@@ -86,13 +86,13 @@ def address_book(request):
             delete_ids = request.POST['delete']
             address = user_profile.addresses.get(id=default_id)
             address.default = True
+            address.save()
             for address_id in delete_ids:
                 user_profile.addresses.get(id=address_id).delete()
+            messages.success(request, 'Addresses updated successfully')
         except MultiValueDictKeyError:
             address = user_profile.addresses.get(id=default_id)
             address.default = True
-        finally:
-            address.save()
             messages.success(request, 'Addresses updated successfully')
         return redirect(reverse('address_book'))
 
