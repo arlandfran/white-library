@@ -5,6 +5,8 @@ from django.dispatch import receiver
 
 from django_countries.fields import CountryField
 
+from products.models import Product
+
 
 class UserProfile(models.Model):
     """User Profile model for addresses and order history"""
@@ -53,3 +55,10 @@ class Address(models.Model):
             self.profile.addresses.all().exclude(
                 id=self.id).update(default=False)
         super().save(*args, **kwargs)
+
+
+class SavedProduct(models.Model):
+    profile = models.ForeignKey(
+        UserProfile, related_name='saved', on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, related_name='saved', on_delete=models.CASCADE)

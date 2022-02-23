@@ -4257,10 +4257,6 @@ textarea.form-control.is-invalid {
   gap: 1px;
 }
 
-.justify-self-center {
-  justify-self: center;
-}
-
 .overflow-x-hidden {
   overflow-x: hidden;
 }
@@ -4693,10 +4689,6 @@ select:invalid, select option[value=""] {
 .js-snackbar__close:hover {
   background-color: #444;
   color: white;
-}
-
-.hover\:font-bold:hover {
-  font-weight: 700;
 }
 
 .hover\:underline:hover {

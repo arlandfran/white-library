@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import UserProfile, Address
+from .models import UserProfile, Address, SavedProduct
 
 
 class AddressAdminInline(admin.TabularInline):
@@ -11,17 +11,25 @@ class AddressAdminInline(admin.TabularInline):
     extra = 0
 
 
+class SavedProductAdminInline(admin.TabularInline):
+    model = SavedProduct
+    extra = 0
+
+
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
 
     def addresses(self, obj):
         return obj.addresses.count()
 
-    inlines = (AddressAdminInline,)
+    def saved_products(self, obj):
+        return obj.saved.count()
+
+    inlines = (AddressAdminInline, SavedProductAdminInline)
 
     fields = ('user',)
 
-    list_display = ('user', 'addresses',)
+    list_display = ('user', 'addresses', 'saved_products',)
 
 
 @admin.register(Address)

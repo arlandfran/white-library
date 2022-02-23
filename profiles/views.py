@@ -183,3 +183,16 @@ def edit_address(request, address_id):
     }
 
     return render(request, template, context)
+
+
+def saved(request):
+
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    saved_products = user_profile.saved.all()
+
+    template = 'profiles/saved_products.html'
+    context = {
+        'saved_products': saved_products,
+    }
+
+    return render(request, template, context)
