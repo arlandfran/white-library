@@ -30,7 +30,8 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
     'localhost',
-    'white-library.herokuapp.com'
+    '127.0.0.1',
+    'white-library.herokuapp.com',
 ]
 
 
