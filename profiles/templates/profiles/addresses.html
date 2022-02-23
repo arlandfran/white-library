@@ -3,6 +3,10 @@
 <div class="flex items-center justify-between p-4 border-b border-black">
   {% if total == 0 %}
     <p>No addresses saved</p>
+
+    <a href="{% url 'add_address' %}" class="border border-black p-2">
+      {% bs_icon "plus" size="1.5em" %}
+    </a>
   {% else %}
   <p>
     <strong>
