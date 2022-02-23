@@ -34,7 +34,7 @@
   {% csrf_token %}
   <div class="p-4">
     <h2 class="mb-2 text-lg font-bold">Default Address:</h2>
-    {% if total == 0 %}
+    {% if default_address == None %}
       <div>None</div>
     {% else %}
       {% include 'profiles/address.html' with address=default_address %}

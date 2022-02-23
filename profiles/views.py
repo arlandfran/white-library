@@ -1,4 +1,5 @@
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -91,8 +92,10 @@ def address_book(request):
                 user_profile.addresses.get(id=address_id).delete()
             messages.success(request, 'Addresses updated successfully')
         except MultiValueDictKeyError:
+            default_id = request.POST['default'][0]
             address = user_profile.addresses.get(id=default_id)
             address.default = True
+            address.save()
             messages.success(request, 'Addresses updated successfully')
         return redirect(reverse('address_book'))
 
@@ -102,9 +105,15 @@ def address_book(request):
         default_address = None
         total = 0
     else:
-        default_address = user_profile.addresses.get(default=True)
-        addresses = user_profile.addresses.filter(default=False)
-        total = len(addresses) + 1  # addresses not default + default address
+        try:
+            default_address = user_profile.addresses.get(default=True)
+            addresses = user_profile.addresses.filter(default=False)
+            # addresses not default + default address
+            total = len(addresses) + 1
+        except ObjectDoesNotExist:
+            default_address = None
+            addresses = user_profile.addresses.filter(default=False)
+            total = len(addresses)
 
     template = 'profiles/address_book.html'
     context = {
