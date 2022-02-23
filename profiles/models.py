@@ -8,6 +8,10 @@ from django_countries.fields import CountryField
 
 class UserProfile(models.Model):
     """User Profile model for addresses and order history"""
+
+    class Meta:
+        verbose_name_plural = 'Profiles'
+
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
