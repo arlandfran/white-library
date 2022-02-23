@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.urls import reverse
 
 from checkout.models import Order
+from products.models import Product
 
 from .models import UserProfile
 from .forms import UserForm, AddressForm
@@ -196,3 +197,20 @@ def saved(request):
     }
 
     return render(request, template, context)
+
+
+def remove(request, product_id):
+    """Remove product from saved list"""
+
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    product = get_object_or_404(Product, pk=product_id)
+    redirect_url = request.POST.get('redirect_url')
+
+    try:
+        user_profile.saved.get(product=product).delete()
+        messages.success(
+            request, f'{product.name} removed from saved items')
+    except ObjectDoesNotExist:
+        messages.error(request, f'{product.name} does not exist')
+
+    return redirect(redirect_url)

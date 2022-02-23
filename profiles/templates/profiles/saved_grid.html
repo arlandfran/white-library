@@ -1,0 +1,22 @@
+<div class="flex w-full gap-4 p-4 justify-center flex-wrap">
+    {% for saved in saved_products %}
+        <div class="min-w-[8rem] max-w-[14rem] p-2 text-center flex flex-col justify-between gap-4">
+            <a href="{% url 'product_detail' saved.product.id %}">
+                <img src="{{ saved.product.image.url }}" alt="{{ saved.product.name }}">
+            </a>
+            <div class="flex flex-col gap-2">
+                {{ saved.product.name }}
+                <form action="{% url 'remove_product' saved.product.id %}" method="POST">
+                    {% csrf_token %}
+                    <input
+                      type="submit"
+                      value="remove from bag"
+                      data-item-id="{{ product.id }}"
+                      class="text-sm font-bold uppercase cursor-pointer disabled:cursor-default hover:underline"
+                    >
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+                  </form>
+            </div>
+        </div>
+    {% endfor %}
+</div>

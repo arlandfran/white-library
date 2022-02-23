@@ -12,4 +12,5 @@ urlpatterns = [
     path('address_book/edit/<address_id>',
          views.edit_address, name="edit_address"),
     path('saved', views.saved, name='saved'),
+    path('saved/remove/<product_id>', views.remove, name='remove_product'),
 ]

@@ -17,15 +17,14 @@
                 Back to profile
             </a>
         </div>
+        {% include 'profiles/saved_grid.html' with saved_products=saved_products %}
     </div>
     <div class="md:grid hidden md:grid-cols-[auto_1fr] grow">
         <div class="h-fit md:w-fit">
             {% include 'profiles/profile_menu.html' %}
         </div>
         <div class="border-l border-black flex-col">
-            {% for saved in saved_products %}
-                {{ saved.product.name }}
-            {% endfor %}
+            {% include 'profiles/saved_grid.html' with saved_products=saved_products %}
         </div>
     </div>
 </div>
