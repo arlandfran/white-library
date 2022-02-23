@@ -8,5 +8,7 @@ urlpatterns = [
          views.order_summary, name='order_summary'),
     path('details/', views.details, name="details"),
     path('address_book/', views.address_book, name="address_book"),
-    path('address_book/add_address', views.add_address, name="add_address"),
+    path('address_book/add', views.add_address, name="add_address"),
+    path('address_book/edit/<address_id>',
+         views.edit_address, name="edit_address"),
 ]

@@ -142,3 +142,26 @@ def add_address(request):
     }
 
     return render(request, template, context)
+
+
+def edit_address(request, address_id):
+
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    address = user_profile.addresses.get(id=address_id)
+
+    if request.method == "POST":
+        form = AddressForm(request.POST, instance=address)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Address updated successfully')
+            return redirect(reverse('address_book'))
+    else:
+        form = AddressForm(instance=address)
+
+    template = 'profiles/edit_address.html'
+    context = {
+        'form': form,
+        'address_id': address_id,
+    }
+
+    return render(request, template, context)
