@@ -17,16 +17,28 @@
 
     <div class="max-w-lg">
       {% if user.is_authenticated %}
-      <form action="{% url 'add_to_bag' product.id %}" method="POST" class="outline-black outline outline-1">
-        {% csrf_token %}
-        <input 
-          type="submit" 
-          value="add to bag"
-          data-item-id="{{ product.id }}" 
-          class="p-4 w-full font-bold uppercase cursor-pointer disabled:cursor-default" 
-        >
-        <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
-      </form>
+      <div class="flex gap-2 justify-center">
+        <form action="{% url 'save_product' product.id %}" method="POST">
+          {% csrf_token %}
+          <input 
+            type="submit" 
+            value="save"
+            data-item-id="{{ product.id }}" 
+            class="p-4 w-full font-bold uppercase cursor-pointer disabled:cursor-default border border-black" 
+          >
+          <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+        </form>
+        <form action="{% url 'add_to_bag' product.id %}" method="POST">
+          {% csrf_token %}
+          <input 
+            type="submit" 
+            value="add to bag"
+            data-item-id="{{ product.id }}" 
+            class="p-4 w-full font-bold uppercase cursor-pointer disabled:cursor-default border border-black" 
+          >
+          <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+        </form>
+      </div>
       {% else %}
       <a href="{% url 'account_login' %}?next={{ request.path }}" class="block p-4 font-bold text-center uppercase outline-black outline outline-1">
         sign in to purchase
