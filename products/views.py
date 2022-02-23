@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Product, Category
 
+from profiles.models import UserProfile, SavedProduct
+
 
 def all_products(request):
     """Return all products, including sorting and filtering"""
@@ -66,3 +68,28 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+def save(request, product_id):
+    """Save product to user profile"""
+
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    product = get_object_or_404(Product, pk=product_id)
+    redirect_url = request.POST.get('redirect_url')
+
+    data = {
+        'profile': user_profile.id,
+        'product': product.id,
+    }
+
+    saved_list = user_profile.saved.all()
+
+    if product_id not in saved_list:
+        saved_product = SavedProduct(
+            profile=user_profile, product=product)
+        saved_product.save()
+        messages.success(request, 'Product saved successfully')
+    else:
+        messages.error(request, 'Product already saved')
+
+    return redirect(redirect_url)
