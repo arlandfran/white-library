@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.core.exceptions import ObjectDoesNotExist
-
-from .models import Product, Category
 
 from profiles.models import UserProfile, SavedProduct
+
+from .models import Product, Category
 
 
 def all_products(request):
@@ -82,7 +81,7 @@ def save(request, product_id):
     try:
         saved = user_profile.saved.get(product=product)
         messages.error(request, f'{saved.product.name} already saved')
-    except ObjectDoesNotExist:
+    except SavedProduct.DoesNotExist:
         saved_product = SavedProduct(
             profile=user_profile, product=product)
         saved_product.save()

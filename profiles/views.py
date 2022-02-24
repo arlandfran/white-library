@@ -1,4 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -8,7 +7,7 @@ from django.urls import reverse
 from checkout.models import Order
 from products.models import Product
 
-from .models import UserProfile
+from .models import UserProfile, Address
 from .forms import UserForm, AddressForm
 
 
@@ -80,7 +79,7 @@ def delete_addresses(user_profile: UserProfile, delete_ids: list):
     for address_id in delete_ids:
         try:
             user_profile.addresses.get(id=address_id).delete()
-        except ObjectDoesNotExist:
+        except Address.DoesNotExist:
             print(f'address {address_id} does not exist, delete failed')
 
 
@@ -89,7 +88,7 @@ def set_default_address(user_profile: UserProfile, address_id: int):
         address = user_profile.addresses.get(id=address_id)
         address.default = True
         address.save()
-    except ObjectDoesNotExist:
+    except Address.DoesNotExist:
         print(f'address {address_id} does not exist, set as default failed')
 
 
@@ -120,7 +119,7 @@ def address_book(request):
             addresses = user_profile.addresses.filter(default=False)
             # addresses not default + default address
             total = len(addresses) + 1
-        except ObjectDoesNotExist:
+        except Address.DoesNotExist:
             default_address = None
             addresses = user_profile.addresses.filter(default=False)
             total = len(addresses)
@@ -210,7 +209,7 @@ def remove(request, product_id):
         user_profile.saved.get(product=product).delete()
         messages.success(
             request, f'{product.name} removed from saved items')
-    except ObjectDoesNotExist:
-        messages.error(request, f'{product.name} does not exist')
+    except Address.DoesNotExist:
+        messages.error(request, 'Product is not saved')
 
     return redirect(redirect_url)

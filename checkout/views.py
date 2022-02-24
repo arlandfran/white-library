@@ -1,12 +1,16 @@
+import json
+
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render, redirect, reverse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+
 import stripe
-import json
+
 from bag.contexts import bag_contents
 from products.models import Product
 from profiles.models import UserProfile
+
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
@@ -23,10 +27,10 @@ def cache_checkout_data(request):
             'username': request.user,
         })
         return HttpResponse(status=200)
-    except Exception as e:
-        messages.error(request, e)
-        print(e)
-        return HttpResponse(content=e, status=400)
+    except Exception as error:
+        messages.error(request, error)
+        print(error)
+        return HttpResponse(content=error, status=400)
 
 
 def checkout(request):
@@ -51,6 +55,7 @@ def checkout(request):
         }
 
         order_form = OrderForm(form_data)
+
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
