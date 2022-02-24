@@ -232,7 +232,7 @@ def admin(request):
 
     products = Product.objects.all()
 
-    template = 'products/admin'
+    template = 'profiles/admin.html'
     context = {
         'products': products
     }

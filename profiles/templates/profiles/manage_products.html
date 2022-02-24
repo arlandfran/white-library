@@ -1,0 +1,32 @@
+<div class="flex items-center justify-between p-4 border-b border-black">
+  <div class="font-bold">
+    {{ products|length }} product(s) found
+  </div>
+  <a href="#" class="hover:underline">
+    Add a product +
+  </a>
+</div>
+
+<div class="grid grid-cols-[auto_auto_auto_auto] gap-4 p-4 ">
+  <div class="font-bold">Id</div>
+  <div class="font-bold">Name</div>
+  <div class="font-bold">Price</div>
+  <div class="font-bold">Delete</div>
+  {% for product in products %}
+      <div>
+        {{ product.id }}
+      </div>
+      <div>
+        <a href="#" class="hover:underline">
+          {{ product.name }}
+        </a>
+      </div>
+      <div>
+        £{{ product.price }}
+      </div>
+      <input type="checkbox" name="" id="">
+  {% endfor %}
+  <button class="col-start-4 justify-self-start border border-black px-2">
+    save
+  </button>
+</div>

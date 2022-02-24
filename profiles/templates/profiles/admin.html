@@ -1,0 +1,14 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="product management" %}
+{% endblock %}
+
+{% block mobile_content %}
+{% include 'profiles/back_to_profile.html' %}
+{% include 'profiles/manage_products.html' with products=products %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/manage_products.html' with products=products %}
+{% endblock %}
