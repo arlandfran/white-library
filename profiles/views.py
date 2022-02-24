@@ -24,7 +24,7 @@ def order_history(request):
     """Return the user' order history"""
 
     user_profile = get_object_or_404(UserProfile, user=request.user)
-    orders = user_profile.orders.all()
+    orders = user_profile.orders.all().order_by('-date')
 
     template = 'profiles/order_history.html'
     context = {
