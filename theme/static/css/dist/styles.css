@@ -4060,6 +4060,14 @@ textarea.form-control.is-invalid {
   margin-top: 0.75rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
 .block {
   display: block;
 }
@@ -4172,6 +4180,18 @@ textarea.form-control.is-invalid {
   max-width: 14rem;
 }
 
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -4279,6 +4299,10 @@ textarea.form-control.is-invalid {
 
 .gap-\[1px\] {
   gap: 1px;
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .overflow-x-hidden {

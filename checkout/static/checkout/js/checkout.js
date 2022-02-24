@@ -51,7 +51,72 @@ paymentForm.addEventListener("submit", async (event) => {
     `;
   messageContainer.textContent = "";
 
-  const saveInfo = document.querySelector("#id-save-info").checked;
+  let saveInfo;
+
+  if (document.querySelector("#id-save-info")) {
+    saveInfo = document.querySelector("#id-save-info").checked;
+  } else {
+    saveInfo = false;
+  }
+
+  let billing_details;
+  let shipping;
+
+  if (document.querySelector('input[name="address"]:checked')) {
+    const form = document.querySelector('input[name="address"]:checked');
+
+    billing_details = {
+      address: {
+        line1: form.dataset.streetAddress1.trim(),
+        line2: form.dataset.streetAddress2.trim(),
+        city: form.dataset.townOrCity.trim(),
+        country: form.dataset.country.trim(),
+        state: form.dataset.county.trim(),
+      },
+      email: paymentForm.email.value.trim(),
+      name: paymentForm.full_name.value.trim(),
+      phone: form.dataset.phoneNumber.trim(),
+    };
+
+    shipping = {
+      address: {
+        line1: form.dataset.streetAddress1.trim(),
+        line2: form.dataset.streetAddress2.trim(),
+        city: form.dataset.townOrCity.trim(),
+        country: form.dataset.country.trim(),
+        postal_code: form.dataset.postcode.trim(),
+        state: form.dataset.county.trim(),
+      },
+      name: paymentForm.full_name.value.trim(),
+      phone: form.dataset.phoneNumber.trim(),
+    };
+  } else {
+    billing_details = {
+      address: {
+        line1: paymentForm.street_address1.value.trim(),
+        line2: paymentForm.street_address2.value.trim(),
+        city: paymentForm.town_or_city.value.trim(),
+        country: paymentForm.country.value.trim(),
+        state: paymentForm.county.value.trim(),
+      },
+      email: paymentForm.email.value.trim(),
+      name: paymentForm.full_name.value.trim(),
+      phone: paymentForm.phone_number.value.trim(),
+    };
+
+    shipping = {
+      address: {
+        line1: paymentForm.street_address1.value.trim(),
+        line2: paymentForm.street_address2.value.trim(),
+        city: paymentForm.town_or_city.value.trim(),
+        country: paymentForm.country.value.trim(),
+        postal_code: paymentForm.postcode.value.trim(),
+        state: paymentForm.county.value.trim(),
+      },
+      name: paymentForm.full_name.value.trim(),
+      phone: paymentForm.phone_number.value.trim(),
+    };
+  }
 
   await fetch("/checkout/cache_checkout_data/", {
     method: "POST",
@@ -71,31 +136,9 @@ paymentForm.addEventListener("submit", async (event) => {
           redirect: "if_required",
           confirmParams: {
             payment_method_data: {
-              billing_details: {
-                address: {
-                  line1: paymentForm.street_address1.value.trim(),
-                  line2: paymentForm.street_address2.value.trim(),
-                  city: paymentForm.town_or_city.value.trim(),
-                  country: paymentForm.country.value.trim(),
-                  state: paymentForm.county.value.trim(),
-                },
-                email: paymentForm.email.value.trim(),
-                name: paymentForm.full_name.value.trim(),
-                phone: paymentForm.phone_number.value.trim(),
-              },
+              billing_details: billing_details,
             },
-            shipping: {
-              address: {
-                line1: paymentForm.street_address1.value.trim(),
-                line2: paymentForm.street_address2.value.trim(),
-                city: paymentForm.town_or_city.value.trim(),
-                country: paymentForm.country.value.trim(),
-                postal_code: paymentForm.postcode.value.trim(),
-                state: paymentForm.county.value.trim(),
-              },
-              name: paymentForm.full_name.value.trim(),
-              phone: paymentForm.phone_number.value.trim(),
-            },
+            shipping: shipping,
           },
         })
         .then(function (result) {
