@@ -1,31 +1,14 @@
-{% extends "base.html" %}
-{% load bootstrap_icons %}
-{% load static %}
+{% extends 'profiles/base.html' %}
 
-{% block page_header %}
-    <div class="hidden md:block">
-        {% include 'includes/page_header.html' with title="my order history" %}
-    </div>
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="my order history" %}
 {% endblock %}
 
-{% block content %}
-<div class="flex flex-col grow">
-    <div class="flex flex-col md:hidden">
-        <div class="border-b border-black">
-            <a href="{% url 'profile' %}" class="flex items-center p-4 w-fit">
-                {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
-                Back to profile
-            </a>
-        </div>
-        {% include 'profiles/orders.html' with orders=orders %}
-    </div>
-    <div class="md:grid hidden md:grid-cols-[auto_1fr] grow">
-        <div class="h-fit md:w-fit">
-            {% include 'profiles/profile_menu.html' %}
-        </div>
-        <div class="border-l border-black flex-col">
-            {% include 'profiles/orders.html' with orders=orders %}
-        </div>
-    </div>
-</div>
+{% block mobile_content %}
+{% include 'profiles/back_to_profile.html' %}
+{% include 'profiles/orders.html' with orders=orders %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/orders.html' with orders=orders %}
 {% endblock %}
