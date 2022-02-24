@@ -1,4 +1,4 @@
-<div class="flex w-full gap-4 p-4 justify-center flex-wrap">
+<div class="flex flex-wrap justify-center w-full gap-4 p-4">
     {% for saved in saved_products %}
         <div class="min-w-[8rem] max-w-[14rem] p-2 text-center flex flex-col justify-between gap-4">
             <a href="{% url 'product_detail' saved.product.id %}">
@@ -10,9 +10,19 @@
                     {% csrf_token %}
                     <input
                       type="submit"
-                      value="remove from bag"
+                      value="remove from saved"
                       data-item-id="{{ product.id }}"
                       class="text-sm font-bold uppercase cursor-pointer disabled:cursor-default hover:underline"
+                    >
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+                  </form>
+                  <form action="{% url 'add_to_bag' saved.product.id %}" method="POST">
+                    {% csrf_token %}
+                    <input 
+                      type="submit" 
+                      value="add to bag"
+                      data-item-id="{{ product.id }}"
+                      class="text-sm font-bold uppercase cursor-pointer disabled:cursor-default hover:underline" 
                     >
                     <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
                   </form>
