@@ -13,4 +13,11 @@ urlpatterns = [
          views.edit_address, name="edit_address"),
     path('saved', views.saved, name='saved'),
     path('saved/remove/<product_id>', views.remove, name='remove_product'),
+    path('admin/', views.admin, name='admin'),
+    path('admin/add/', views.add_product, name='add_product'),
+    path('admin/edit/<int:product_id>/',
+         views.edit_product, name='edit_product'),
+    path('admin/delete/<int:product_id>/',
+         views.delete_product,
+         name='delete_product'),
 ]

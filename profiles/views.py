@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from checkout.models import Order
 from products.models import Product
+from products.forms import ProductForm
 
 from .models import UserProfile, Address
 from .forms import UserForm, AddressForm
@@ -34,6 +35,7 @@ def order_history(request):
     return render(request, template, context)
 
 
+@login_required
 def order_summary(request, order_number):
     """Return order summary of given order number"""
 
@@ -48,6 +50,7 @@ def order_summary(request, order_number):
     return render(request, template, context)
 
 
+@login_required
 def details(request):
     """Return user profile details"""
 
@@ -92,6 +95,7 @@ def set_default_address(user_profile: UserProfile, address_id: int):
         print(f'address {address_id} does not exist, set as default failed')
 
 
+@login_required
 def address_book(request):
     """Return user's saved addresses"""
 
@@ -134,6 +138,7 @@ def address_book(request):
     return render(request, template, context)
 
 
+@login_required
 def add_address(request):
     """Return add address form and template"""
 
@@ -162,6 +167,7 @@ def add_address(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_address(request, address_id):
 
     user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -185,6 +191,7 @@ def edit_address(request, address_id):
     return render(request, template, context)
 
 
+@login_required
 def saved(request):
 
     user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -198,6 +205,7 @@ def saved(request):
     return render(request, template, context)
 
 
+@login_required
 def remove(request, product_id):
     """Remove product from saved list"""
 
@@ -213,3 +221,46 @@ def remove(request, product_id):
         messages.error(request, 'Product is not saved')
 
     return redirect(redirect_url)
+
+
+@login_required
+def admin(request):
+    """Return admin template for super users"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Unauthorized access')
+        return redirect(reverse('home'))
+
+    products = Product.objects.all()
+
+    template = 'products/admin'
+    context = {
+        'products': products
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_product(request):
+    """Add a product to the store"""
+
+    form = ProductForm()
+
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_product(request, product_id):
+    """Edit a product"""
+    pass
+
+
+@login_required
+def delete_product(request, product_id):
+    """Delete a product from the store"""
+    pass

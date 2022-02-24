@@ -1,8 +1,14 @@
 {% load bootstrap_icons %}
 
 <div class="grid gap-[1px] border-t border-black">
-    <a href="{% url 'order_history' %}" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+    {% if request.user.is_superuser %}
+    <a href="{% url 'admin' %}" class="flex items-center gap-4 p-4 uppercase border-b border-black">
         {% bs_icon "box-seam" size="1.5em" extra_classes="inline" %}
+        product management
+    </a>
+    {% endif %}
+    <a href="{% url 'order_history' %}" class="flex items-center gap-4 p-4 uppercase border-b border-black">
+        {% bs_icon "file-earmark-text" size="1.5em" extra_classes="inline" %}
         order history
     </a>
     <a href="{% url 'saved' %}" class="flex items-center gap-4 p-4 uppercase border-b border-black">
