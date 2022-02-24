@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.contrib.auth.decorators import login_required
 
 from profiles.models import UserProfile, SavedProduct
 
@@ -71,8 +72,9 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-def save(request, product_id):
-    """Save product to user profile"""
+@login_required
+def save_product(request, product_id):
+    """Save a product to user profile"""
 
     user_profile = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=product_id)
