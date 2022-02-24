@@ -1,0 +1,9 @@
+{% load bootstrap_icons %}
+{% load custom_tags %}
+
+<div class="border-b border-black">
+  <a href="{% url view %}" class="flex items-center p-4 w-fit">
+    {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
+    Back to {{ view|friendly_name }}
+  </a>
+</div>
