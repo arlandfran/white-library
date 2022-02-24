@@ -1,31 +1,14 @@
-{% extends "base.html" %}
-{% load bootstrap_icons %}
-{% load static %}
+{% extends 'profiles/base.html' %}
 
-{% block page_header %}
-    <div class="hidden md:block">
-        {% include 'includes/page_header.html' with title="address book" %}
-    </div>
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="address book" %}
 {% endblock %}
 
-{% block content %}
-<div class="flex flex-col grow">
-    <div class="flex flex-col md:hidden">
-        <div class="border-b border-black">
-            <a href="{% url 'profile' %}" class="flex items-center p-4 w-fit">
-                {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
-                Back to profile
-            </a>
-        </div>
-        {% include 'profiles/edit_address_form.html' with form=form %}
-    </div>
-    <div class="md:grid hidden md:grid-cols-[auto_1fr] grow">
-        <div class="h-fit md:w-fit">
-            {% include 'profiles/profile_menu.html' %}
-        </div>
-        <div class="border-l border-black flex-col">
-            {% include 'profiles/edit_address_form.html' with form=form %}
-        </div>
-    </div>
-</div>
+{% block mobile_content %}
+{% include 'profiles/back_button.html' with view="address_book" %}
+{% include 'profiles/edit_address_form.html' with form=form %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/edit_address_form.html' with form=form %}
 {% endblock %}

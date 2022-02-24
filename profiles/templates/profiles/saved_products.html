@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block mobile_content %}
-{% include 'profiles/back_to_profile.html' %}
+{% include 'profiles/back_button.html' with view="profile" %}
 {% include 'profiles/saved.html' with saved_products=saved_products %}
 {% endblock %}
 
