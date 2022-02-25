@@ -4023,10 +4023,6 @@ textarea.form-control.is-invalid {
   z-index: 20;
 }
 
-.col-start-4 {
-  grid-column-start: 4;
-}
-
 .m-4 {
   margin: 1rem;
 }
@@ -4066,10 +4062,6 @@ textarea.form-control.is-invalid {
 
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
 }
 
 .block {
@@ -4118,12 +4110,12 @@ textarea.form-control.is-invalid {
   height: 87vh;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-24 {
   height: 6rem;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .min-h-screen {
@@ -4148,8 +4140,8 @@ textarea.form-control.is-invalid {
   width: 8rem;
 }
 
-.w-24 {
-  width: 6rem;
+.w-96 {
+  width: 24rem;
 }
 
 .min-w-\[8rem\] {
@@ -4277,6 +4269,10 @@ textarea.form-control.is-invalid {
   justify-content: space-evenly;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -4289,8 +4285,8 @@ textarea.form-control.is-invalid {
   gap: 1px;
 }
 
-.justify-self-start {
-  justify-self: start;
+.justify-self-center {
+  justify-self: center;
 }
 
 .overflow-x-hidden {
