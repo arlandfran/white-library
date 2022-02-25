@@ -1,0 +1,14 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="my order history" %}
+{% endblock %}
+
+{% block mobile_content %}
+{% include 'profiles/back_button.html' with view="profile" %}
+{% include 'profiles/orders.html' with orders=orders %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/orders.html' with orders=orders %}
+{% endblock %}

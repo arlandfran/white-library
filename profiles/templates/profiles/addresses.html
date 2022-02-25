@@ -1,0 +1,60 @@
+{% load bootstrap_icons %}
+
+<div class="flex items-center justify-between p-4 border-b border-black">
+  {% if total == 0 %}
+    <p>No addresses saved</p>
+
+    <a href="{% url 'add_address' %}" class="border border-black p-2">
+      {% bs_icon "plus" size="1.5em" %}
+    </a>
+  {% else %}
+  <p>
+    <strong>
+      {{ total }}
+      {% if total > 1 %}
+        addresses
+      {% else %}
+        address
+      {% endif %}
+    </strong>
+    saved
+  </p>
+
+  <div class="flex items-center gap-2">
+    <button type="submit" class="uppercase hover:underline border border-black p-2" form="update-address-book">update</button>
+    <a href="{% url 'add_address' %}" class="border border-black p-2">
+      {% bs_icon "plus" size="1.5em" %}
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+
+<form action="{% url 'address_book' %}" method="POST" id="update-address-book">
+  {% csrf_token %}
+  <div class="p-4">
+    <h2 class="mb-2 text-lg font-bold">Default Address:</h2>
+    {% if default_address == None %}
+      <div>None</div>
+    {% else %}
+      {% include 'profiles/address.html' with address=default_address %}
+    {% endif %}
+  </div>
+  
+  <div class="p-4">
+    <h2 class="mb-2 text-lg font-bold">Saved Addresses:</h2>
+    {% if total == 0 %}
+      <div>None</div>
+    {% else %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% for address in addresses %}
+        <div class="p-4 border border-black flex grow">
+          {% include 'profiles/address.html' with address=address %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</form>
+
+

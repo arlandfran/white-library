@@ -1,0 +1,14 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="my address book" %}
+{% endblock %}
+
+{% block mobile_content %}
+{% include 'profiles/back_button.html' with view="profile" %}
+{% include 'profiles/addresses.html' with addresses=addresses %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/addresses.html' with addresses=addresses %}
+{% endblock %}

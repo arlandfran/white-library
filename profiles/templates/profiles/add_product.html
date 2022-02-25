@@ -1,0 +1,15 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="add product" %}
+{% endblock %}
+
+{% block mobile_content %}
+{% include 'profiles/back_button.html' with view="admin" %}
+{% include 'profiles/add_product_form.html' with form=form %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/back_button.html' with view="admin" %}
+{% include 'profiles/add_product_form.html' with form=form %}
+{% endblock %}

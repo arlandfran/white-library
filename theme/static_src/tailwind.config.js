@@ -42,6 +42,9 @@ module.exports = {
      * and make sure the pattern below matches your project structure.
      */
     // '../../**/*.py'
+
+    // Loads dynamic component classes from tw-elements
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
     fontFamily: {
@@ -62,5 +65,6 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
     require("@tailwindcss/aspect-ratio"),
+    require("tw-elements/dist/plugin"),
   ],
 };

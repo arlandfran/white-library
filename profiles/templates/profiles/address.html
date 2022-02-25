@@ -1,0 +1,42 @@
+<div class="flex flex-col gap-2">
+  <div>Phone Number: {{ address.phone_number }}</div>
+  <div>Street Address: {{ address.street_address1 }}</div>
+  {% if address.street_address2 %}
+    <div>Street Address 2: {{ address.street_address2 }}</div>
+  {% endif %}
+    <div>Town/City: {{ address.town_or_city }}</div>
+  {% if address.county %}
+    <div>County: {{ address.county }}</div>
+  {% endif %}
+  {% if address.postcode %}
+    <div>Postcode: {{ address.postcode }}</div>
+  {% endif %}
+  <div>Country: {{ address.country }}</div>
+  
+  <div class="flex gap-4 items-center pt-2">
+    <div>
+      <label for="id_default-{{ address.id }}">Default:</label>
+      <input
+        type="radio"
+        name="default"
+        value="{{ address.id }}"
+        id="id_default-form-{{ address.id }}"
+        form="update-address-book"
+        class="text-black focus:ring-black focus:border-black"
+        {% if address.default == True %} checked {% endif %}
+      />
+    </div>
+    <div>
+      <label for="id_delete-{{ address.id }}">Delete:</label>
+      <input
+        type="checkbox"
+        name="delete"
+        value="{{ address.id }}"
+        id="id_delete-{{ address.id }}"
+        form="update-address-book"
+        class="text-black focus:ring-black focus:border-black"
+      />
+    </div>
+    <a href="{% url 'edit_address' address.id %}" class="hover:underline">Edit</a>
+  </div>
+</div>

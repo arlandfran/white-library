@@ -1,0 +1,61 @@
+<div class="flex items-center justify-between p-4 border-b border-black">
+  <div class="font-bold">
+    {{ products|length }} product(s) found
+  </div>
+  <div class="flex items-center gap-2">
+    <a href="{% url 'add_product' %}" class="hover:underline">
+      Add
+    </a>
+    |
+    <button 
+      type="submit"
+      form="delete-product-form-{{ form_id }}"
+      class="hover:underline disabled:line-through"
+      {% if products|length == 0 %} disabled {% endif %}
+    >
+      Delete
+    </button>
+  </div>
+</div>
+
+<form action="{% url 'delete_product' %}" method="POST" id="delete-product-form-{{ form_id }}">
+  {% csrf_token %}
+  <div class="grid grid-cols-[auto_auto_auto_auto] gap-4 p-4">
+    <div class="font-bold">SKU</div>
+    <div class="font-bold">Name</div>
+    <div class="font-bold">Price</div>
+    <div class="font-bold">
+      <input
+        type="checkbox"
+        id="delete-all-{{ form_id }}"
+        class="text-black focus:ring-black delete-all"
+        form="delete-product-form-{{ form_id }}"
+        {% if products|length == 0 %} disabled {% endif %}
+      >
+      <label for="delete-all-{{ form_id }}" hidden></label>
+    </div>
+    {% for product in products %}
+        <div>
+          <a href="{% url 'edit_product' product.id %}" class="hover:underline">
+            {{ product.sku }}
+          </a>
+        </div>
+        <div>
+          {{ product.name }}
+        </div>
+        <div>
+          £{{ product.price }}
+        </div>
+        <input
+          type="checkbox"
+          name="delete"
+          value="{{ product.id }}"
+          id="delete-{{ product.id }}-{{ form_id }}"
+          class="text-black focus:ring-black delete"
+          form="delete-product-form-{{ form_id }}"
+        >
+        <label for="delete-{{ product.id }}-{{ form_id }}" hidden></label>
+    {% endfor %}
+  </div>  
+</form>
+

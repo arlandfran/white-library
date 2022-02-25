@@ -1,30 +1,33 @@
 {% load bootstrap_icons %}
 
 <div
-  class="h-full top-0 right-0 fixed z-10 overflow-x-hidden transition-all duration-300 w-0 bg-white flex flex-col border-l-[1px] border-black"
+  class="h-full top-0 right-0 fixed z-20 overflow-x-hidden transition-all duration-300 bg-white flex flex-col border-l-[1px] border-black md:hidden"
   id="sidebar"
+  style="width: 0%"
 >
-  <div >
-    <button class="p-4" onclick="closeSidebar()">
+  <div>
+    <button class="p-4 sidebar-focusable" id="close-btn" tabindex="-1">
       {% bs_icon "x-lg" size="1.5em" %}
     </button>
   </div>
 
-  <div class="p-4 font-bold border-b-[1px] border-black">
+  <div class="p-4 font-bold border-b border-black">
     <p class="mt-4">Looking for something?</p>
   </div>
 
-  <div class="p-2 border-black border-b-[1px]">
-    <form method="GET" action="" class="flex items-center justify-end">
+  <div class="p-2 border-b border-black">
+    <form method="GET" action="{% url 'products' %}" class="flex justify-end items-center">
       <input
         type="text"
-        name="query"
+        name="q"
         placeholder="Search"
-        class="border-none grow focus:ring-0"
+        class="border-none grow focus:ring-0 sidebar-focusable"
+        tabindex="-1"
       />
       <button
         type="submit"
-        class="p-2"
+        class="p-2 sidebar-focusable"
+        tabindex="-1"
       >
         {% bs_icon "search" size="1.5em" extra_classes="fill-inherit"%}
       </button>
@@ -33,37 +36,40 @@
 
   {% if request.user.is_authenticated %} 
     {% if request.user.is_superuser %}
-    <div class="border-b-[1px] border-black p-4 align-baseline flex items-center">
-      <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">manage products</a><span class="bg-black text-white p-2 text-xs ml-2">Admin</span>
+    <div class="flex items-center p-4 align-baseline border-b border-black">
+      <a href="{% url 'admin' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">manage products</a><span class="p-2 ml-2 text-xs text-white bg-black">Admin</span>
     </div>
     {% endif %}
-  <div class="border-b-[1px] border-black p-4">
-    <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">my account</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'profile' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">my profile</a>
   </div>
-  <div class="border-b-[1px] border-black p-4">
-    <a href="#" class="text-lg uppercase p-2 font-bold hover:underline">saved</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'saved' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">saved</a>
   </div>
-  <div class="border-b-[1px] border-black p-4">
-    <a href="{% url 'account_logout' %}" class="text-lg uppercase p-2 font-bold hover:underline">log out</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'view_bag' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable">bag {% if bag_items %}({{ bag_items|length }}){% endif %}</a>
+  </div>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'account_logout' %}?next={{ request.path }}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable">log out</a>
   </div>
   {% else %}
-  <div class="border-b-[1px] border-black p-4 font-bold">
-    <a href="{% url 'account_login' %}" class="text-lg uppercase hover:underline p-2">log in</a>
+  <div class="p-4 font-bold border-b border-black">
+    <a href="{% url 'account_login' %}?next={{ request.path }}" class="p-2 text-lg uppercase hover:underline sidebar-focusable" tabindex="-1">log in</a>
   </div>
-  <div class="border-b-[1px] border-black p-4 font-bold">
-    <a href="{% url 'account_login' %}" class="text-lg uppercase hover:underline p-2">sign up</a>
+  <div class="p-4 font-bold border-b border-black">
+    <a href="{% url 'account_login' %}" class="p-2 text-lg uppercase hover:underline sidebar-focusable" tabindex="-1">sign up</a>
   </div>
   {% endif %}
-  <div class="p-4 font-bold border-b-[1px] border-black">
+  <div class="p-4 font-bold border-b border-black">
     <p class="mt-8">Browse the library</p>
   </div>
-  <div class="border-b-[1px] border-black p-4">
-    <a href="#" class="text-lg uppercase p-2">all products</a>
+  <div class="p-4 border-b border-black">
+    <a href="{% url 'products' %}" class="p-2 text-lg uppercase sidebar-focusable" tabindex="-1">all products</a>
   </div>
-  <div class="border-b-[1px] border-black p-4">
-    <a href="#" class="text-lg uppercase p-2">books</a>
+  <div class="p-4 border-b border-black">
+    <a href="#" class="p-2 text-lg uppercase sidebar-focusable" tabindex="-1">books</a>
   </div>
-  <div class="border-b-[1px] border-black p-4">
-    <a href="#" class="text-lg uppercase p-2">collectibles</a>
+  <div class="p-4 border-b border-black">
+    <a href="#" class="p-2 text-lg uppercase sidebar-focusable" tabindex="-1">collectibles</a>
   </div>
 </div>

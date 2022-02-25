@@ -1,0 +1,15 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="address book" %}
+{% endblock %}
+
+{% block mobile_content %}
+{% include 'profiles/back_button.html' with view="address_book" %}
+{% include 'profiles/add_address_form.html' with form=form %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/back_button.html' with view="address_book" %}
+{% include 'profiles/add_address_form.html' with form=form %}
+{% endblock %}

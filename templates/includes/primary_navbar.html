@@ -1,0 +1,56 @@
+{% load bootstrap_icons %}
+
+<div class="flex flex-col">
+  <div class="flex items-center justify-between h-16 px-2 lg:px-4 md:gap-6">
+    <a class="px-4 py-2 font-bold uppercase" href="/">White Library</a>
+    <div class="hidden md:block border-[1px] border-black grow max-w-xl">
+      <form method="GET" action="{% url 'products' %}" class="flex items-center justify-end">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search"
+          class="border-none grow focus:ring-0"
+        />
+        <button
+          type="submit"
+          class="p-2"
+        >
+          {% bs_icon "search" size="1.5em" extra_classes="fill-inherit"%}
+        </button>
+      </form>
+    </div>
+    <div class="flex items-center gap-2 py-2 text-sm md:px-4">
+      {% if request.user.is_authenticated %}
+        <a class="hidden p-2 uppercase md:block" href="{% url 'profile' %}">profile</a>
+        <a class="p-2 uppercase" href="{% url 'saved' %}">saved</a>
+        {% if bag_items %}
+          <button 
+            href="{% url 'view_bag' %}"
+            class="p-2 uppercase {% if bag_items %}font-bold{% endif %}"
+            id="bag"
+          >
+            bag ({{ bag_items|length }})
+          </button>
+          {% include "includes/bag_preview.html" %}
+        {% else %}
+          <a href="{% url 'view_bag' %}" class="p-2 uppercase">bag</a>
+        {% endif %}
+      {% else %}
+      <a
+        href="{% url 'account_signup' %}"
+        class="border-black border-[1px] p-2 uppercase bg-black text-white focus-visible:bg-white focus-visible:text-black"
+        >sign up</a
+      >
+      <a 
+        href="{% url 'account_login' %}?next={{ request.path }}"
+        class="border-black border-[1px] p-2 uppercase hidden xs:block"
+      >
+        log in
+      </a>
+      {% endif %}
+      <button class="p-2 border-black border-[1px] md:hidden" id="hamburger">
+        {% bs_icon "list" size="1.5em" %}
+      </button>
+    </div>
+  </div>
+</div>

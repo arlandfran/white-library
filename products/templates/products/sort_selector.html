@@ -1,0 +1,10 @@
+<div class="flex flex-col p-2 h-full bg-white sm:flex-row sm:items-center sm:justify-between">
+  <div class="pl-3 text-xs font-bold uppercase sm:text-base">sort by</div>
+  <select id="sort_selector" class="w-full border-none cursor-pointer focus:ring-0 xs:w-fit" onchange="sortProducts()">
+    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Relevance</option>
+    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (Low to High)</option>
+    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (High to Low)</option>
+    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+  </select>
+</div>

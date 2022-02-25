@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="hidden md:block">
+  {% block profile_header %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-col grow">
+  <div class="flex flex-col md:hidden">
+    {% block mobile_content %}{% endblock %}
+  </div>
+  <div class="md:grid hidden md:grid-cols-[auto_1fr] grow">
+    <div class="h-fit md:w-fit">
+      {% include 'profiles/profile_menu.html' %}
+    </div>
+    <div class="flex-col hidden border-l border-black md:flex">
+      {% block desktop_content %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+  {% block page_js %}{% endblock %}
+{% endblock %}

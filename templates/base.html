@@ -9,26 +9,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>White Library {% block extra_title %} {% endblock %}</title>
 
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}" >
+    <link rel="icon" type="image/svg" href="{% static 'favicon.svg' %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
     {% tailwind_preload_css %}
     {% tailwind_css %}
+
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body class="flex flex-col min-h-screen">
-    {% if messages %}
-    {% endif %}
-
-    <nav>
-      {% include "includes/navbar.html" %}
-      {% include "includes/sidebar.html" %}
+    <nav class="border-b border-black">
+      {% include "includes/primary_navbar.html" %}
+      {% include 'includes/secondary_navbar.html' %}
+      {% include 'includes/sidebar.html' %}
     </nav>
 
-    {% block page_header %}
-    {% endblock %}
+    {% block page_header %}{% endblock %}
 
-    <main class="grow">
+    <main class="flex flex-col grow">
       {% block content %}
       {% endblock %}
     </main>
@@ -38,7 +39,21 @@
     </footer>
     
     {% block postloadjs %}
+    <script src="{% static 'js/tw-elements.min.js' %}"></script>
+    <script src="{% static 'js/js-snackbar.min.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
+    {% if messages %}
+      {% for message in messages %}
+        <script>
+          SnackBar({
+            message: "{{ message }}",
+            position: "tr",
+            timeout: 5000,
+            status: "{{ message.tags }}",
+          })
+        </script>
+      {% endfor %}
+    {% endif %}
     {% endblock %}
   </body>
 </html>

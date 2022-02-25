@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% block page_header %}
+  {% include "includes/page_header.html" with title="order summary" %}
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-col gap-2 p-4 mx-auto lg:px-16 w-fit">
+  {% if from_profile %}
+    <div class="border-b border-black">
+      <a href="{% url 'order_history' %}" class="flex items-center p-2 w-fit">
+          {% bs_icon "arrow-bar-left" size="1.5em" extra_classes="inline" %}
+          Back to order history
+      </a>
+    </div>
+  {% endif %}
+
+  <p>
+    Here is a summary of your order.
+  </p>
+  <p>
+    A purchase confirmation email has been sent to <strong>{{ order.email }}</strong>
+  </p>
+  <div class="mb-2">
+    <h2 class="text-lg font-bold">Order Info:</h2>
+    <div class="xs:pl-4">
+      <div class="flex justify-between break-words">
+        <strong>Order Number</strong> <span class="break-all">{{ order.order_number }}</span>
+      </div>
+      <div class="flex justify-between">
+        <strong>Order Created</strong> {{ order.date }}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <h2 class="text-lg font-bold">Delivering to:</h2>
+    <div class="xs:pl-4">
+      <div class="flex justify-between">
+        <strong>Full Name</strong> {{ order.full_name }}
+      </div>
+      <div class="flex justify-between">
+        <strong>Street Address</strong> {{ order.street_address1}}
+      </div>
+      {% if order.street_address2 %}
+      <div class="flex justify-between">
+        <strong>Street Address 2</strong> {{ order.street_address2}}
+      </div>
+      {% endif %}
+      {% if order.county %}
+      <div class="flex justify-between">
+        <strong>County</strong> {{ order.county}}
+      </div>
+      {% endif %}
+      <div class="flex justify-between">
+        <strong>Town/City</strong> {{ order.town_or_city}}
+      </div>
+      {% if order.postcode %}
+      <div class="flex justify-between">
+        <strong>Post Code</strong> {{ order.postcode}}
+      </div>
+      {% endif %}
+      <div class="flex justify-between">
+        <strong>Country</strong> {{ order.country}}
+      </div>
+      <div class="flex justify-between">
+        <strong>Phone Number</strong> {{ order.phone_number}}
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <h2 class="text-lg font-bold">Billing:</h2>
+    <div class="xs:pl-4">
+      <div class="flex justify-between">
+        <strong>Order Total</strong> £{{ order.order_total}}
+      </div>
+      <div class="flex justify-between">
+        <strong>Delivery</strong> £{{ order.delivery_cost}}
+      </div>
+      <div class="flex justify-between">
+        <strong>Grand Total</strong> £{{ order.grand_total}}
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-[auto_1fr_auto] py-4 sm:grid-cols-[auto_auto_1fr] sm:gap-4">
+    <div>
+      <h2 class="text-lg font-bold">Order Details:</h2>
+    </div>
+    <div class="px-2 text-lg font-bold">Item</div>
+    <div class="px-2 text-lg font-bold">Price</div>
+    {% for item in order.lineitems.all %}
+    <div class="min-w-[7rem] max-w-[12rem] p-2">
+      <a href="{% url 'products' %}{{ item.product.id }}">
+        {% include 'bag/product_image.html' %}
+      </a>
+    </div>
+    <div class="p-2">
+      {{ item.product.name }}
+    </div>
+    <div class="p-2">
+      £{{ item.product.price }}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

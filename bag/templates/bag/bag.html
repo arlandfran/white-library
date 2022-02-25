@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% if bag_items %}
+  {% block page_header %}
+    {% include 'includes/page_header.html' with title="bag" %}
+  {% endblock %}
+{% endif %}
+
+{% block content %}
+  {% if bag_items %}
+  <div class="flex flex-col md:flex-row md:justify-between lg:px-16">
+    <div class="grid grid-cols-2 p-4">
+      {% for item in bag_items %}
+      <div class="min-w-[8rem] max-w-[16rem] p-2">
+        {% include 'bag/product_image.html' %}
+      </div>
+      <div class="flex flex-col justify-center py-2">
+        {% include 'bag/product_info.html' %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="flex flex-col p-8 border-t border-black md:border-none">
+      {% include 'bag/bag_summary.html' %}
+    </div>
+  </div>
+  {% else %}
+    {% include 'bag/empty_bag.html' %}
+  {% endif %}
+{% endblock %}

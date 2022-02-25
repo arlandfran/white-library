@@ -1,0 +1,14 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="my saved items" %}
+{% endblock %}
+
+{% block mobile_content %}
+{% include 'profiles/back_button.html' with view="profile" %}
+{% include 'profiles/saved.html' with saved_products=saved_products %}
+{% endblock %}
+
+{% block desktop_content %}
+{% include 'profiles/saved.html' with saved_products=saved_products %}
+{% endblock %}

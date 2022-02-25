@@ -1,0 +1,17 @@
+{% extends 'profiles/base.html' %}
+
+{% block profile_header %}
+{% include 'includes/page_header.html' with title="my profile" %}
+{% endblock %}
+
+{% block mobile_content %}
+<p class="p-4 text-center">Hi <span class="font-bold">{{ user.username }}</span>!</p>
+{% include 'profiles/profile_menu.html' %}
+{% endblock %}
+
+{% block desktop_content %}
+<div class="flex flex-col items-center justify-center grow">
+  <p>Hi <span class="font-bold">{{ user.username }}</span>!</p>
+  <p>What would you like to do today?</p>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap_icons %}
+{% load static %}
+
+{% block page_header %}
+<div class="grid grid-cols-1 xs:grid-cols-2 h-full bg-black gap-[1px] items-center border-b border-black">
+  {% include "products/category_selector.html" with all_categories=all_categories %}
+  {% include "products/sort_selector.html" %}
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1px]">
+    {% for product in products %}
+      {% include "products/product.html" with product=product %}
+    {% endfor %}
+  </div>
+
+  <div class="hidden fixed right-4 bottom-4 bg-emerald-600" id="scrollToTop">
+    <button class="p-2 font-bold uppercase border border-black" onclick="scrollToTop()">
+      {% bs_icon "arrow-up" size="1.5em" %}
+    </button>
+  </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+  <script src="{% static 'products/js/products.js' %}"></script>
+{% endblock %}

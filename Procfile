@@ -1,0 +1,1 @@
+web: gunicorn white_library.wsgi:application

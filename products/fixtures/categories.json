@@ -1,0 +1,26 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "hardback",
+      "friendly_name": "Hardback"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "boxed_set",
+      "friendly_name": "Boxed Set"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "collectible",
+      "friendly_name": "Collectible"
+    }
+  }
+]
