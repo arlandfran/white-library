@@ -37,7 +37,7 @@
   {% if request.user.is_authenticated %} 
     {% if request.user.is_superuser %}
     <div class="flex items-center p-4 align-baseline border-b border-black">
-      <a href="#" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">manage products</a><span class="p-2 ml-2 text-xs text-white bg-black">Admin</span>
+      <a href="{% url 'admin' %}" class="p-2 text-lg font-bold uppercase hover:underline sidebar-focusable" tabindex="-1">manage products</a><span class="p-2 ml-2 text-xs text-white bg-black">Admin</span>
     </div>
     {% endif %}
   <div class="p-4 border-b border-black">
