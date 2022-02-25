@@ -244,6 +244,10 @@ def admin(request):
 @login_required
 def add_product(request):
     """Add a product to the store"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Unauthorized access')
+        return redirect(reverse('home'))
+
     if request.method == "POST":
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -268,13 +272,38 @@ def add_product(request):
 @login_required
 def edit_product(request, product_id):
     """Edit a product"""
-    pass
+    if not request.user.is_superuser:
+        messages.error(request, 'Unauthorized access')
+        return redirect(reverse('home'))
+
+    product = Product.objects.get(id=product_id)
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product updated successfully')
+            return redirect(reverse('admin'))
+    else:
+        form = ProductForm(instance=product)
+
+    template = 'profiles/edit_product.html'
+    context = {
+        'form': form,
+        'product_id': product_id,
+    }
+
+    return render(request, template, context)
 
 
 @login_required
 @require_POST
 def delete_product(request):
     """Delete a product from the store"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Unauthorized access')
+        return redirect(reverse('home'))
+
     product_ids = request.POST.getlist('delete')
     for pid in product_ids:
         Product.objects.get(id=pid).delete()

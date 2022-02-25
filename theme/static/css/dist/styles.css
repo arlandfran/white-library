@@ -4068,6 +4068,10 @@ textarea.form-control.is-invalid {
   margin-top: 0.75rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -4118,6 +4122,10 @@ textarea.form-control.is-invalid {
   height: 100vh;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -4138,6 +4146,10 @@ textarea.form-control.is-invalid {
 
 .w-32 {
   width: 8rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .min-w-\[8rem\] {

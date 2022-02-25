@@ -36,12 +36,12 @@
     </div>
     {% for product in products %}
         <div>
-          {{ product.sku }}
+          <a href="{% url 'edit_product' product.id %}" class="hover:underline">
+            {{ product.sku }}
+          </a>
         </div>
         <div>
-          <a href="#" class="hover:underline">
-            {{ product.name }}
-          </a>
+          {{ product.name }}
         </div>
         <div>
           £{{ product.price }}
