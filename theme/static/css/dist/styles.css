@@ -4754,6 +4754,11 @@ select:invalid, select option[value=""] {
   cursor: default;
 }
 
+.disabled\:line-through:disabled {
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
+
 @media (min-width: 475px) {
   .xs\:right-2 {
     right: 0.5rem;

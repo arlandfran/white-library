@@ -1,4 +1,5 @@
 {% extends 'profiles/base.html' %}
+{% load static %}
 
 {% block profile_header %}
 {% include 'includes/page_header.html' with title="product management" %}
@@ -6,9 +7,13 @@
 
 {% block mobile_content %}
 {% include 'profiles/back_button.html' with view="profile" %}
-{% include 'profiles/manage_products.html' with products=products %}
+{% include 'profiles/manage_products.html' with products=products form_id="mobile" %}
 {% endblock %}
 
 {% block desktop_content %}
-{% include 'profiles/manage_products.html' with products=products %}
+{% include 'profiles/manage_products.html' with products=products form_id="desktop" %}
+{% endblock %}
+
+{% block page_js %}
+<script src="{% static 'profiles/js/admin.js' %}"></script>
 {% endblock %}

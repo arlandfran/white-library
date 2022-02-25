@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
+from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib import messages
@@ -271,6 +272,11 @@ def edit_product(request, product_id):
 
 
 @login_required
-def delete_product(request, product_id):
+@require_POST
+def delete_product(request):
     """Delete a product from the store"""
-    pass
+    product_ids = request.POST.getlist('delete')
+    for pid in product_ids:
+        Product.objects.get(id=pid).delete()
+    messages.success(request, f'Deleted {len(product_ids)} item(s)')
+    return redirect(reverse(admin))
