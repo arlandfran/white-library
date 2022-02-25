@@ -4221,30 +4221,6 @@ textarea.form-control.is-invalid {
   grid-template-columns: auto 1fr auto;
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-cols-\[auto_auto_1fr_1fr\] {
-  grid-template-columns: auto auto 1fr 1fr;
-}
-
-.grid-cols-\[auto_1fr_auto_1fr\] {
-  grid-template-columns: auto 1fr auto 1fr;
-}
-
-.grid-cols-\[auto_1fr_1fr_1fr\] {
-  grid-template-columns: auto 1fr 1fr 1fr;
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-\[auto_1fr_auto_auto\] {
-  grid-template-columns: auto 1fr auto auto;
-}
-
 .grid-cols-\[auto_auto_auto_auto\] {
   grid-template-columns: auto auto auto auto;
 }
@@ -4289,10 +4265,6 @@ textarea.form-control.is-invalid {
   justify-content: space-evenly;
 }
 
-.justify-items-center {
-  justify-items: center;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
@@ -4303,10 +4275,6 @@ textarea.form-control.is-invalid {
 
 .gap-\[1px\] {
   gap: 1px;
-}
-
-.self-start {
-  align-self: flex-start;
 }
 
 .justify-self-start {

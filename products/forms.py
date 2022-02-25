@@ -15,3 +15,12 @@ class ProductForm(forms.ModelForm):
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
         self.fields['category'].choices = friendly_names
+
+        for field in self.fields:
+            if field == 'sku':
+                placeholder = field.upper()
+            elif self.fields[field].required:
+                placeholder = field.replace('_', ' ').title() + '*'
+            else:
+                placeholder = field.replace('_', ' ').title()
+            self.fields[field].widget.attrs['placeholder'] = placeholder

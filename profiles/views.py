@@ -243,10 +243,20 @@ def admin(request):
 @login_required
 def add_product(request):
     """Add a product to the store"""
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product added successfully')
+            return redirect(reverse('admin'))
+        else:
+            messages.error(request,
+                           ('Update failed. Please ensure '
+                            'the form is valid.'))
+    else:
+        form = ProductForm()
 
-    form = ProductForm()
-
-    template = 'products/add_product.html'
+    template = 'profiles/add_product.html'
     context = {
         'form': form,
     }
