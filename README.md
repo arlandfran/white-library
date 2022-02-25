@@ -137,8 +137,14 @@ class OrderLineItem(models.Model):
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=50, null=False, blank=False)
-    email = models.EmailField(max_length=254, null=False, blank=False)
+```
+
+**Address:**
+
+```python
+class Address(models.Model):
+
+    default = models.BooleanField(default=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
@@ -147,6 +153,19 @@ class UserProfile(models.Model):
     postcode = models.CharField(max_length=20, null=True, blank=True)
     country = CountryField(
         blank_label="Country", null=False, blank=False)
+    profile = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name="addresses")
+```
+
+**Saved Product:**
+
+```python
+class SavedProduct(models.Model):
+
+    profile = models.ForeignKey(
+        UserProfile, related_name='saved', on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, related_name='saved', on_delete=models.CASCADE)
 ```
 
 ## Technologies Used
