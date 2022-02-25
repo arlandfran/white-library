@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+  {% include 'includes/page_header.html' with title="terms and conditions" %}
+{% endblock %}
+
+{% block content %}
+<div class="grid gap-4 p-8">
+  <div class="grid gap-2">
+    <h2 class="text-2xl font-bold">Disclaimer</h2>
+    <p>
+      This project was developed for educational purposes only.
+    </p>
+    <p>
+      All information provided on this site, particularly any information relating to specific products, is presented for general informational purposes only.
+    </p>
+  </div>
+  <div class="grid gap-2">
+    <h2 class="text-2xl font-bold">Fair Use</h2>
+    <p>
+      The material on this site is provided for educational and informational purposes. All photos that haven’t been taken by the site owner have either been purchased, used with permission, credited and linked back to their original sources or believed to be public domain.
+    </p>
+    <p>
+      It is believed that this constitutes a ‘fair use’ of any such copyrighted material as provided for in section 107 of the US Copyright Law. In accordance with Title 17 U.S.C. Section 107, the material on this site is distributed without profit to those who have an interest in using the included information for research and educational purposes.
+    </p>
+  </div>
+  <div class="grid gap-2">
+    <h2 class="text-2xl font-bold">Privacy</h2>
+    <p>
+      Please <strong>DO NOT</strong> enter any personal information on this site.
+    </p>
+    <ul class="pl-8 list-disc">   
+      <li>
+        When creating an account, please use dummy information and dummy passwords.
+      </li>
+      <li>
+        When testing the address book, please do not enter real addresses.
+      </li>
+      <li>
+        When testing the payment flow, use the test payment details provided by <a href="https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements#web-test-the-integration" class="text-blue-500 hover:underline">Stripe.</a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
