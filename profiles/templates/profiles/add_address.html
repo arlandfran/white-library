@@ -10,5 +10,6 @@
 {% endblock %}
 
 {% block desktop_content %}
+{% include 'profiles/back_button.html' with view="address_book" %}
 {% include 'profiles/add_address_form.html' with form=form %}
 {% endblock %}

@@ -10,5 +10,6 @@
 {% endblock %}
 
 {% block desktop_content %}
+{% include 'profiles/back_button.html' with view="admin" %}
 {% include 'profiles/add_product_form.html' with form=form %}
 {% endblock %}
