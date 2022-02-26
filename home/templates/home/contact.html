@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block page_header %}
+  {% include 'includes/page_header.html' with title="contact us" %}
+{% endblock %}
+
+{% block content %}
+<div class="flex flex-col grow max-w-[48rem] mx-auto p-4 gap-2">
+  <p>
+    White Library aims to be as accessible and user friendly as possible. If have you come across any bugs, accessibility/usability issues or just want to leave some feedback, please let us know!
+  </p>
+  <form action="{% url 'contact' %}" method="POST" class="grid gap-2 grow">
+    {% csrf_token %}
+    {% for field in form %}  
+      {% with classes="border-black focus:border-black focus:ring-black" %}
+        {{ field|add_class:classes }}
+      {% endwith %}
+    {% endfor %}
+    <button class="px-2 font-bold uppercase border border-black hover:underline w-fit justify-self-end">submit</button>
+  </form>
+</div>
+{% endblock %}
