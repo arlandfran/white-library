@@ -208,3 +208,6 @@ export STRIPE_PUBLIC_KEY=your_stripe_public_key
 export STRIPE_SECRET_KEY=your_stripe_secret_key
 export STRIPE_WH_SECRET=your_stripe_wh_secret
 ```
+
+`python manage.py runserver` to start Django's development server and in another terminal window run `python manage.py tailwind start` to enable browser reloading for Tailwind.
+Visit `http://127.0.0.1:8000/` to see your app running locally.
