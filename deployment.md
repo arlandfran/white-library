@@ -52,27 +52,86 @@ origin  http://github.com/your-github-username/white-library.git (fetch)
 origin  http://github.com/your-github-username/white-library.git (push)
 ```
 
-At this stage you should be able to deploy your application to Heroku using `git push heroku main` and Heroku will automatically detect that our app is Python and configure the correct buildpack for the deployment. If you want to however manually set the buildpack you can do so by running these commands:
+At this stage you should be able to deploy your application to Heroku using `git push heroku main` and Heroku will automatically detect the language for your app is Python and configure the correct buildpack for the deployment. If you want to however manually set the buildpack you can do so by running these commands:
 
 ```bash
 heroku buildpacks:set heroku/python
 ```
 
-Now that your buildpacks have been configured correctly you can now setup setup AWS and connect it to Heroku.
+Now that your buildpacks have been configured correctly you can now setup AWS and connect it to Heroku.
 
 ## Setting up AWS
 
 Create your AWS account [here](https://aws.amazon.com/) and click create an AWS account.
 
-Once you've created your account, sign into AWS as the root user.
+### S3 Configuration
 
-Once you're signed in, search for 'S3' by typing in the search bar or hitting `ALT+S` and select S3.
+Once you've created your account, sign into AWS as the root user and search for 'S3' by typing in the search bar or hitting `ALT+S` and select S3.
 
-Under **Buckets** click create Create Bucket, choose a bucket name and select the closest region to you. For **Object Ownership** choose *ACLs enabled* and ensure *Bucket owner preferred* is selected. Finally, uncheck *Block all public access*, acknowledge allowing public settings and create the bucket, every other setting can be left as default.
+Under **Buckets** click create Create Bucket, choose a bucket name and select the closest region to you. For **Object Ownership** choose _ACLs enabled_ and ensure _Bucket owner preferred_ is selected. Finally, uncheck _Block all public access_, acknowledge allowing public settings and create the bucket, every other setting can be left as default.
 
-Now that the bucket has been created, open the bucket and under the **Properties** tab, enable *Static Website Hosting* and specify *index.html* as the index document. Next go to the **Permissions** > **Bucket policy** (copy the Bucket ARN) > **Policy Generator** (this should open in a new tab).
+Now that the bucket has been created, open the bucket and under the **Properties** tab, enable _Static Website Hosting_ and specify _index.html_ as the index document. Next go to the **Permissions** > **Bucket policy** (copy the Bucket ARN) > **Policy Generator** (this should open in a new tab).
 
-Once your app has deployed you can run `heroku ps:scale web=1` command. This will start up 1 free dyno for your app to run on and you can visit your app with `heroku open`.
+Set the policy type to _S3 Bucket Policy_, type \* in the Principal field and select _GetObject_ under Actions. Paste the copied Bucket ARN into the ARN field and add the statement. Once the statement has been added, generate the policy and copy the generated policy. You can now close the tab, paste the generated policy into the policy editor and save your changes.
+
+Now go back to **Permissions** > **Access Control List**. Check the List box for Everyone (public access), acknowledge these changes and save your changes.
+
+The last thing you'll need to do now is setup the CORS configuration. Scroll to the bottom of the **Permissons** page and paste this configartion in the JSON editor:
+
+```json
+[
+  {
+    "AllowedHeaders": ["Authorization"],
+    "AllowedMethods": ["GET"],
+    "AllowedOrigins": ["*"],
+    "ExposeHeaders": []
+  }
+]
+```
+
+### IAM Configuration
+
+Search for 'IAM' by typing in the search bar or hitting `ALT+S` and select IAM.
+
+Select **User Groups** located in sidebar and create a group. Choose a group name such as 'manage-white-library' and create the group.
+
+After creating the group, select **Policies** located in the sidebar and create a policy. Select the JSON tab and import managed policy. Search for 'S3', select **AmazonS3FullAccess** and import the policy. Edit the resource object and include your copied Bucket ARN:
+
+```json
+"Resource": [
+  "{your_bucket_arn}",
+  "{your_bucket_arn}/*"
+]
+```
+
+Review the policy, give it an appropriate name and description and create the policy.
+
+Once you've created your policy, go back to **User Groups** > your created user group > **Permissions**. Expand the Add Permissions dropdown and select Attach policies. Search for your newly created policy and attach the policy.
+
+The last thing you'll need to do now is add a user to your user group. In the sidebar select **Users** > Add users. Give the user an appropriate name, enable programmatic access and on the next page add your user to your user group.
+
+Once your user has been created, download the CSV file that contains your user's Access key ID and Secret access key.
+
+> **Important**: This is the only time the CSV will be available so please download the CSV.
+
+### Connect to Heroku and upload Media folder
+
+Now that AWS has been configured, we will need some set some Heroku environment variables so that the next time you deploy to Heroku, AWS will retrieve your static files and store them in a `static/` folder.
+
+```bash
+heroku config:set AWS_ACCESS_KEY_ID="your_access_key_id"
+heroku config:set AWS_SECRET_ACCESS_KEY="your_secret_access_key"
+```
+
+You'll also need to set an `USE_AWS` environment variable as Django will be looking for this variable to determine whether to serve static files locally or from AWS.
+
+```bash
+heroku config:set USE_AWS="True"
+```
+
+Once these environment variables have been set and you have deployed to Heroku. On navigating to your S3 Bucket you will see that a `static/` folder now exists. Go ahead and create a folder called `media` and upload the files found [here](/media/), and under **Permissions**, grant public-read access.
+
+With that AWS should be properly setup to serve your static and media files
 
 ## Running locally
 
