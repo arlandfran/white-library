@@ -2,7 +2,7 @@
 
 This application was deployed on Heroku using Gunicorn as the Python web server. Django serves the website and AWS serves all our static and media assets. Here are the deployment steps:
 
-**Pre-requisites:** Heroku account, Stripe account, AWS account
+**Pre-requisites:** Heroku account, Stripe account, AWS account, Gmail account
 
 ## Setting up Heroku
 
@@ -150,7 +150,32 @@ heroku config:set STRIPE_WH_SECRET="your_stripe_wh_secret"
 
 With this Stripe should now be setup to properly listen for payments from Heroku and properly setup the `PaymentElement` on the checkout view.
 
-##
+## Setting up emails
+
+Create your Gmail account [here](https://accounts.google.com/signup) or use an existing one.
+
+Navigate to your Google account **Settings** > **Security** > **Signing into Google** and setup **2-Step Verification.**
+
+After you've enabled **2-Step Verification**, go back to **Settings** > **Security** > **Signing into Google** and open **App passwords.**
+
+Verify your account and select the following options:
+
+- Select app: Mail
+
+- Select device: Other (provide Django as the custom name)
+
+Generate your app password and add this to your Heroku environment variables as `EMAIL_HOST_PASS`:
+
+```bash
+heroku config:set EMAIL_HOST_PASS="your_gmail_app_password"
+```
+
+Lastly you'll need to add your Gmail account username and password to Heroku as environment variables and Django will be properly configured to send emails:
+
+```bash
+heroku config:set EMAIL_HOST_USER="your_gmail_username"
+heroku config:set EMAIL_HOST_PASS="your_gmail_password"
+```
 
 ## Running locally
 
@@ -169,10 +194,9 @@ Next create a virtual environment for the Python dependencies and install them i
 ```bash
 python -m venv venv
 . venv/bin/activate
+# venv\Scripts\activate.bat for Windows
 pip install -r requirements.txt
 ```
-
-> venv\Scripts\activate.bat for Windows
 
 Before you can run the app locally you'll need to set the local environment variables that Django needs to run.
 
