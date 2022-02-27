@@ -10,15 +10,22 @@
     <button 
       type="submit"
       form="delete-product-form-{{ form_id }}"
-      class="hover:underline disabled:line-through"
+      class="hover:underline disabled:line-through delete-btn"
       {% if products|length == 0 %} disabled {% endif %}
+      data-form-id="{{ form_id }}"
     >
       Delete
     </button>
   </div>
 </div>
 
-<form action="{% url 'delete_product' %}" method="POST" id="delete-product-form-{{ form_id }}">
+<form 
+  action="{% url 'delete_product' %}"
+  method="POST"
+  id="delete-product-form-{{ form_id }}"
+  class="delete-form"
+  data-form-id="{{ form_id }}"
+  >
   {% csrf_token %}
   <div class="grid grid-cols-[auto_auto_auto_auto] gap-4 p-4">
     <div class="font-bold">SKU</div>
@@ -31,6 +38,7 @@
         class="text-black focus:ring-black delete-all"
         form="delete-product-form-{{ form_id }}"
         {% if products|length == 0 %} disabled {% endif %}
+        data-form-id="{{ form_id }}"
       >
       <label for="delete-all-{{ form_id }}" hidden></label>
     </div>
@@ -53,6 +61,8 @@
           id="delete-{{ product.id }}-{{ form_id }}"
           class="text-black focus:ring-black delete"
           form="delete-product-form-{{ form_id }}"
+          data-product-name="{{ product.name }}"
+          data-form-id="{{ form_id }}"
         >
         <label for="delete-{{ product.id }}-{{ form_id }}" hidden></label>
     {% endfor %}
