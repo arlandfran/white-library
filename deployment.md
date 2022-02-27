@@ -1,6 +1,21 @@
 # Deployment
 
-This application was deployed on Heroku using Gunicorn as the Python web server. Django serves the website and AWS serves all our static and media assets. Here are the deployment steps:
+This application was deployed on Heroku using Gunicorn as the Python web server. Django serves the website, AWS serves all our static and media assets, Stripe is used as the payment processor and Gmail is the email provider.
+
+By the end of the deployment you should have the following Heroku environment variables set for your project to run:
+
+| Key                   | Value                                                              |
+| --------------------- | ------------------------------------------------------------------ |
+| AWS_ACCESS_KEY_ID     | Provided when creating a user in the IAM Management Console on AWS |
+| AWS_SECRET_ACCESS_KEY | Provided when creating a user in the IAM Management Console on AWS |
+| DATABASE_URL          | Automatically added when installing the Heroku Postgres add-on     |
+| EMAIL_HOST_PASS       | Provided when generating an app password for your Google account   |
+| EMAIL_HOST_USER       | Provided when generating an app password for your Google account   |
+| SECRET_KEY            | anythingyouwant                                                    |
+| STRIPE_PUBLIC_KEY     | Accessible from your Stripe Developer portal                       |
+| STRIPE_SECRET_KEY     | Accessible from your Stripe Developer portal                       |
+| STRIPE_WH_SECRET      | Accessible when creating a Stripe webhook - reveal Signing secret  |
+| USE_AWS               | True                                                               |
 
 **Pre-requisites:** Heroku account, Stripe account, AWS account, Gmail account
 
@@ -51,6 +66,22 @@ heroku  https://git.heroku.com/white-library-test.git (push)
 origin  http://github.com/your-github-username/white-library.git (fetch)
 origin  http://github.com/your-github-username/white-library.git (push)
 ```
+
+Next we'll need to use the Heroku Postgres add-on for this project:
+
+```bash
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+This will provision a PostgreSQL database for your project and automatically add a `DATABASE_URL` environment variable in your Heroku config.
+
+Next we'll need to add a `SECRET_KEY` environment variable for Django to use:
+
+```bash
+heroku config:set SECRET_KEY="anythingyouwant"
+```
+
+> I recommend using a Fort Knox password from [RandomKeygen.](https://randomkeygen.com/)
 
 At this stage you should be able to deploy your application to Heroku using `git push heroku main` and Heroku will automatically detect the language for your app is Python and configure the correct buildpack for the deployment. If you want to however manually set the buildpack you can do so by running these commands:
 
