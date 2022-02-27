@@ -6,7 +6,7 @@ This application was deployed on Heroku using Gunicorn as the Python web server.
 
 ## Setting up Heroku
 
-Create your Heroku account [here](https://signup.heroku.com/login).
+Create your Heroku account [here.](https://signup.heroku.com/login)
 
 Start off by cloning this project to your machine:
 
@@ -58,11 +58,9 @@ At this stage you should be able to deploy your application to Heroku using `git
 heroku buildpacks:set heroku/python
 ```
 
-Now that your buildpacks have been configured correctly you can now setup AWS and connect it to Heroku.
-
 ## Setting up AWS
 
-Create your AWS account [here](https://aws.amazon.com/) and click create an AWS account.
+Create your AWS account [here.](https://aws.amazon.com/)
 
 ### S3 Configuration
 
@@ -132,6 +130,27 @@ heroku config:set USE_AWS="True"
 Once these environment variables have been set and you have deployed to Heroku. On navigating to your S3 Bucket you will see that a `static/` folder now exists. Go ahead and create a folder called `media` and upload the files found [here](/media/), and under **Permissions**, grant public-read access.
 
 With that AWS should be properly setup to serve your static and media files
+
+## Setting up Stripe
+
+Create your Stripe account [here.](https://dashboard.stripe.com/register)
+
+Once you've created your account navigate to the **Developers** page and select **API Keys** in the sidebar. Copy your publishable key and secret key and add these to your Heroku environment variables.
+
+```bash
+heroku config:set STRIPE_PUBLIC_KEY="your_stripe_public_key"
+heroku config:set STRIPE_SECRET_KEY="your_stripe_secret_key"
+```
+
+Now navigate to **Webhooks** > Add endpoint. Use your Heroku app url as the endpoint URL and choose Select all events when selecting events to listen to. Once the endpoint has been added, reveal the _Signing secret_ and add it to your Heroku enviroment variables:
+
+```bash
+heroku config:set STRIPE_WH_SECRET="your_stripe_wh_secret"
+```
+
+With this Stripe should now be setup to properly listen for payments from Heroku and properly setup the `PaymentElement` on the checkout view.
+
+##
 
 ## Running locally
 
