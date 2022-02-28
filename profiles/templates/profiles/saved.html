@@ -2,7 +2,13 @@
     {% for saved in saved_products %}
         <div class="min-w-[8rem] max-w-[14rem] p-2 text-center flex flex-col justify-between gap-4">
             <a href="{% url 'product_detail' saved.product.id %}">
+              {% if saved.product.image %}
                 <img src="{{ saved.product.image.url }}" alt="{{ saved.product.name }}">
+              {% elif saved.product.image_url %}
+                <img src="{{ saved.product.image_url }}" alt="{{ saved.product.name }}">
+              {% else %}
+                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+              {% endif %}
             </a>
             <div class="flex flex-col gap-2">
                 {{ saved.product.name }}

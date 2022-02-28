@@ -249,9 +249,12 @@ def add_product(request):
         return redirect(reverse('home'))
 
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            if instance.image:
+                instance.image_url = instance.image.url
+            instance.save()
             messages.success(request, 'Product added successfully')
             return redirect(reverse('admin'))
         else:
@@ -279,9 +282,12 @@ def edit_product(request, product_id):
     product = Product.objects.get(id=product_id)
 
     if request.method == "POST":
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            if instance.image:
+                instance.image_url = instance.image.url
+            instance.save()
             messages.success(request, 'Product updated successfully')
             return redirect(reverse('admin'))
     else:
