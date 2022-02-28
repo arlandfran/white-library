@@ -25,12 +25,10 @@ An e-commerce store that specialises in limited edition books and/or collectible
 | User              | Purchase products securely                                 | Ensure that my account and payment methods details are safe                           |
 | User              | Verify my account                                          | Confirm the creation of my account                                                    |
 | Unregistered User | Create an account                                          | View past orders and edit my account information                                      |
-| Unregistered User | Checkout as a guest                                        | Purchase from the store without creating an account                                   |
 | Registered User   | Log in                                                     | View my order history, account information etc.                                       |
 | Registered User   | Log out                                                    | Prevent unauthorized access on a shared device                                        |
 | Registered User   | View my order history                                      | See my previous purchases and the status of any current orders                        |
 | Registered User   | View/edit my account information                           | Update any details if needed                                                          |
-| Registered User   | View/edit my payment methods                               | Update any payment methods if needed                                                  |
 | Registered User   | View/edit my shipping/billing addresses                    | Update any addresses if needed                                                        |
 | Registered User   | Save products                                              | View/buy them at a later date                                                         |
 | Registered User   | Change my password                                         | Update my passwords if needed                                                         |
@@ -48,8 +46,14 @@ An e-commerce store that specialises in limited edition books and/or collectible
 ### Features
 
 - Account registration/authentication
-- Payment system
+- Stripe payment system
 - Responsive design
+- Product management portal
+- Address book
+- Product grid
+- Saved products list
+
+---
 
 ## Architecture
 
@@ -218,7 +222,9 @@ class SavedProduct(models.Model):
 
 - [django-widget-tweaks](https://github.com/jazzband/django-widget-tweaks): - Customize HTML Form Fields using template filters.
 
-**Tooling:**
+- [django-polymorphic](https://django-polymorphic.readthedocs.io/en/stable/index.html): - Simplifies using inherited models in Django projects.
+
+\***\*Tooling**:
 
 - [Figma](https://www.figma.com/) - High-fidelity Wireframing
 
@@ -247,3 +253,13 @@ Testing is documented in a [separate file here](testing.md).
 ## Deployment
 
 Deployment is documented in a [separate file here](deployment.md).
+
+## Credits / Acknowledgements
+
+- Stack Overflow
+
+- All the doc sites: [Django](https://www.djangoproject.com/), [Stripe](https://stripe.com/docs) etc.
+
+- The Code Institute Slack community for all the great resources, tips and support
+
+- My mentor Precious Ijege for his support and feedback with the project
