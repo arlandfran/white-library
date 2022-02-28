@@ -7,7 +7,7 @@
 
 {% block content %}
   <div class="flex flex-col items-center">
-    <div class="flex justify-center items-center p-8 max-w-lg">
+    <div class="flex items-center justify-center max-w-lg p-8">
       {% if product.image %}
       <img src="{{ product.image.url }}" alt="{{ product.name }}">
       {% elif product.image_url %}
@@ -18,35 +18,41 @@
     </div>
 
     <div class="max-w-lg">
-      {% if user.is_authenticated %}
-      <div class="flex gap-2 justify-center">
-        <form action="{% url 'save_product' product.id %}" method="POST">
-          {% csrf_token %}
-          <input 
-            type="submit" 
-            value="save"
-            data-item-id="{{ product.id }}" 
-            class="p-4 w-full font-bold uppercase cursor-pointer disabled:cursor-default border border-black" 
-          >
-          <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
-        </form>
-        <form action="{% url 'add_to_bag' product.id %}" method="POST">
-          {% csrf_token %}
-          <input 
-            type="submit" 
-            value="add to bag"
-            data-item-id="{{ product.id }}" 
-            class="p-4 w-full font-bold uppercase cursor-pointer disabled:cursor-default border border-black" 
-          >
-          <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
-        </form>
-      </div>
+      {% if product.quantity == 0 %}
+        <div class="flex justify-center gap-2">
+          <div class="font-bold uppercase">no longer available</div>
+        </div>
       {% else %}
-      <a href="{% url 'account_login' %}?next={{ request.path }}" class="block p-4 font-bold text-center uppercase outline-black outline outline-1">
-        sign in to purchase
-      </a>
+        {% if user.is_authenticated %}
+          <div class="flex justify-center gap-2">
+          <form action="{% url 'save_product' product.id %}" method="POST">
+            {% csrf_token %}
+            <input 
+              type="submit" 
+              value="save"
+              data-item-id="{{ product.id }}" 
+              class="w-full p-4 font-bold uppercase border border-black cursor-pointer disabled:cursor-default" 
+            >
+            <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+          </form>
+          <form action="{% url 'add_to_bag' product.id %}" method="POST">
+            {% csrf_token %}
+            <input 
+              type="submit" 
+              value="add to bag"
+              data-item-id="{{ product.id }}" 
+              class="w-full p-4 font-bold uppercase border border-black cursor-pointer disabled:cursor-default" 
+            >
+            <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+          </form>
+          </div>
+        {% else %}
+        <a href="{% url 'account_login' %}?next={{ request.path }}" class="block p-4 font-bold text-center uppercase outline-black outline outline-1">
+          sign in to purchase
+        </a>
+        {% endif %}
       {% endif %}
-      <div class="py-8 px-8 sm:px-0">
+      <div class="px-8 py-8 sm:px-0">
         <div class="mb-2 text-xl font-bold">{{ product.release_date }}</div>
         <div class="mb-2 text-xl font-bold">{{ product.author }}</div>
         <h2 class="mb-2 font-bold underline">Description</h2>

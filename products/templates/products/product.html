@@ -19,5 +19,11 @@
     </a>
     {% endif %}
   </div>
-  <div>£{{ product.price|floatformat }}</div>
+  <div class="uppercase">
+    {% if product.quantity == 0 %}
+    sold out
+    {% else %}
+    £{{ product.price|floatformat }}
+    {% endif %}
+  </div>
 </div>
