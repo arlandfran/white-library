@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_bootstrap_icons',
     'widget_tweaks',
     'theme',
+    'polymorphic',
     'home',
     'products',
     'bag',
