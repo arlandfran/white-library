@@ -36,7 +36,7 @@ for (const form of deleteForms) {
 
     let message = `Are you sure you want to delete ${
       products.length
-    } items? \n\n${products.join("\r\n")}`;
+    } item(s)? \n\n${products.join("\r\n")}`;
 
     if (confirm(message)) {
       event.target.submit();
