@@ -118,7 +118,6 @@ paymentForm.addEventListener("submit", async (event) => {
     contentType: "application/json",
     body: JSON.stringify({
       client_secret: document.querySelector("#payment-form").dataset.secret,
-      save_info: saveInfo,
     }),
   })
     .then(async () => {
