@@ -19,7 +19,7 @@ CSS styles were validated with the [W3C CSS Validator](https://jigsaw.w3.org/css
 
 ### JS
 
-Javascript was validated along the way with [ESLint](https://eslint.org/) by installing it via NPM and enabled it in VS Code.
+Javascript was validated along the way with [ESLint](https://eslint.org/) by installing it via NPM and enabling it in VS Code.
 
 ### Python
 
@@ -85,11 +85,11 @@ Users can change their password from their profile
 
 - As a registered user I want to reset my password via email
 
-- Users can follow the forgot password process during log in and works good
+Users can follow the forgot password process during log in and reset their password successfully
 
 - As an admin add/edit/delete products
 
-Admins have crud capabilities through the profile menu
+Admins have CURD capabilities through the profile menu
 
 ## Responsive Testing
 
