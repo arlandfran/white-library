@@ -8,6 +8,14 @@
             {% with classes="border-black focus:border-black focus:ring-black" %}
                 {{ field|add_class:classes }}
             {% endwith %}
+
+            {% if form.errors %}
+                {% for error in field.errors %}
+                <div class="text-red-500">
+                    <span class="break-all">{{ error|escape }}</span>
+                </div>
+                {% endfor %}
+            {% endif %}
         {% endfor %}
 
         <button type="submit" class="p-2 uppercase border border-black w-fit">add product</button>
