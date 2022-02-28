@@ -1,15 +1,22 @@
 {% load widget_tweaks %}
 
 <div class="flex flex-col gap-2 p-4 w-fit">
-    <h2>Edit product:</h2>
-    <form action="{% url 'edit_product' product_id %}" method="POST" class="grid grid-cols-1 gap-2">
-    {% csrf_token %}    
-        {% for field in form %}
-            {% with classes="border-black focus:border-black focus:ring-black" %}
-                {{ field|add_class:classes }}
-            {% endwith %}
-        {% endfor %}
+  <h2>Edit product:</h2>
+  <form
+    action="{% url 'edit_product' product_id %}"
+    method="POST"
+    class="grid grid-cols-1 gap-2"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    {% for field in form %}
+      {% with classes="border-black focus:border-black focus:ring-black" %}
+         {{ field|add_class:classes }}
+      {%endwith %}
+    {% endfor %}
 
-        <button type="submit" class="p-2 uppercase border border-black w-fit">update</button>
-    </form>
+    <button type="submit" class="p-2 uppercase border border-black w-fit">
+      update
+    </button>
+  </form>
 </div>

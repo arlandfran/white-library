@@ -1,11 +1,10 @@
 from django import forms
 
-from .models import Product, Category
+from .models import Product, Category, Book, BoxedSet, Collectible
 from .widgets import CustomClearableFileInput
 
 
 class ProductForm(forms.ModelForm):
-
     class Meta:
         model = Product
         fields = '__all__'
@@ -29,3 +28,21 @@ class ProductForm(forms.ModelForm):
             else:
                 placeholder = field.replace('_', ' ').title()
             self.fields[field].widget.attrs['placeholder'] = placeholder
+
+
+class BookForm(ProductForm):
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+
+class BoxedSetForm(ProductForm):
+    class Meta:
+        model = BoxedSet
+        fields = '__all__'
+
+
+class CollectibleForm(ProductForm):
+    class Meta:
+        model = Collectible
+        fields = '__all__'

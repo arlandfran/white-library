@@ -1,7 +1,9 @@
-<div class="flex justify-center items-center h-16 gap-2 p-4 outline outline-1 outline-black">
-  <a href="#" class="uppercase">account</a>
+<div
+  class="flex items-center justify-center h-16 gap-2 p-4 outline outline-1 outline-black"
+>
+  <a href="{% url 'profile' %}" class="uppercase">profile</a>
   <span>|</span>
-  <a href="#" class="uppercase">t&c's</a>
+  <a href="{% url 'legal' %}" class="uppercase">legal</a>
   <span>|</span>
-  <a href="#" class="uppercase">contact us</a>
+  <a href="{% url 'contact' %}" class="uppercase">contact us</a>
 </div>

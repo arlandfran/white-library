@@ -3,26 +3,124 @@
     {{ products|length }} product(s) found
   </div>
   <div class="flex items-center gap-2">
-    <a href="{% url 'add_product' %}" class="hover:underline">
-      Add
-    </a>
+    <div class="flex justify-center">
+      <div>
+        <div class="dropdown relative">
+          <button
+            class="
+              hover:underline
+            "
+            type="button"
+            id="add-product"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Add product
+          </button>
+          <ul
+            class="
+              dropdown-menu
+              bg-white
+              min-w-max
+              absolute
+              hidden
+              text-base
+              z-50
+              float-left
+              py-2
+              list-none
+              text-left
+              border
+              border-black
+              mt-1
+              m-0
+              bg-clip-padding
+            "
+            aria-labelledby="add-product"
+          >
+            <li>
+              <a
+                class="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  hover:underline
+                "
+                href="{% url 'add_product' 1 %}"
+                >Add book</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  hover:underline
+                "
+                href="{% url 'add_product' 2 %}"
+                >Add boxed set</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  hover:underline
+                "
+                href="{% url 'add_product' 3 %}"
+                >Add collectible</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     |
     <button 
       type="submit"
       form="delete-product-form-{{ form_id }}"
-      class="hover:underline disabled:line-through"
+      class="hover:underline disabled:line-through delete-btn"
       {% if products|length == 0 %} disabled {% endif %}
+      data-form-id="{{ form_id }}"
     >
       Delete
     </button>
   </div>
 </div>
 
-<form action="{% url 'delete_product' %}" method="POST" id="delete-product-form-{{ form_id }}">
+<form 
+  action="{% url 'delete_product' %}"
+  method="POST"
+  id="delete-product-form-{{ form_id }}"
+  class="delete-form"
+  data-form-id="{{ form_id }}"
+  >
   {% csrf_token %}
-  <div class="grid grid-cols-[auto_auto_auto_auto] gap-4 p-4">
+  <div class="grid grid-cols-[auto_auto_auto_auto_auto] gap-4 p-4">
     <div class="font-bold">SKU</div>
     <div class="font-bold">Name</div>
+    <div class="font-bold">Category</div>
     <div class="font-bold">Price</div>
     <div class="font-bold">
       <input
@@ -31,6 +129,7 @@
         class="text-black focus:ring-black delete-all"
         form="delete-product-form-{{ form_id }}"
         {% if products|length == 0 %} disabled {% endif %}
+        data-form-id="{{ form_id }}"
       >
       <label for="delete-all-{{ form_id }}" hidden></label>
     </div>
@@ -44,6 +143,9 @@
           {{ product.name }}
         </div>
         <div>
+          {{ product.category.friendly_name }}
+        </div>
+        <div>
           £{{ product.price }}
         </div>
         <input
@@ -53,6 +155,8 @@
           id="delete-{{ product.id }}-{{ form_id }}"
           class="text-black focus:ring-black delete"
           form="delete-product-form-{{ form_id }}"
+          data-product-name="{{ product.name }}"
+          data-form-id="{{ form_id }}"
         >
         <label for="delete-{{ product.id }}-{{ form_id }}" hidden></label>
     {% endfor %}

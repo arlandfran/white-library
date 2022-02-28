@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import Category, Product
 
-# Register your models here.
+from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin, PolymorphicChildModelFilter
+
+from .models import Category, Product, Book, BoxedSet, Collectible
 
 
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
@@ -11,7 +13,32 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductChildAdmin(PolymorphicChildModelAdmin):
+    """ Base admin class for all child models """
+    base_model = Product
+
+
+@admin.register(Book)
+class BookAdmin(ProductChildAdmin):
+    base_model = Book
+
+
+@admin.register(BoxedSet)
+class BoxedSetAdmin(ProductChildAdmin):
+    base_model = BoxedSet
+
+
+@admin.register(Collectible)
+class CollectibleAdmin(ProductChildAdmin):
+    base_model = Collectible
+
+
+@admin.register(Product)
+class ProductParentAdmin(PolymorphicParentModelAdmin):
+    """ The parent model admin """
+    base_model = Product
+    child_models = (Book, BoxedSet, Collectible)
+    list_filter = (PolymorphicChildModelFilter,)
     list_display = (
         'sku',
         'name',
@@ -21,7 +48,3 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
     ordering = ('sku',)
-
-
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Product, ProductAdmin)

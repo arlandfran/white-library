@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="grid grow justify-items-center items-center">
+    <div>
+      <h1 class="font-bold text-3xl">Page not found</h1>
+      <p class="text-lg">How did you get here? </p>
+      <p class="text-lg">
+        Let's go <a href="{% url 'home' %}" class="underline">home.</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}
