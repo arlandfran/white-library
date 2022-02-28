@@ -3,8 +3,8 @@
     "model": "products.category",
     "pk": 1,
     "fields": {
-      "name": "hardback",
-      "friendly_name": "Hardback"
+      "name": "book",
+      "friendly_name": "Book"
     }
   },
   {
