@@ -89,7 +89,7 @@ Users can follow the forgot password process during log in and reset their passw
 
 - As an admin add/edit/delete products
 
-Admins have CURD capabilities through the profile menu
+Admins have CRUD capabilities through the profile menu
 
 ## Responsive Testing
 
@@ -108,3 +108,5 @@ Accessibility was tested using [WAVE](https://wave.webaim.org/). Microsoft's [Ac
 - Forms are properly validated e.g. Admins cannot create products with price < 0.
 
 - Users are asked to confirm their delete before clicking deleting any products.
+
+- Admin and profiles views are protected, users need to log in to purchase etc.
