@@ -3,9 +3,99 @@
     {{ products|length }} product(s) found
   </div>
   <div class="flex items-center gap-2">
-    <a href="{% url 'add_product' %}" class="hover:underline">
-      Add
-    </a>
+    <div class="flex justify-center">
+      <div>
+        <div class="dropdown relative">
+          <button
+            class="
+              hover:underline
+            "
+            type="button"
+            id="add-product"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Add product
+          </button>
+          <ul
+            class="
+              dropdown-menu
+              bg-white
+              min-w-max
+              absolute
+              hidden
+              text-base
+              z-50
+              float-left
+              py-2
+              list-none
+              text-left
+              border
+              border-black
+              mt-1
+              m-0
+              bg-clip-padding
+            "
+            aria-labelledby="add-product"
+          >
+            <li>
+              <a
+                class="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  hover:underline
+                "
+                href="{% url 'add_product' 1 %}"
+                >Add book</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  hover:underline
+                "
+                href="{% url 'add_product' 2 %}"
+                >Add boxed set</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  hover:underline
+                "
+                href="{% url 'add_product' 3 %}"
+                >Add collectible</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     |
     <button 
       type="submit"

@@ -30,7 +30,7 @@ class Product(PolymorphicModel):
         MinValueValidator(Decimal('0.01'), message="Price cannot be lower than 0")])
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.name

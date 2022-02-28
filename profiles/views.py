@@ -1,3 +1,4 @@
+from unittest import case
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -7,7 +8,7 @@ from django.urls import reverse
 
 from checkout.models import Order
 from products.models import Product
-from products.forms import ProductForm
+from products.forms import ProductForm, BookForm, BoxedSetForm, CollectibleForm
 
 from .models import UserProfile, Address
 from .forms import UserForm, AddressForm
@@ -242,14 +243,22 @@ def admin(request):
 
 
 @login_required
-def add_product(request):
+def add_product(request, category_id):
     """Add a product to the store"""
     if not request.user.is_superuser:
         messages.error(request, 'Unauthorized access')
         return redirect(reverse('home'))
 
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
+        if category_id == 1:
+            form = BookForm(request.POST, request.FILES)
+        elif category_id == 2:
+            form = BoxedSetForm(request.POST, request.FILES)
+        elif category_id == 3:
+            form = CollectibleForm(request.POST, request.FILES)
+        else:
+            form = ProductForm(request.POST, request.FILES)
+
         if form.is_valid():
             instance = form.save(commit=False)
             if instance.image:
@@ -262,11 +271,19 @@ def add_product(request):
                            ('Update failed. Please ensure '
                             'the form is valid.'))
     else:
-        form = ProductForm()
+        if category_id == 1:
+            form = BookForm(request.POST, request.FILES)
+        elif category_id == 2:
+            form = BoxedSetForm(request.POST, request.FILES)
+        elif category_id == 3:
+            form = CollectibleForm(request.POST, request.FILES)
+        else:
+            form = ProductForm(request.POST, request.FILES)
 
     template = 'profiles/add_product.html'
     context = {
         'form': form,
+        'category_id': category_id
     }
 
     return render(request, template, context)
