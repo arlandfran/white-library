@@ -51,14 +51,6 @@ paymentForm.addEventListener("submit", async (event) => {
     `;
   messageContainer.textContent = "";
 
-  let saveInfo;
-
-  if (document.querySelector("#id-save-info")) {
-    saveInfo = document.querySelector("#id-save-info").checked;
-  } else {
-    saveInfo = false;
-  }
-
   let billing_details;
   let shipping;
 

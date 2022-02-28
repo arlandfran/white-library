@@ -94,7 +94,6 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request,
@@ -141,7 +140,6 @@ def checkout(request):
 def checkout_success(request, order_number):
     """Handle successful checkout"""
 
-    save_info = request.session.get('save-info')
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
