@@ -4032,11 +4032,6 @@ textarea.form-control.is-invalid {
   margin-right: auto;
 }
 
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
 .mt-4 {
   margin-top: 1rem;
 }
@@ -4145,60 +4140,12 @@ textarea.form-control.is-invalid {
   width: 8rem;
 }
 
-.w-96 {
-  width: 24rem;
-}
-
-.w-80 {
-  width: 20rem;
-}
-
-.w-\[32rem\] {
-  width: 32rem;
-}
-
-.w-4 {
-  width: 1rem;
-}
-
-.w-10 {
-  width: 2.5rem;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
-.w-48 {
-  width: 12rem;
-}
-
 .min-w-\[8rem\] {
   min-width: 8rem;
 }
 
 .min-w-\[7rem\] {
   min-width: 7rem;
-}
-
-.min-w-min {
-  min-width: -webkit-min-content;
-  min-width: -moz-min-content;
-  min-width: min-content;
-}
-
-.min-w-fit {
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-}
-
-.min-w-\[20rem\] {
-  min-width: 20rem;
-}
-
-.min-w-\[22rem\] {
-  min-width: 22rem;
 }
 
 .max-w-md {
@@ -4221,24 +4168,16 @@ textarea.form-control.is-invalid {
   max-width: 12rem;
 }
 
+.max-w-3xl {
+  max-width: 48rem;
+}
+
 .max-w-\[8rem\] {
   max-width: 8rem;
 }
 
 .max-w-\[14rem\] {
   max-width: 14rem;
-}
-
-.max-w-\[24rem\] {
-  max-width: 24rem;
-}
-
-.max-w-\[32rem\] {
-  max-width: 32rem;
-}
-
-.max-w-\[48rem\] {
-  max-width: 48rem;
 }
 
 .grow {
@@ -4350,20 +4289,8 @@ textarea.form-control.is-invalid {
   gap: 1px;
 }
 
-.self-end {
-  align-self: flex-end;
-}
-
-.self-center {
-  align-self: center;
-}
-
 .justify-self-end {
   justify-self: end;
-}
-
-.justify-self-center {
-  justify-self: center;
 }
 
 .overflow-x-hidden {
