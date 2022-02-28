@@ -299,7 +299,15 @@ def edit_product(request, product_id):
     product = Product.objects.get(id=product_id)
 
     if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES, instance=product)
+        if product.category.id == 1:
+            form = BookForm(request.POST, request.FILES, instance=product)
+        elif product.category.id == 2:
+            form = BoxedSetForm(request.POST, request.FILES, instance=product)
+        elif product.category.id == 3:
+            form = CollectibleForm(
+                request.POST, request.FILES, instance=product)
+        else:
+            form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             instance = form.save(commit=False)
             if instance.image:
@@ -308,7 +316,14 @@ def edit_product(request, product_id):
             messages.success(request, 'Product updated successfully')
             return redirect(reverse('admin'))
     else:
-        form = ProductForm(instance=product)
+        if product.category.id == 1:
+            form = BookForm(instance=product)
+        elif product.category.id == 2:
+            form = BoxedSetForm(instance=product)
+        elif product.category.id == 3:
+            form = CollectibleForm(instance=product)
+        else:
+            form = ProductForm(instance=product)
 
     template = 'profiles/edit_product.html'
     context = {
