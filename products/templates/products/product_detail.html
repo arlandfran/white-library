@@ -31,7 +31,7 @@
               type="submit" 
               value="save"
               data-item-id="{{ product.id }}" 
-              class="w-full p-4 font-bold uppercase border border-black cursor-pointer disabled:cursor-default" 
+              class="w-full p-2 font-bold uppercase border border-black cursor-pointer disabled:cursor-default" 
             >
             <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
           </form>
@@ -41,7 +41,7 @@
               type="submit" 
               value="add to bag"
               data-item-id="{{ product.id }}" 
-              class="w-full p-4 font-bold uppercase border border-black cursor-pointer disabled:cursor-default" 
+              class="w-full p-2 font-bold uppercase border border-black cursor-pointer disabled:cursor-default" 
             >
             <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
           </form>
@@ -53,7 +53,7 @@
         {% endif %}
       {% endif %}
       <div class="px-8 py-8 sm:px-0">
-        <div class="mb-2 text-xl font-bold">{{ product.release_date }}</div>
+        <div class="mb-2 text-xl font-bold">£{{ product.price }}</div>
         <div class="mb-2 text-xl font-bold">{{ product.author }}</div>
         <h2 class="mb-2 font-bold underline">Description</h2>
         <p>{{ product.description }}</p>
