@@ -2,7 +2,7 @@
 
 An e-commerce store that specialises in limited edition books and/or collectibles.
 
-**Deployed Link**: TBD
+**Deployed Link**: [https://white-library.herokuapp.com/](https://white-library.herokuapp.com/)
 
 **Project Goals:**
 
