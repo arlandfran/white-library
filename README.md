@@ -52,6 +52,10 @@ An e-commerce store that specialises in limited edition books and/or collectible
 - Address book
 - Product grid
 - Saved products list
+- Sorting of products/categories
+- Search bar
+- Order history
+- Contact form w/ email setup
 
 ---
 
@@ -224,7 +228,7 @@ class SavedProduct(models.Model):
 
 - [django-polymorphic](https://django-polymorphic.readthedocs.io/en/stable/index.html): - Simplifies using inherited models in Django projects.
 
-\***\*Tooling**:
+**Tooling**:
 
 - [Figma](https://www.figma.com/) - High-fidelity Wireframing
 
